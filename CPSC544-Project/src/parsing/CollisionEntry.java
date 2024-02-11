@@ -1,3 +1,5 @@
+package parsing;
+
 public class CollisionEntry {
     
     public enum C_WDAY {
@@ -251,6 +253,7 @@ public class CollisionEntry {
     public P_ISEV PERSON_INJURY_SEVERITY; //why does this and C_SEV exist at the same time? who knows!!!!
     public P_SAFE SAFETY_DEVICES;
     public P_USER USER;
+    public int CASE_NUMBER; //C_CASE, a column not documented on the data sheet.
 
     //auto generated constructor, thats why the argument names look so bad.
     public CollisionEntry(short yEAR, byte mONTH, CollisionEntry.C_WDAY wEEK_DAY, byte hOUR,
@@ -260,7 +263,7 @@ public class CollisionEntry {
             CollisionEntry.V_TYPE vEHICLE_TYPE, short vEHICLE_MODEL_YEAR, byte pERSON_ID,
             CollisionEntry.P_SEX pERSON_SEX, byte pERSON_AGE, CollisionEntry.P_PSN pERSON_POSITION,
             CollisionEntry.P_ISEV pERSON_INJURY_SEVERITY, CollisionEntry.P_SAFE sAFETY_DEVICES,
-            CollisionEntry.P_USER uSER) {
+            CollisionEntry.P_USER uSER, int cASE_NUMBER) {
         YEAR = yEAR;
         MONTH = mONTH;
         WEEK_DAY = wEEK_DAY;
@@ -283,6 +286,7 @@ public class CollisionEntry {
         PERSON_INJURY_SEVERITY = pERSON_INJURY_SEVERITY;
         SAFETY_DEVICES = sAFETY_DEVICES;
         USER = uSER;
+        CASE_NUMBER = cASE_NUMBER;
     }
 
 }
