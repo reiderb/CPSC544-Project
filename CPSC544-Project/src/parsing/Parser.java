@@ -2,8 +2,6 @@ package parsing;
 
 import java.util.ArrayList;
 
-import parsing.CollisionEntry.C_SEV;
-
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -110,8 +108,8 @@ public class Parser {
                 }
 
                 //C_VEHS
-                
 
+                //TODO Repeat for the rest of the fields, create a CollisionEntry object out of what is parsed and add it to returnList.
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
