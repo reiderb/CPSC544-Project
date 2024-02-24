@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<ivy-module version="2.0">
+    <info organisation="org.cpsc544" module="CPSC 544 Project"/>
+    <dependencies>
+        <dependency org="commons-cli" name="commons-cli" rev="1.6.0"/>
+    </dependencies>
+</ivy-module>

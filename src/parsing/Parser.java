@@ -8,9 +8,6 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class Parser {
-    public static void main(String[] args) throws Exception {
-        System.out.println("Hello, World!");
-    }
 
     public static ArrayList<CollisionEntry> Parse_CSV(String path) {
         ArrayList<CollisionEntry> returnList = new ArrayList<CollisionEntry>();
