@@ -188,6 +188,9 @@ public class CollisionEntry {
         EIGHTH_LEFT,
         EIGHTH_CENTER,
         EIGHTH_RIGHT,
+        NINTH_LEFT,
+        NINTH_CENTER,
+        NINTH_RIGHT,
         UNKNOWN_BUT_DEFINITELY_OCCUPANT,
         ON_LAP,
         OUTSIDE_PASSENGER_COMPARTMENT,
@@ -216,6 +219,7 @@ public class CollisionEntry {
         OTHER_SAFETY_DEVICE,
         NO_SAFETY_DEVICE_EQUIPPED,
         NOT_APPLICABLE,
+        OTHER, //fucking WHY
         UNKNOWN,
         NOT_PROVIDED;
     }
@@ -229,7 +233,7 @@ public class CollisionEntry {
         UNKNOWN;
     }
 
-    //For numeric values: -1 = Unknown; -2 = Not Provided; -3 = Other
+    //For numeric values: -1 = Unknown; -2 = Not Provided; -3 = Other; -4 = Not applicable
     //instead of using ints, i used the smallest numeric type that would fit valid ranges to save memory
     public short YEAR; //C_YEAR
     public byte MONTH; //C_MNTH
