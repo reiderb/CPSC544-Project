@@ -9,7 +9,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class Parser {
+public class CollisionEntryParser {
 
     public static ArrayList<CollisionEntry> Parse_CSV(String path) {
         ArrayList<CollisionEntry> returnList = new ArrayList<CollisionEntry>();
