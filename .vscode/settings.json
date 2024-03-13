@@ -3,5 +3,17 @@
     "java.project.outputPath": "bin",
     "java.project.referencedLibraries": [
         "lib/**/*.jar"
+    ],
+    "cSpell.words": [
+        "ISEV",
+        "MNTH",
+        "RALN",
+        "RCFG",
+        "RGFG",
+        "RSUR",
+        "TRAF",
+        "VEHS",
+        "WDAY",
+        "WTHR"
     ]
 }

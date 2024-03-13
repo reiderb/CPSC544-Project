@@ -3,3 +3,4 @@ bin
 *.jar
 collision-databse_1999-2019.csv
 .DS_Store
+.java-version
