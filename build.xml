@@ -1,5 +1,11 @@
 <?xml version="1.0"?>
 <project name="CPSC 544 Project" default="build" basedir="." xmlns:ivy="antlib:org.apache.ivy.ant">
+    <path id = "ivy.lib.path">
+        <fileset dir = "./ivy" includes="*.jar"/>
+    </path>
+    <taskdef resource="org/apache/ivy/ant/antlib.xml"
+        uri = "antlib:org.apache.ivy.ant" classpathref="ivy.lib.path"/>
+
     <property name="src" location="src"/>
     <property name="build" location="build"/>
     <property name="lib" location="lib"/>
