@@ -1,38 +1,38 @@
 import parsing.CollisionEntryParser;
-import rules.Rule;
+import rules.*;
 import parsing.CollisionEntry;
+import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) throws Exception {
         System.out.println("Hello, World!");
-        //CollisionEntryParser.Parse_CSV("collision-databse_1999-2019.csv");
+        ArrayList<CollisionEntry> entrylist = CollisionEntryParser.Parse_CSV("collision-databse_1999-2019.csv");
         System.out.println("Making empty rule");
         Rule test = new Rule();
+        test.cond.add(new Predicate(Predicate.FEATURE.C_YEAR, 1999, 2003)); //adds a predicate to the condition list that a collision occured between january 1, 1999 and december 31, 2002
+        test.cond.add(new Predicate(Predicate.FEATURE.C_MNTH, 1)); //adds a condition that a collision occured in january (i believe)
+        test.conc = new Predicate(Predicate.FEATURE.V_YEAR, 1990); //rule conclusion is that the vehicle is a 1990 model
         
-        CollisionEntry.C_WDAY daynum = CollisionEntry.C_WDAY.UNKNOWN;
-        CollisionEntry.C_WDAY[] dayarray = CollisionEntry.C_WDAY.values();
+        //so, the rule says that if a an accident happened in january between 1999 and the end of 2002, then the vehicle involved must have been made in 1990
+        //a silly rule, but this is just for test purposes. it should be true for the 0th entry, but not the first entry.
         
-        int unknowndex = CollisionEntry.C_WDAY.UNKNOWN.ordinal();
-        
-        
-        for (int i = 0; i < dayarray.length; i++)
+        RuleChecker checker = new RuleChecker();
+        if (checker.checkRule(entrylist.get(0), test))
         {
-                if (dayarray[i] == daynum)
-                {
-                    System.out.println("that's unknown, alright..");
-                }
-                else
-                {
-                    System.out.println(dayarray[i].toString());
-                }
-                if (i == unknowndex)
-                {
-                    System.out.println("test test");
-                    if (daynum.ordinal() == unknowndex)
-                    {
-                        System.out.println("all as expected..");
-                    }
-                }
+            System.out.println("The rule applies to the 0th entry");
+        }
+        else
+        {
+            System.out.println("The rule does NOT apply to the 0th entry");
+        }
+        
+        if (checker.checkRule(entrylist.get(1), test))
+        {
+            System.out.println("The rule applies to the 1st entry");
+        }
+        else
+        {
+            System.out.println("The rule does NOT apply to the 1st entry");
         }
     }
 }

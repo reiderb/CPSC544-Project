@@ -219,7 +219,7 @@ public class CollisionEntry {
         OTHER_SAFETY_DEVICE,
         NO_SAFETY_DEVICE_EQUIPPED,
         NOT_APPLICABLE,
-        OTHER, //fucking WHY
+        OTHER, //fucking WHY [for when the P_SAFE is other]
         UNKNOWN,
         NOT_PROVIDED;
     }
