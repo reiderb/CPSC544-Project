@@ -1,6 +1,7 @@
 build
 bin
 *.jar
+!ivy-2.5.2.jar
 collision-databse_1999-2019.csv
 .DS_Store
 .java-version
