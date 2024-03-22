@@ -9,6 +9,14 @@
     <property name="src" location="src"/>
     <property name="build" location="build"/>
     <property name="lib" location="lib"/>
+    <property name="build.test" location="build/test"/>
+    <property name="test" value="test"/>
+
+    <path id="classpath.test">
+        <pathelement location="lib/junit-4.13.2.jar"/>
+        <pathelement location="lib/hamcrest-core-1.3.jar"/>
+        <pathelement location="${build}"/>
+    </path>    
 
     <target name="init">
         <tstamp/>
@@ -44,6 +52,27 @@
             </manifest>
         </jar>
     </target>
+
+    <target name="test-compile" depends="build">
+        <mkdir dir="${build.test}"/>
+        <javac srcdir="${test}" destdir="${build.test}" includeantruntime="false">
+            <classpath refid="classpath.test"/>
+        </javac>
+    </target>
+
+    <target name="test" depends="test-compile">
+        <junit printsummary="on" haltonfailure="yes" fork="true">
+            <classpath>
+              <path refid="classpath.test"/>
+              <pathelement location="${build.test}"/>
+            </classpath>
+            <formatter type="brief" usefile="false" />
+            <batchtest>
+                <fileset dir="${test}" includes="**/*Test.java" />
+            </batchtest>
+        </junit>
+    </target>
+    
 
     <target name="clean">
         <delete dir="${build}"/>

@@ -60,4 +60,16 @@ public class Predicate
         min = newmin;
         max = newmax;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Predicate p = (Predicate) obj;
+        return this.max == p.max && this.min == p.min && this.feature == p.feature && this.predtype == p.predtype;
+    }
 }
