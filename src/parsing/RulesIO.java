@@ -24,7 +24,6 @@ public class RulesIO {
         ArrayList<Rule> rules = new ArrayList<>();
         try {
             BufferedReader r  = new BufferedReader(new FileReader(path));
-            boolean hasNext = true;
             String line;
             int i = 1;
 
@@ -32,14 +31,8 @@ public class RulesIO {
                 line = r.readLine();
                 final HashMap<Integer, Predicate.FEATURE> featureList = getFeatureList(line);
 
-                while (hasNext) {
-                    i++;
-                    line = r.readLine();
-                    if(line.length() < 1) {
-                        hasNext = false;
-                    } else {
-
-                    }
+                while((line = r.readLine()) != null) {
+                    rules.add(decodeRule(line, featureList));
                 }
             } catch (IOException e) {
                 System.err.println("Error encountered when parsing line " + i);
@@ -68,6 +61,7 @@ public class RulesIO {
                     w.newLine();
                     w.write(encodeRule(rules.get(i)));
                 }
+                w.newLine();
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
