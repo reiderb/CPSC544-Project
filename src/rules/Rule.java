@@ -4,17 +4,17 @@ import java.util.ArrayList;
 public class Rule
 {
 	public ArrayList<Predicate> cond;
-	public Predicate conc;
+	public ArrayList<Predicate> conc;
 	public float freq;
 	
 	public Rule()
 	{
 		cond = new ArrayList<Predicate>();
-		conc = null;
+		conc = new ArrayList<Predicate>();
 		freq = 0;
 	}
 	
-	public Rule(ArrayList<Predicate> newcond, Predicate newconc, float newfreq)
+	public Rule(ArrayList<Predicate> newcond, ArrayList<Predicate> newconc, float newfreq)
 	{
 		cond = newcond;
 		conc = newconc;
@@ -38,9 +38,17 @@ public class Rule
 			for(int i = 0; i < cond.size(); i++) {
 				if(!cond.get(i).equals(r.cond.get(i))) return false;
 			}
+			
+			if(conc.size() != r.conc.size()) {
+				return false;
+			}
+
+			for(int i = 0; i < conc.size(); i++) {
+				if(!conc.get(i).equals(r.conc.get(i))) return false;
+			}
 
 			
-			return this.conc.equals(r.conc) && this.freq == r.freq;
+			return this.freq == r.freq;
 	}
 
 }

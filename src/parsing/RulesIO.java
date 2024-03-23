@@ -83,7 +83,12 @@ public class RulesIO {
         for(int i = 1; i < n; i++) {
             sb.append(',').append(encodePredicate(rule.cond.get(i)));
         }
-        sb.append("}").append(',').append(encodePredicate(rule.conc)).append(',').append(rule.freq);
+        sb.append("}").append(',').append("{").append(encodePredicate(rule.conc.get(0)));
+        n = rule.conc.size();
+        for(int i = 1; i < n; i++) {
+            sb.append(',').append(encodePredicate(rule.conc.get(i)));
+        }
+        sb.append("}").append(",").append(rule.freq);
 
         return sb.toString();
     }
@@ -118,17 +123,23 @@ public class RulesIO {
     }
 
     public static Rule decodeRule(String line, HashMap<Integer, Predicate.FEATURE> featureList) {
-        Pattern pattern = Pattern.compile("\\{([\\(\\),\\d]+)\\},([\\(\\)\\,\\d]+),([\\d\\.]+)");
+        Pattern pattern = Pattern.compile("\\{([\\(\\),\\d]+)\\},\\{([\\(\\)\\,\\d]+)\\},([\\d\\.]+)");
         Matcher matcher = pattern.matcher(line);
 
         if(matcher.find()) {
             String[] condStr = matcher.group(1).split("\\),");
+            String[] concStr = matcher.group(2).split("\\),");
             ArrayList<Predicate> cond = new ArrayList<>();
-            Predicate concl = decodePredicate(matcher.group(2), featureList);
+            ArrayList<Predicate> concl = new ArrayList<Predicate>();
+            //Predicate concl = decodePredicate(matcher.group(2), featureList);
 
             for(int i = 0; i < condStr.length; i++) {
                 cond.add(decodePredicate(condStr[i], featureList));
             }
+            for (int i = 0; i < concStr.length; i++)
+            {
+				concl.add(decodePredicate(concStr[i], featureList));
+			}
 
             Rule r = new Rule(cond, concl, Float.parseFloat(matcher.group(3)));
             return r;

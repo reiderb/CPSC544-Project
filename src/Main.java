@@ -12,7 +12,7 @@ public class Main {
         test.cond.add(new Predicate(Predicate.FEATURE.C_YEAR, 1999, 2003)); //adds a predicate to the condition list that a collision occured between january 1, 1999 and december 31, 2002
         test.cond.add(new Predicate(Predicate.FEATURE.C_MNTH, 1)); //adds a condition that a collision occured in january (i believe)
         test.cond.add(new Predicate(Predicate.FEATURE.C_SEV, CollisionEntry.C_SEV.NON_FATAL_INJURY.ordinal())); //thought i should show how to represent enum values for the predicates..
-        test.conc = new Predicate(Predicate.FEATURE.V_YEAR, 1990); //rule conclusion is that the vehicle is a 1990 model
+        test.conc.add(new Predicate(Predicate.FEATURE.V_YEAR, 1990)); //rule conclusion is that the vehicle is a 1990 model
         
         //so, the rule says that if a an accident happened in january between 1999 and the end of 2002, then the vehicle involved must have been made in 1990
         //a silly rule, but this is just for test purposes. it should be true for the 0th entry, but not the first entry.

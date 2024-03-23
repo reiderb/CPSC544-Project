@@ -1,5 +1,6 @@
 package rules;
 import parsing.CollisionEntry;
+import java.util.ArrayList;
 
 public class RuleChecker
 {
@@ -36,21 +37,26 @@ public class RuleChecker
 		p_user = CollisionEntry.P_USER.values();
 	}
 	
-	public boolean checkRuleConditions(CollisionEntry entry, Rule rule)
+	public boolean checkPredicateList(CollisionEntry entry, ArrayList<Predicate> predlist)
 	{
 		int i = 0;
 		boolean flag = true;
-		while (i < rule.cond.size() && flag)
+		while (i < predlist.size() && flag)
 		{
-			flag = checkPredicate(entry, rule.cond.get(i));
+			flag = checkPredicate(entry, predlist.get(i));
 			i++;
 		}
 		return flag;
 	}
 	
+	public boolean checkRuleConditions(CollisionEntry entry, Rule rule)
+	{
+		return checkPredicateList(entry, rule.cond);
+	}
+	
 	public boolean checkRuleConclusion(CollisionEntry entry, Rule rule)
 	{
-		return checkPredicate(entry, rule.conc);
+		return checkPredicateList(entry, rule.conc);
 	}
 	
 	public boolean checkRule(CollisionEntry entry, Rule rule)
