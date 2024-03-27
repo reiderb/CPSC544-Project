@@ -1,5 +1,7 @@
 package analysis;
-import rules.*
+import rules.*;
+import java.util.ArrayList;
+import parsing.CollisionEntry;
 
 public class Analyzer
 {
@@ -41,7 +43,7 @@ public class Analyzer
 		{
 			checkOneEntry(entrylist.get(i), rulelist, ratiolist);
 		}
-		float[] returner = new float[ratiolist.size()];
+		float[] returner = new float[ratiolist.length];
 		for (int i = 0; i < rulelist.size(); i++)
 		{
 			returner[i] = ratiolist[i].rulecount / ratiolist[i].condcount;
@@ -53,10 +55,10 @@ public class Analyzer
 	{
 		for (int i = 0; i < rulelist.size(); i++)
 		{
-			if (checker.checkRuleConditions(entry, rulelist.get(i))
+			if (checker.checkRuleConditions(entry, rulelist.get(i)))
 			{
 				ratiolist[i].condcount++;
-				if (checker.checkRuleConclusion(entry, rulelist.get(i))
+				if (checker.checkRuleConclusion(entry, rulelist.get(i)))
 				{
 					ratiolist[i].rulecount++;
 				}
