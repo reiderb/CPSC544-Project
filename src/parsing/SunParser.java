@@ -14,7 +14,9 @@ public class SunParser
 {
 	public static ArrayList<SunTime> getSunTable(String path)
 	{
-		ArrayList<Suntime> sunrises = new ArrayList<SunTime>();
+		ArrayList<SunTime> sunrises = new ArrayList<SunTime>();
+		/*
+		//later.. maybe..
 		BufferedReader reader = null;
 		String line = "";
 		String delimiter = " "; //So, we'll split the lines at spaces
@@ -28,12 +30,16 @@ public class SunParser
 			while ((line = reader.readline()) != null)
 			{
 				String[] splitEntry = line.split(delimiter);
+				tempmonth = makeMonth(splitEntry[0]);
+				
 			}
 			
 		}
+		* */
+		return sunrises;
 	}
 	
-	private Rule makeMonth(String monthstring)
+	private Predicate makeMonth(String monthstring)
 	{
 		Predicate month;
 		switch(monthstring)
@@ -74,6 +80,17 @@ public class SunParser
 			case "DEC":
 				month = new Predicate(Predicate.FEATURE.C_MNTH, 12);
 				break;
+			default:
+				month = new Predicate(Predicate.FEATURE.C_MNTH, -1); //this should never be triggered..
+				break;
 		}
+		return month;
 	}
+	/*
+	//work on dis crapola later..
+	private Predicate makeDayRange(int min, int max)
+	{
+		Predicate range = new Predicate(Predicate.FEATURE.
+	}
+	*/
 }
