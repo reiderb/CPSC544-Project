@@ -189,10 +189,9 @@ public class Apriori {
     			Object[] n = itemsets.get(j);
     			int diff = -1;
     			for(int k = 0; k < 22; k++) {
-    				//neither are null but they differ
     				if(!(m[k] instanceof Integer && (int) m[k] == -5) && !(n[k] instanceof Integer && (int) n[k] == -5) && !(n[k]==m[k])) {
     					diff = -1;
-    					continue;
+    					break;
     				}else if((m[k] instanceof Integer && (int) m[k] == -5) && !(n[k] instanceof Integer && (int) n[k] == -5)) {
     					diff = k;
     				}
@@ -201,6 +200,9 @@ public class Apriori {
     				Object[] temp = m.clone();
     				temp[diff] = n[diff];
     				candidates.add(temp);
+    				//System.out.println("Set 1: " + Arrays.toString(m));
+    				//System.out.println("Set 2: " + Arrays.toString(n));
+    				//System.out.println("New  : " + Arrays.toString(temp));
     			}
     		}
     	}
