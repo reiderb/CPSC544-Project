@@ -189,11 +189,22 @@ public class Apriori {
     			Object[] n = itemsets.get(j);
     			int diff = -1;
     			for(int k = 0; k < 22; k++) {
-    				if(!(m[k] instanceof Integer && (int) m[k] == -5) && !(n[k] instanceof Integer && (int) n[k] == -5) && !(n[k]==m[k])) {
-    					diff = -1;
-    					break;
-    				}else if((m[k] instanceof Integer && (int) m[k] == -5) && !(n[k] instanceof Integer && (int) n[k] == -5)) {
-    					diff = k;
+    				//(m[k] instanceof Integer && (int) m[k] == -5)
+    				//(n[k] instanceof Integer && (int) n[k] == -5)
+    				//both are null
+    				if((m[k] instanceof Integer && (int) m[k] == -5) && (n[k] instanceof Integer && (int) n[k] == -5)) continue;
+    				//neither are null
+    				else if(!(m[k] instanceof Integer && (int) m[k] == -5) && !(n[k] instanceof Integer && (int) n[k] == -5)){
+    					if(m[k] != n[k]) {
+    						diff = -1;
+    						break;
+    					}else continue;
+    				//only m is null
+    				}else if((m[k] instanceof Integer && (int) m[k] == -5)) {
+    					if(diff != -1) {
+    						diff = -1;
+    						break;
+    					}else diff = k;
     				}
     			}
     			if(diff >= 0) {
