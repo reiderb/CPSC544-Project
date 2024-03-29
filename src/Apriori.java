@@ -205,15 +205,23 @@ public class Apriori {
     						diff = -1;
     						break;
     					}else diff = k;
+    				}else if((n[k] instanceof Integer && (int) n[k] == -5)) {
+    					if(diff != -1) {
+    						diff = -1;
+    						break;
+    					}
     				}
     			}
     			if(diff >= 0) {
     				Object[] temp = m.clone();
     				temp[diff] = n[diff];
-    				candidates.add(temp);
-    				//System.out.println("Set 1: " + Arrays.toString(m));
-    				//System.out.println("Set 2: " + Arrays.toString(n));
-    				//System.out.println("New  : " + Arrays.toString(temp));
+    				boolean ok = true;
+    				for(Object[] idk : candidates) {
+    					if(Arrays.deepEquals(temp, idk)) {
+    						ok = false;
+    						break;
+    					}
+    				}if(ok) candidates.add(temp);	
     			}
     		}
     	}
@@ -254,7 +262,7 @@ public class Apriori {
     
     public static void main(String[] args) throws Exception {
     	ArrayList<CollisionEntry> entrylist = CollisionEntryParser.Parse_CSV("collision-databse_1999-2019.csv");
-        Apriori ml = new Apriori(0.5, entrylist);
+        Apriori ml = new Apriori(0.4, entrylist);
         HashMap<Object[], Integer> FrequentItemSets = ml.compute();
         for (HashMap.Entry<Object[], Integer> entry : FrequentItemSets.entrySet()) {
             Object[] itemset = entry.getKey();
