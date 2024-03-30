@@ -1,3 +1,5 @@
+package apriori;
+
 import parsing.CollisionEntryParser;
 import parsing.CollisionEntry;
 import parsing.CollisionEntry.*;
@@ -23,7 +25,7 @@ public class Apriori {
     private void constructItemSets() {
     	itemsets = new ArrayList<Object[]>();
     	for(int i = 0; i < 22; i++) {
-    	    if(i == 0) {
+    	    if(i == 0) { //predicates corresponding to years
     	        for(int j = 1999; j <= 2019; j++) {
     	        	Object[] temp = new Object[22];
     	        	Arrays.fill(temp, -5);

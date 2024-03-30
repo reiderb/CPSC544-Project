@@ -1,5 +1,6 @@
 import parsing.CollisionEntryParser;
 import rules.*;
+import apriori.*;
 import parsing.CollisionEntry;
 import java.util.ArrayList;
 
