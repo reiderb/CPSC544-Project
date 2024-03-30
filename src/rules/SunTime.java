@@ -3,13 +3,11 @@ package rules;
 public class SunTime
 {
 	public Predicate month;
-	public Predicate dayrange;
-	public int hour;
+	public Predicate timerange;
 	
-	public SunTime(Predicate newmonth, Predicate newdays, int newhour)
+	public SunTime(Predicate newmonth, Predicate newrange)
 	{
 		month = newmonth;
-		dayrange = newdays;
-		hour = newhour;
+		timerange = newrange;
 	}
 }

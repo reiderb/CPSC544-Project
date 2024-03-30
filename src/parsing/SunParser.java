@@ -14,32 +14,53 @@ public class SunParser
 {
 	public static ArrayList<SunTime> getSunTable(String path)
 	{
-		ArrayList<SunTime> sunrises = new ArrayList<SunTime>();
-		/*
-		//later.. maybe..
+		ArrayList<SunTime> suntimes = new ArrayList<SunTime>();
 		BufferedReader reader = null;
 		String line = "";
 		String delimiter = " "; //So, we'll split the lines at spaces
-		Rule tempmonth;
-		Rule temprange;
+		Predicate tempmonth;
+		Predicate temprange;
+		SunTime tempsun;
 		
 		try
 		{
 			reader = new BufferedReader(new FileReader(path));
 			reader.readLine(); //skip first line
-			while ((line = reader.readline()) != null)
+			while ((line = reader.readLine()) != null)
 			{
 				String[] splitEntry = line.split(delimiter);
 				tempmonth = makeMonth(splitEntry[0]);
-				
+				temprange = new Predicate(Predicate.FEATURE.C_HOUR, Integer.parseInt(splitEntry[1]), (Integer.parseInt(splitEntry[2]) + 1));
+				tempsun = new SunTime(tempmonth, temprange);
+				suntimes.add(tempsun);
 			}
-			
 		}
-		* */
-		return sunrises;
+		catch (FileNotFoundException e)
+		{
+            e.printStackTrace();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            if (reader != null) 
+            {
+                try
+                {
+                    reader.close();
+                }
+                catch (IOException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        }
+		return suntimes;
 	}
 	
-	private Predicate makeMonth(String monthstring)
+	private static Predicate makeMonth(String monthstring)
 	{
 		Predicate month;
 		switch(monthstring)
@@ -86,11 +107,4 @@ public class SunParser
 		}
 		return month;
 	}
-	/*
-	//work on dis crapola later..
-	private Predicate makeDayRange(int min, int max)
-	{
-		Predicate range = new Predicate(Predicate.FEATURE.
-	}
-	*/
 }

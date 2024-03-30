@@ -232,6 +232,13 @@ public class CollisionEntry {
         MOTORCYCLIST,
         UNKNOWN;
     }
+    
+    public enum L_COND //the light condition (external knowledge)
+    {
+		DAY,
+		NIGHT,
+		UNKNOWN;
+	}
 
     //For numeric values: -1 = Unknown; -2 = Not Provided; -3 = Other; -4 = Not applicable
     //instead of using ints, i used the smallest numeric type that would fit valid ranges to save memory
@@ -258,6 +265,7 @@ public class CollisionEntry {
     public P_SAFE SAFETY_DEVICES;
     public P_USER USER;
     public int CASE_NUMBER; //C_CASE, a column not documented on the data sheet.
+    public L_COND LIGHT;
 
     //auto generated constructor, thats why the argument names look so bad.
     public CollisionEntry(short yEAR, byte mONTH, CollisionEntry.C_WDAY wEEK_DAY, byte hOUR,
@@ -267,7 +275,7 @@ public class CollisionEntry {
             CollisionEntry.V_TYPE vEHICLE_TYPE, short vEHICLE_MODEL_YEAR, byte pERSON_ID,
             CollisionEntry.P_SEX pERSON_SEX, byte pERSON_AGE, CollisionEntry.P_PSN pERSON_POSITION,
             CollisionEntry.P_ISEV pERSON_INJURY_SEVERITY, CollisionEntry.P_SAFE sAFETY_DEVICES,
-            CollisionEntry.P_USER uSER, int cASE_NUMBER) {
+            CollisionEntry.P_USER uSER, int cASE_NUMBER, CollisionEntry.L_COND lIGHT) {
         YEAR = yEAR;
         MONTH = mONTH;
         WEEK_DAY = wEEK_DAY;
@@ -291,6 +299,7 @@ public class CollisionEntry {
         SAFETY_DEVICES = sAFETY_DEVICES;
         USER = uSER;
         CASE_NUMBER = cASE_NUMBER;
+        LIGHT = lIGHT;
     }
 
 }
