@@ -247,21 +247,21 @@ public class CollisionEntry {
     public C_WDAY WEEK_DAY;
     public byte HOUR; //C_HOUR
     public C_SEV SEVERITY;
-    public byte VEHICLE_COUNT;//C_VEHS; 99 means 99+ vehicles
+    public byte VEHICLE_COUNT;//C_VEHS; 99 means 99+ vehicles 
     public C_CONF VEHICLE_CONFIGURATION;
     public C_RCFG ROAD_CONFIGURATION;
     public C_WTHR WEATHER;
     public C_RSUR ROAD_SURFACE;
     public C_RALN RALN; //idk what this stands for
     public C_TRAF TRAFFIC_CONTROL;
-    public byte VEHICLE_SEQUENCE_NUM; //V_ID; 99 means pedestrians
+    public byte VEHICLE_SEQUENCE_NUM; //V_ID; 99 means pedestrians 
     public V_TYPE VEHICLE_TYPE;
     public short VEHICLE_MODEL_YEAR; //V_YEAR
     public byte PERSON_ID; //P_ID
     public P_SEX PERSON_SEX;
     public byte PERSON_AGE; //P_AGE; 0 is less than one year old; 99 is 99 or older
     public P_PSN PERSON_POSITION;
-    public P_ISEV PERSON_INJURY_SEVERITY; //why does this and C_SEV exist at the same time? who knows!!!!
+    public P_ISEV PERSON_INJURY_SEVERITY; //why does this and C_SEV exist at the same time? Answser: it's because each "transaction" in this list corresponds to one person, and this was their injury specifically, while C_SEV is the worst injury in the crash
     public P_SAFE SAFETY_DEVICES;
     public P_USER USER;
     public int CASE_NUMBER; //C_CASE, a column not documented on the data sheet.
@@ -301,5 +301,39 @@ public class CollisionEntry {
         CASE_NUMBER = cASE_NUMBER;
         LIGHT = lIGHT;
     }
+    
+    public boolean contains(Object[] o) {
+    	for(int i = 0; i < o.length; i++) {
+    		if(o[i] instanceof Integer && (int) o[i] == -5) continue;
+
+    		else if (i == 0 && (int) o[i] != this.YEAR) return false;
+    	    else if (i == 1 && (int) o[i] != this.MONTH) return false;
+    	    else if (i == 2 && o[i] != this.WEEK_DAY) return false;
+    	    else if (i == 3 && (int) o[i] != this.HOUR) return false;
+    	    else if (i == 4 && o[i] != this.SEVERITY) return false;
+    	    else if (i == 5 && (int) o[i] != this.VEHICLE_COUNT) return false;
+    	    else if (i == 6 && o[i] != this.VEHICLE_CONFIGURATION) return false;
+    	    else if (i == 7 && o[i] != this.ROAD_CONFIGURATION) return false;
+    	    else if (i == 8 && o[i] != this.WEATHER) return false;
+    	    else if (i == 9 && o[i] != this.ROAD_SURFACE) return false;
+    	    else if (i == 10 && o[i] != this.RALN) return false;
+    	    else if (i == 11 && o[i] != this.TRAFFIC_CONTROL) return false;
+    	    else if (i == 12 && (int) o[i] != this.VEHICLE_SEQUENCE_NUM) return false;
+    	    else if (i == 13 && o[i] != this.VEHICLE_TYPE) return false;
+    	    else if (i == 14 && (int) o[i] != this.VEHICLE_MODEL_YEAR) return false;
+    	    else if (i == 15 && (int) o[i] != this.PERSON_ID) return false;
+    	    else if (i == 16 && o[i] != this.PERSON_SEX) return false;
+    	    else if (i == 17 && (int) o[i] != this.PERSON_AGE) return false;
+    	    else if (i == 18 && o[i] != this.PERSON_POSITION) return false;
+    	    else if (i == 19 && o[i] != this.PERSON_INJURY_SEVERITY) return false;
+    	    else if (i == 20 && o[i] != this.SAFETY_DEVICES) return false;
+    	    else if (i == 21 && o[i] != this.USER) return false;
+    	}
+    	
+    	//System.out.println("Working as intended?");
+    	
+    	return true;
+    }
+    
 
 }
