@@ -1,6 +1,6 @@
 package rules;
 
-public class Predicate
+public class Predicate implements Comparable<Predicate>
 {
     public enum PRED_TYPE
     {
@@ -61,6 +61,44 @@ public class Predicate
         min = newmin;
         max = newmax;
     }
+    
+    @Override
+    public int compareTo(Predicate pred)
+    {
+		if (this.feature.ordinal() < pred.feature.ordinal())
+		{
+			return -1;
+		}
+		if (this.feature.ordinal() > pred.feature.ordinal())
+		{
+			return 1;
+		}
+		//if we get to this point, then both predicates concern the same feature
+		if (this.predtype.ordinal() < pred.predtype.ordinal())
+		{
+			return -1;
+		}
+		if (this.predtype.ordinal() > pred.predtype.ordinal())
+		{
+			return 1;
+		}
+		//if we get to this point, then both predicates have the same type
+		if (this.predtype == PRED_TYPE.FEATURE_VALUE)
+		{
+			if (this.value < pred.value) {return -1;}
+			if (this.value > pred.value) {return 1;}
+			return 0;
+		}
+		if (this.predtype == PRED_TYPE.VALUE_RANGE)
+		{
+			if (this.min < pred.min) {return -1;}
+			if (this.min > pred.min) {return 1;}
+			if (this.max < pred.max) {return -1;}
+			if (this.max > pred.max) {return 1;}
+			return 0;
+		}
+		return 0;
+	}
 
     @Override
     public boolean equals(Object obj) {
