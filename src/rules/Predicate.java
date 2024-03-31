@@ -99,6 +99,21 @@ public class Predicate implements Comparable<Predicate>
 		}
 		return 0;
 	}
+	
+	public String display()
+	{
+		if (predtype == PRED_TYPE.OTHER) {return "";} //never used, but..
+		String message = feature.toString();
+		if (predtype == PRED_TYPE.FEATURE_VALUE)
+		{
+			message = message + " = " + Integer.toString(value);
+		}
+		if (predtype == PRED_TYPE.VALUE_RANGE)
+		{
+			message = message = " in [" + Integer.toString(min) + ", " + Integer.toString(max) + ")";
+		}
+		return message;
+	}
 
     @Override
     public boolean equals(Object obj) {

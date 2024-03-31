@@ -1,4 +1,5 @@
 import parsing.CollisionEntryParser;
+import apriori.*;
 import rules.*;
 import apriori.*;
 import parsing.CollisionEntry;
@@ -8,6 +9,18 @@ public class Main {
     public static void main(String[] args) throws Exception {
         System.out.println("Hello, World!");
         ArrayList<CollisionEntry> entrylist = CollisionEntryParser.Parse_CSV("collision-databse_1999-2019.csv");
+        int mincov = entrylist.size() / 2; //so, if an item set is satisfied in half the entries, it should be included in the itemsets found by Apriori
+        IndexedApriori apriorisets = new IndexedApriori(entrylist, mincov);
+        ArrayList<ArrayList<ItemSet>> itemsets = apriorisets.itemlists;
+        for (int i = 0; i < itemsets.size(); i++)
+        {
+            System.out.println(Integer.toString(i + 1) + " ITEM SETS");
+            for (int j = 0; j < itemsets.get(i).size(); j++)
+            {
+                itemsets.get(i).get(j).display();
+            }
+        }
+        /*
         System.out.println("Making empty rule");
         Rule test = new Rule();
         test.cond.add(new Predicate(Predicate.FEATURE.C_YEAR, 1999, 2003)); //adds a predicate to the condition list that a collision occured between january 1, 1999 and december 31, 2002
@@ -37,6 +50,6 @@ public class Main {
         {
             System.out.println("3rd entry incorrectly detected as NOT at daytime");
         }
-
+        */
     }
 }

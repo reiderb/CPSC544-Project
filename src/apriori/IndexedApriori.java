@@ -1,6 +1,6 @@
 package apriori;
 
-import java.util.ArrayList;
+import java.util.*;
 import rules.*;
 import parsing.CollisionEntry;
 
@@ -13,6 +13,7 @@ public class IndexedApriori
 	{
 		itemlists = new ArrayList<ArrayList<ItemSet>>();
 		itemlists.add(oneItemList(entrylist, mincov));
+		generateItemSets(mincov);
 	}
 	
 	public ArrayList<ItemSet> oneItemList(ArrayList<CollisionEntry> entrylist, int mincov)
@@ -36,16 +37,108 @@ public class IndexedApriori
 		{
 			if (candidates.get(i).indices.size() >= mincov)
 			{
+				candidates.get(i).support = candidates.get(i).indices.size();
 				onelist.add(candidates.get(i));
 			}
 		}
 		return onelist;
 	}
 	
+	public void generateItemSets(int mincov)
+	{
+		//we assume the one item set has already been generated at this point
+		int k = 1;
+		ArrayList<ItemSet> newlist = kItemList(k, mincov);
+		while (newlist.size() > 0)
+		{
+			itemlists.add(newlist);
+			k += 1;
+			newlist = kItemList(k, mincov);
+			clearIndices(k - 1);
+		}
+	}
+	
+	public void clearIndices(int i)
+	{
+		for (int j = 0; j < itemlists.get(i).size(); j++)
+		{
+			itemlists.get(i).get(j).indices.clear();
+		}
+	}
+	
+	public ArrayList<ItemSet> kItemList(int k, int mincov)
+	{
+		//here, k is the index of the item set we want to generate in "itemlist".
+		//we assume that all sets less than k have already been generated.
+		//so, for example, if we want to generate the 2 item list, then we'd set k to 1 and assume the 1 item list is at index 0
+		ArrayList<ItemSet> oneitem = itemlists.get(0);
+		ArrayList<ItemSet> prevlist = itemlists.get(k - 1);
+		ArrayList<ItemSet> newlist = new ArrayList<ItemSet>();
+		ItemSet item;
+		ArrayList<Integer> indices;
+		ArrayList<Predicate> predlist;
+		for (int i = 0; i < prevlist.size(); i++) //we want to compare the previous item sets to the one item sets
+		{
+			for (int j = 0; j < oneitem.size(); j++)
+			{
+				predlist = prevlist.get(i).items;
+				if (!isPredicateInList(oneitem.get(j).items.get(0), predlist)) //if the predicate in a one item list ISN'T in the itemset
+				{
+					predlist.add(oneitem.get(j).items.get(0));
+					Collections.sort(predlist);
+					item = new ItemSet();
+					item.items = predlist;
+					if (!doesItemSetExist(item, newlist)) //check that we haven't already made an item set with these predicates
+					{
+						indices = indexIntersection(oneitem.get(j).indices, prevlist.get(i).indices);
+						if (indices.size() >= mincov)
+						{
+							item.indices = indices;
+							item.support = indices.size();
+							newlist.add(item);
+							Collections.sort(newlist); //perhaps it would be better to do a search and insert, but let's see how it runs first
+						}
+					}
+				}
+			}
+		}
+		return newlist;
+	}
+	
+	public boolean doesItemSetExist(ItemSet sub, ArrayList<ItemSet> obj)
+	{
+		if (obj.size() == 0) {return false;}
+		int left = 0;
+		int right = obj.size() - 1;
+		int mid = right / 2;
+		int comp;
+		while (left != right)
+		{
+			comp = sub.compareTo(obj.get(mid));
+			if (comp == 0) {return true;}
+			if (comp < 0) {right = mid - 1;}
+			if (comp > 0) {left = mid + 1;}
+			mid = (left + right) / 2; //if left == right, then mid == left == right
+		}
+		comp = sub.compareTo(obj.get(mid));
+		return (comp == 0);
+	}
+	
 	private boolean isPredicateInList(Predicate subject, ArrayList<Predicate> object)
 	{
-		//i think i'll want to make predicates sortable before i try this (ie make them comparable)
-		return true; //placeholder to make everything compile.
+		//we'll assume that the "object" list is sorted before the function is called
+		int left = 0;
+		int right = object.size() - 1;
+		int mid = right / 2;
+		int comp;
+		while (left != right)
+		{
+			comp = subject.compareTo(object.get(mid));
+			if (comp == 0) {return true;}
+			if (comp < 0) {right = mid - 1;}
+			if (comp > 0) {left = mid + 1;}
+		}
+		return false;
 	}
 	
 	private ArrayList<Integer> indexIntersection(ArrayList<Integer> subject, ArrayList<Integer> object)

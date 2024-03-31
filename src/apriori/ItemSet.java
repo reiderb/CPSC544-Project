@@ -24,6 +24,16 @@ public class ItemSet implements Comparable<ItemSet>
 		support = 0;
 	}
 	
+	public void display()
+	{
+		String message = "";
+		for (int i = 0; i < items.size(); i++)
+		{
+			message = message + items.get(i).display() + ", ";
+		}
+		message = message + " SUPPORT = " + Integer.toString(support);
+	}
+	
 	@Override
 	public int compareTo(ItemSet obj)
 	{
