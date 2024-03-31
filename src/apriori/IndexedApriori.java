@@ -9,11 +9,17 @@ public class IndexedApriori
 	public ArrayList<ArrayList<ItemSet>> itemlists; //this is an arraylist of arraylists, so it should work like,
 	//the 0th entry is the list of 1 item sets, the 1st entry is the list of 2 item sets, etc.
 	
+	public IndexedApriori()
+	{
+		itemlists = new ArrayList<ArrayList<ItemSet>>();
+	}
+	
 	public IndexedApriori(ArrayList<CollisionEntry> entrylist, int mincov)
 	{
 		itemlists = new ArrayList<ArrayList<ItemSet>>();
 		itemlists.add(oneItemList(entrylist, mincov));
-		generateItemSets(mincov);
+		if (itemlists.get(0).size() > 0)
+		{generateItemSets(mincov);}
 	}
 	
 	public ArrayList<ItemSet> oneItemList(ArrayList<CollisionEntry> entrylist, int mincov)
@@ -41,6 +47,7 @@ public class IndexedApriori
 				onelist.add(candidates.get(i));
 			}
 		}
+		System.out.println("One item lists generated");
 		return onelist;
 	}
 	
@@ -51,6 +58,7 @@ public class IndexedApriori
 		ArrayList<ItemSet> newlist = kItemList(k, mincov);
 		while (newlist.size() > 0)
 		{
+			System.out.println(Integer.toString(k + 1) + "Item lists generated");
 			itemlists.add(newlist);
 			k += 1;
 			newlist = kItemList(k, mincov);
@@ -71,6 +79,7 @@ public class IndexedApriori
 		//here, k is the index of the item set we want to generate in "itemlist".
 		//we assume that all sets less than k have already been generated.
 		//so, for example, if we want to generate the 2 item list, then we'd set k to 1 and assume the 1 item list is at index 0
+		System.out.println("Entering kItemList()");
 		ArrayList<ItemSet> oneitem = itemlists.get(0);
 		ArrayList<ItemSet> prevlist = itemlists.get(k - 1);
 		ArrayList<ItemSet> newlist = new ArrayList<ItemSet>();
@@ -79,24 +88,29 @@ public class IndexedApriori
 		ArrayList<Predicate> predlist;
 		for (int i = 0; i < prevlist.size(); i++) //we want to compare the previous item sets to the one item sets
 		{
+			//System.out.println("Entering outer loop");
 			for (int j = 0; j < oneitem.size(); j++)
 			{
+				//System.out.println("Entering inner loop");
 				predlist = prevlist.get(i).items;
 				if (!isPredicateInList(oneitem.get(j).items.get(0), predlist)) //if the predicate in a one item list ISN'T in the itemset
 				{
 					predlist.add(oneitem.get(j).items.get(0));
 					Collections.sort(predlist);
+					//System.out.println("Sorted predicate list");
 					item = new ItemSet();
 					item.items = predlist;
 					if (!doesItemSetExist(item, newlist)) //check that we haven't already made an item set with these predicates
 					{
 						indices = indexIntersection(oneitem.get(j).indices, prevlist.get(i).indices);
+						//System.out.println("Found intersection of indices");
 						if (indices.size() >= mincov)
 						{
 							item.indices = indices;
 							item.support = indices.size();
 							newlist.add(item);
 							Collections.sort(newlist); //perhaps it would be better to do a search and insert, but let's see how it runs first
+							//System.out.println("sorted newlist");
 						}
 					}
 				}
@@ -112,16 +126,15 @@ public class IndexedApriori
 		int right = obj.size() - 1;
 		int mid = right / 2;
 		int comp;
-		while (left != right)
+		while (left <= right)
 		{
 			comp = sub.compareTo(obj.get(mid));
 			if (comp == 0) {return true;}
 			if (comp < 0) {right = mid - 1;}
 			if (comp > 0) {left = mid + 1;}
-			mid = (left + right) / 2; //if left == right, then mid == left == right
+			mid = (left + right) / 2;
 		}
-		comp = sub.compareTo(obj.get(mid));
-		return (comp == 0);
+		return false;
 	}
 	
 	private boolean isPredicateInList(Predicate subject, ArrayList<Predicate> object)
@@ -131,21 +144,23 @@ public class IndexedApriori
 		int right = object.size() - 1;
 		int mid = right / 2;
 		int comp;
-		while (left != right)
+		while (left <= right)
 		{
 			comp = subject.compareTo(object.get(mid));
 			if (comp == 0) {return true;}
 			if (comp < 0) {right = mid - 1;}
 			if (comp > 0) {left = mid + 1;}
+			mid = (left + right) / 2;
 		}
 		return false;
 	}
 	
-	private ArrayList<Integer> indexIntersection(ArrayList<Integer> subject, ArrayList<Integer> object)
+	public ArrayList<Integer> indexIntersection(ArrayList<Integer> subject, ArrayList<Integer> object)
 	{
 		ArrayList<Integer> intersection = new ArrayList<Integer>();
 		for (int i = 0; i < subject.size(); i++)
 		{
+			//System.out.println("about to enter checkCommonIndex()");
 			if (checkCommonIndex(subject.get(i), object))
 			{
 				intersection.add(subject.get(i));
@@ -159,19 +174,20 @@ public class IndexedApriori
 		int left = 0;
 		int right = indices.size() - 1;
 		int mid = (left + right) / 2;
-		while (left != right && indices.get(mid) != subject)
+		while (left <= right && indices.get(mid) != subject)
 		{
 			if (subject < indices.get(mid))
 			{
 				right = mid - 1;
 			}
-			else
+			if (subject > indices.get(mid))
 			{
 				left = mid + 1;
 			}
 			mid = (left + right) / 2;
 		}
-		return (indices.get(mid) == subject); //if we found subject, this should return true. otherwise, false.
+		//System.out.println("exited while loop in checkCommonIndex");
+		return (left <= right); //if we found subject, this should return true. otherwise, false.
 	}
 	
 	public ArrayList<ItemSet> oneItemCandidates()
@@ -188,20 +204,21 @@ public class IndexedApriori
 			item = new ItemSet(pred);
 			candidates.add(item);
 		}
-		
+		//System.out.println("made year candidates");
 		for (int i = 1; i <= 12; i++) //predicates for months
 		{
 			pred = new Predicate(Predicate.FEATURE.C_MNTH, i);
 			item = new ItemSet(pred);
 			candidates.add(item);
 		}
-		
+		//System.out.println("made month candidates");
 		for (CollisionEntry.C_WDAY i: CollisionEntry.C_WDAY.values()) //predicates for days of week
 		{
 			pred = new Predicate(Predicate.FEATURE.C_WDAY, i.ordinal());
 			item = new ItemSet(pred);
 			candidates.add(item);
 		}
+		//System.out.println("made weekday candidates");
 		
 		int hourrange = 4; //change this to modify range of hours (eg, if it's set to 4, it'll split the day into 4 hour intervals)
 		min = 0;
@@ -240,6 +257,7 @@ public class IndexedApriori
 			pred = new Predicate(Predicate.FEATURE.C_VEHS, min, (min + vehiclesrange));
 			item = new ItemSet(pred);
 			candidates.add(item);
+			min += vehiclesrange;
 		}
 		
 		//C_CONF next (gives information about accident)

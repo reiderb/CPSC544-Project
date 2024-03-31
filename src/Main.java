@@ -8,8 +8,9 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) throws Exception {
         System.out.println("Hello, World!");
+        
         ArrayList<CollisionEntry> entrylist = CollisionEntryParser.Parse_CSV("collision-databse_1999-2019.csv");
-        int mincov = entrylist.size() / 2; //so, if an item set is satisfied in half the entries, it should be included in the itemsets found by Apriori
+        int mincov = entrylist.size() / 4; //so, if an item set is satisfied in a quarter the entries, it should be included in the itemsets found by Apriori
         IndexedApriori apriorisets = new IndexedApriori(entrylist, mincov);
         ArrayList<ArrayList<ItemSet>> itemsets = apriorisets.itemlists;
         for (int i = 0; i < itemsets.size(); i++)
@@ -20,6 +21,24 @@ public class Main {
                 itemsets.get(i).get(j).display();
             }
         }
+        /*
+        IndexedApriori crap = new IndexedApriori();
+        
+        ArrayList<Integer> test1 = new ArrayList<Integer>();
+        test1.add(1);
+        test1.add(2);
+        test1.add(3);
+        test1.add(4);
+        test1.add(5);
+        ArrayList<Integer> test2 = new ArrayList<Integer>();
+        test2.add(2);
+        test2.add(4);
+        ArrayList<Integer> test3 = crap.indexIntersection(test1, test2);
+        for (int i = 0; i < test3.size(); i++)
+        {
+            System.out.println(test3.get(i));
+        }
+        */
         /*
         System.out.println("Making empty rule");
         Rule test = new Rule();
