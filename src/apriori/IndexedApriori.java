@@ -9,10 +9,76 @@ public class IndexedApriori
 	public ArrayList<ArrayList<ItemSet>> itemlists; //this is an arraylist of arraylists, so it should work like,
 	//the 0th entry is the list of 1 item sets, the 1st entry is the list of 2 item sets, etc.
 	
-	public IndexedApriori(ArrayList<CollisionEntry> entrylist)
+	public IndexedApriori(ArrayList<CollisionEntry> entrylist, int mincov)
 	{
 		itemlists = new ArrayList<ArrayList<ItemSet>>();
-		//itemlists.add(oneItem(entryList));
+		itemlists.add(oneItemList(entrylist, mincov));
+	}
+	
+	public ArrayList<ItemSet> oneItemList(ArrayList<CollisionEntry> entrylist, int mincov)
+	{
+		//mincov is the minimum number of entries a predicate has to be in
+		RuleChecker checker = new RuleChecker();
+		ArrayList<ItemSet> candidates = oneItemCandidates();
+		for (int i = 0; i < entrylist.size(); i++)
+		{
+			for (int j = 0; j < candidates.size(); j++)
+			{
+				if (checker.checkPredicateList(entrylist.get(i), candidates.get(j).items))
+				{
+					candidates.get(j).indices.add(i); //i believe these arraylists will always be ordered, which allows for binary searches!!
+				}
+			}
+		}
+		
+		ArrayList<ItemSet> onelist = new ArrayList<ItemSet>();
+		for (int i = 0; i < candidates.size(); i++)
+		{
+			if (candidates.get(i).indices.size() >= mincov)
+			{
+				onelist.add(candidates.get(i));
+			}
+		}
+		return onelist;
+	}
+	
+	private boolean isPredicateInList(Predicate subject, ArrayList<Predicate> object)
+	{
+		//i think i'll want to make predicates sortable before i try this (ie make them comparable)
+		return true; //placeholder to make everything compile.
+	}
+	
+	private ArrayList<Integer> indexIntersection(ArrayList<Integer> subject, ArrayList<Integer> object)
+	{
+		ArrayList<Integer> intersection = new ArrayList<Integer>();
+		for (int i = 0; i < subject.size(); i++)
+		{
+			if (checkCommonIndex(subject.get(i), object))
+			{
+				intersection.add(subject.get(i));
+			}
+		}
+		return intersection;
+	}
+	
+	private boolean checkCommonIndex(int subject, ArrayList<Integer> indices)
+	{
+		int left = 0;
+		int right = indices.size() - 1;
+		int mid = (left + right) / 2;
+		while (left != right && indices.get(mid) != subject)
+		{
+			if (subject < indices.get(mid))
+			{
+				right = mid - 1;
+			}
+			else
+			{
+				left = mid + 1;
+			}
+			mid = (left + right) / 2;
+		}
+		return (indices.get(mid) == subject); //if we found subject, this should return true. otherwise, false.
 	}
 	
 	public ArrayList<ItemSet> oneItemCandidates()
