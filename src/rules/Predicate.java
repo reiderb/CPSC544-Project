@@ -110,7 +110,7 @@ public class Predicate implements Comparable<Predicate>
 		}
 		if (predtype == PRED_TYPE.VALUE_RANGE)
 		{
-			message = message = " in [" + Integer.toString(min) + ", " + Integer.toString(max) + ")";
+			message = message + " in [" + Integer.toString(min) + ", " + Integer.toString(max) + ")";
 		}
 		return message;
 	}

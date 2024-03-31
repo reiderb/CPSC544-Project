@@ -32,6 +32,7 @@ public class ItemSet implements Comparable<ItemSet>
 			message = message + items.get(i).display() + ", ";
 		}
 		message = message + " SUPPORT = " + Integer.toString(support);
+		System.out.println(message);
 	}
 	
 	@Override
