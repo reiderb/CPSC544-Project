@@ -10,7 +10,7 @@ public class Main {
         System.out.println("Hello, World!");
         
         ArrayList<CollisionEntry> entrylist = CollisionEntryParser.Parse_CSV("collision-databse_1999-2019.csv");
-        int mincov = entrylist.size() / 4; //so, if an item set is satisfied in a quarter the entries, it should be included in the itemsets found by Apriori
+        int mincov = entrylist.size() / 5; //so, if an item set is satisfied in a quarter the entries, it should be included in the itemsets found by Apriori
         IndexedApriori apriorisets = new IndexedApriori(entrylist, mincov);
         ArrayList<ArrayList<ItemSet>> itemsets = apriorisets.itemlists;
         for (int i = 0; i < itemsets.size(); i++)

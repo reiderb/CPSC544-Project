@@ -93,18 +93,18 @@ public class IndexedApriori
 			{
 				//System.out.println("Entering inner loop");
 				predlist = cloneItemList(prevlist.get(i).items);
-				System.out.println("cloned predicate list");
+				//System.out.println("cloned predicate list");
 				//predlist = prevlist.get(i).items; //referencing the list rather than cloning it makes it so when you change the reference you change original. whoops!
 				if (!isPredicateInList(oneitem.get(j).items.get(0), predlist)) //if the predicate in a one item list ISN'T in the itemset
 				{
 					predlist.add(oneitem.get(j).items.get(0));
 					Collections.sort(predlist);
-					System.out.println("Sorted predicate list");
+					//System.out.println("Sorted predicate list");
 					item = new ItemSet();
 					item.items = predlist;
 					if (!doesItemSetExist(item, newlist)) //check that we haven't already made an item set with these predicates
 					{
-						System.out.println("new item set found, checking for intersection of indices");
+						//System.out.println("new item set found, checking for intersection of indices");
 						indices = indexIntersection(oneitem.get(j).indices, prevlist.get(i).indices);
 						//System.out.println("Found intersection of indices");
 						if (indices.size() >= mincov)
