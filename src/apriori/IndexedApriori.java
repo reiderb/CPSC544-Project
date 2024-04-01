@@ -466,7 +466,23 @@ public class IndexedApriori
 			item = new ItemSet(pred);
 			candidates.add(item);
 		}
-		
+
+		//V_DRAGE (age of driver) divide range into (child, yound adult, middle-age, old)
+			item = new ItemSet(new Predicate(Predicate.FEATURE.V_DRAGE, 0, 15));
+			candidates.add(item);
+
+			item = new ItemSet(new Predicate(Predicate.FEATURE.V_DRAGE, 15, 25));
+			candidates.add(item);
+
+			item = new ItemSet(new Predicate(Predicate.FEATURE.V_DRAGE, 25, 45));
+			candidates.add(item);
+
+			item = new ItemSet(new Predicate(Predicate.FEATURE.V_DRAGE, 45, 65));
+			candidates.add(item);
+
+			item = new ItemSet(new Predicate(Predicate.FEATURE.V_DRAGE, 65, 99));
+			candidates.add(item);
+
 		//finally done..
 		return candidates;
 	}

@@ -868,10 +868,12 @@ public class CollisionEntryParser {
             }
         }
 
+        
+        
         // Iterate through the entries to populate the driver age 
         for(int i = 0; i < returnList.size(); i++) {
             CollisionEntry t = returnList.get(i);
-            t.DRIVER_AGE = driverAgeMap.get(t.CASE_NUMBER).get(t.VEHICLE_SEQUENCE_NUM);
+            if(driverAgeMap.get(t.CASE_NUMBER) != null) if(driverAgeMap.get(t.CASE_NUMBER).get(t.VEHICLE_SEQUENCE_NUM) != null) t.DRIVER_AGE = driverAgeMap.get(t.CASE_NUMBER).get(t.VEHICLE_SEQUENCE_NUM);
         }
 
         System.out.printf("Parsed %d entries!\n", returnList.size());
