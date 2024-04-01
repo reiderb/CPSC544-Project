@@ -8,9 +8,8 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) throws Exception {
         System.out.println("Hello, World!");
-        
         ArrayList<CollisionEntry> entrylist = CollisionEntryParser.Parse_CSV("collision-databse_1999-2019.csv");
-        int mincov = entrylist.size() / 2;
+        int mincov = (entrylist.size() * 4) / 5;
         IndexedApriori apriorisets = new IndexedApriori();
         long start = System.currentTimeMillis();
         apriorisets.itemlists.add(apriorisets.oneItemList(entrylist, mincov));
