@@ -143,7 +143,7 @@ public class IndexedApriori
 
 		return newlist;
 	}
-	
+
 	private ArrayList<ItemSet> joinBlacklists(ItemSet sub, ItemSet obj)
 	{
 		Collections.sort(sub.blacklist);
