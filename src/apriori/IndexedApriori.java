@@ -48,6 +48,7 @@ public class IndexedApriori
 			}
 		}
 		System.out.println("One item lists generated");
+		Collections.sort(onelist);
 		return onelist;
 	}
 	
@@ -58,7 +59,7 @@ public class IndexedApriori
 		ArrayList<ItemSet> newlist = kItemList(k, mincov);
 		while (newlist.size() > 0)
 		{
-			System.out.println(Integer.toString(k + 1) + "Item lists generated");
+			System.out.println(Integer.toString(k + 1) + " Item lists generated");
 			itemlists.add(newlist);
 			k = k + 1;
 			newlist = kItemList(k, mincov);
@@ -79,7 +80,7 @@ public class IndexedApriori
 		//here, k is the index of the item set we want to generate in "itemlist".
 		//we assume that all sets less than k have already been generated.
 		//so, for example, if we want to generate the 2 item list, then we'd set k to 1 and assume the 1 item list is at index 0
-		System.out.println("Entering kItemList()");
+		//System.out.println("Entering kItemList()");
 		ArrayList<ItemSet> oneitem = itemlists.get(0);
 		ArrayList<ItemSet> prevlist = itemlists.get(k - 1);
 		ArrayList<ItemSet> newlist = new ArrayList<ItemSet>();
@@ -105,21 +106,58 @@ public class IndexedApriori
 					if (!doesItemSetExist(item, newlist)) //check that we haven't already made an item set with these predicates
 					{
 						//System.out.println("new item set found, checking for intersection of indices");
-						indices = indexIntersection(oneitem.get(j).indices, prevlist.get(i).indices);
+						indices = reconstructIndices(item, mincov);
 						//System.out.println("Found intersection of indices");
 						if (indices.size() >= mincov)
 						{
-							item.indices = indices;
 							item.support = indices.size();
 							newlist.add(item);
 							Collections.sort(newlist); //perhaps it would be better to do a search and insert, but let's see how it runs first
 							//System.out.println("sorted newlist");
+							
 						}
+						indices.clear();
 					}
 				}
 			}
 		}
 		return newlist;
+	}
+	
+	public ArrayList<Integer> reconstructIndices(ItemSet item, int mincov)
+	{
+		ArrayList<Integer> indices = new ArrayList<Integer>();
+		if (item.items.size() == 0) {return indices;}
+		ItemSet nextone = findOneItem(item.items.get(0));
+		if (nextone == null) return indices;
+		indices = new ArrayList<Integer>(nextone.indices); //this should copy the list without referring to it.
+		for (int i = 1; i < item.items.size(); i++)
+		{
+			nextone = findOneItem(item.items.get(i));
+			indices = indexIntersection(indices, nextone.indices);
+			if (indices.size() < mincov) {return indices;}
+		}
+		return indices;
+	}
+	
+	private ItemSet findOneItem(Predicate subject)
+	{
+		//find the one item set corresponding to the predicate "subect"
+		ArrayList<ItemSet> oneItems = itemlists.get(0); //we assume this has been initialized
+		ItemSet temp = new ItemSet(subject);
+		int left = 0;
+		int right = oneItems.size() - 1;
+		int mid = (left + right) / 2;
+		int comp;
+		while (left <= right)
+		{
+			comp = temp.compareTo(oneItems.get(mid));
+			if (comp == 0) {return oneItems.get(mid);}
+			if (comp < 0) {right = mid - 1;}
+			if (comp > 0) {left = mid + 1;}
+			mid = (left + right) / 2;
+		}
+		return null;
 	}
 	
 	public ArrayList<Predicate> cloneItemList(ArrayList<Predicate> sub)
