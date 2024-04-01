@@ -12,6 +12,7 @@ public class Main {
         ArrayList<CollisionEntry> entrylist = CollisionEntryParser.Parse_CSV("collision-databse_1999-2019.csv");
         int mincov = entrylist.size() / 2;
         IndexedApriori apriorisets = new IndexedApriori();
+        long start = System.currentTimeMillis();
         apriorisets.itemlists.add(apriorisets.oneItemList(entrylist, mincov));
         entrylist.clear(); //after the one item sets are generated, we no longer need the entrylist, so we clear it to save memory.
         apriorisets.generateItemSets(mincov);
@@ -24,5 +25,8 @@ public class Main {
                 itemsets.get(i).get(j).display();
             }
         }
+        long finish = System.currentTimeMillis();
+        System.out.println("runtime in milliseconds:");
+        System.out.println(finish - start);
     }
 }
