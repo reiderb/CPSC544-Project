@@ -31,18 +31,7 @@ public class IndexedApriori
 		RuleChecker checker = new RuleChecker();
 		CopyOnWriteArrayList<ItemSet> candidates = new CopyOnWriteArrayList<>(oneItemCandidates());
 		CopyOnWriteArrayList<CollisionEntry> safeEntryList = new CopyOnWriteArrayList<>(entrylist);
-		// for (int i = 0; i < entrylist.size(); i++)
-		// {
-		// 	for (int j = 0; j < candidates.size(); j++)
-		// 	{
-		// 		if (checker.checkPredicateList(entrylist.get(i), candidates.get(j).items))
-		// 		{
-		// 			candidates.get(j).indices.add(i); //i believe these arraylists will always be ordered, which allows for binary searches!!
-		// 		}
-		// 	}
-		// }
 
-		System.out.println("Beginning Parallel Method");
 		IntStream.range(0, safeEntryList.size())
 				.parallel()
 				.forEach(i -> {
@@ -57,12 +46,14 @@ public class IndexedApriori
 								}
 							});
 				});
+
+		// want to get rid of the following
 		IntStream.range(0, candidates.size())
 				.parallel()
 				.forEach(j -> {
 					Collections.sort(candidates.get(j).indices);
 				});
-		System.out.println("Ending Parallel Method");
+
 		ArrayList<ItemSet> onelist = new ArrayList<ItemSet>();
 		for (int i = 0; i < candidates.size(); i++)
 		{
@@ -109,43 +100,6 @@ public class IndexedApriori
 		ArrayList<ItemSet> oneitem = itemlists.get(0);
 		ArrayList<ItemSet> prevlist = itemlists.get(k - 1);
 		ArrayList<ItemSet> newlist = new ArrayList<ItemSet>();
-		// ItemSet item;
-		// ArrayList<Integer> indices;
-		// ArrayList<Predicate> predlist;
-		// for (int i = 0; i < prevlist.size(); i++) //we want to compare the previous item sets to the one item sets
-		// {
-		// 	//System.out.println("Entering outer loop");
-		// 	for (int j = 0; j < oneitem.size(); j++)
-		// 	{
-		// 		//System.out.println("Entering inner loop");
-		// 		predlist = cloneItemList(prevlist.get(i).items);
-		// 		//System.out.println("cloned predicate list");
-		// 		//predlist = prevlist.get(i).items; //referencing the list rather than cloning it makes it so when you change the reference you change original. whoops!
-		// 		if (!isPredicateInList(oneitem.get(j).items.get(0), predlist)) //if the predicate in a one item list ISN'T in the itemset
-		// 		{
-		// 			predlist.add(oneitem.get(j).items.get(0));
-		// 			Collections.sort(predlist);
-		// 			//System.out.println("Sorted predicate list");
-		// 			item = new ItemSet();
-		// 			item.items = predlist;
-		// 			if (!doesItemSetExist(item, newlist)) //check that we haven't already made an item set with these predicates
-		// 			{
-		// 				//System.out.println("new item set found, checking for intersection of indices");
-		// 				indices = reconstructIndices(item, mincov);
-		// 				//System.out.println("Found intersection of indices");
-		// 				if (indices.size() >= mincov)
-		// 				{
-		// 					item.support = indices.size();
-		// 					newlist.add(item);
-		// 					Collections.sort(newlist); //perhaps it would be better to do a search and insert, but let's see how it runs first
-		// 					//System.out.println("sorted newlist");
-							
-		// 				}
-		// 				indices.clear();
-		// 			}
-		// 		}
-		// 	}
-		// }
 
 		IntStream.range(0, prevlist.size())
 				.parallel()
@@ -175,7 +129,6 @@ public class IndexedApriori
 												Collections.sort(newlist);
 											}
 										}
-										// indices.clear();
 									}
 								}
 							});
