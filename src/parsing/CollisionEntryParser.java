@@ -10,14 +10,18 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
+import rules.SunTime;
+
 public class CollisionEntryParser {
 
     public static ArrayList<CollisionEntry> Parse_CSV(String path) {
         ArrayList<CollisionEntry> returnList = new ArrayList<CollisionEntry>();
+        ArrayList<SunTime> suntable = SunParser.getSunTable("../config/suntimes.txt"); //if this function is called in main (in the "build" directory), it should properly find the suntimes.txt file.
         BufferedReader bReader = null;
-        String line = "";
+        String line = ""; 
         String delimiter = ",";
         HashMap<Integer, HashMap<Byte, Byte>> driverAgeMap = new HashMap<>();
+		//boolean dayloop = true;
 
         try {
             bReader = new BufferedReader(new FileReader(path));
@@ -809,6 +813,8 @@ public class CollisionEntryParser {
 
                 //C_CASE
                 int case_number = Integer.parseInt(splitEntry[22]);
+                
+                L_COND light = checkLight(month, hour, suntable);
 
                 // System.out.println(year);
                 // System.out.println(month);
@@ -845,7 +851,7 @@ public class CollisionEntryParser {
                     }
                 }
                 
-                CollisionEntry tempEntry = new CollisionEntry(year, month, weekday, hour, severity, v_count, v_config, road_config, weather, road_surface, raln, traffic_control, v_seq_num, v_type, model_year, person_id, sex, age, p_position, p_injury_sev, p_safety_device, p_user, case_number);
+                CollisionEntry tempEntry = new CollisionEntry(year, month, weekday, hour, severity, v_count, v_config, road_config, weather, road_surface, raln, traffic_control, v_seq_num, v_type, model_year, person_id, sex, age, p_position, p_injury_sev, p_safety_device, p_user, case_number, light);
                 returnList.add(tempEntry);
             }
         } catch (FileNotFoundException e) {
@@ -871,4 +877,20 @@ public class CollisionEntryParser {
         System.out.printf("Parsed %d entries!\n", returnList.size());
         return returnList;
     }
+    
+    private static L_COND checkLight(byte month, byte hour, ArrayList<SunTime> suntable)
+    {
+		if (month < 0 || hour < 0) {return L_COND.UNKNOWN;}
+		
+		int i = 0;
+		while (i < suntable.size() && month != suntable.get(i).month.value) //this was originally a binary search, but it seemed to be going into infinite loops
+		{ //since there are just 12 elements in the table, i think we can afford to just iterate throught it linearly
+			i++;
+		}
+		
+		if (i >= suntable.size()) {return L_COND.UNKNOWN;}
+		//if we get to this point, we found the SunTime corresponding to the month and should check if the time is in range
+		if (hour >= suntable.get(i).timerange.min && hour < suntable.get(i).timerange.max) {return L_COND.DAY;}
+		return L_COND.NIGHT;
+	}
 }
