@@ -20,6 +20,7 @@ import rules.Predicate.FEATURE;
 
 public class RulesIO {
 
+    // reads rules from a file from the given path
     public static ArrayList<Rule> readRules(String path) {
         ArrayList<Rule> rules = new ArrayList<>();
         try {
@@ -49,7 +50,7 @@ public class RulesIO {
         return rules;
     }
 
-
+    // Writes an array of rules to a file at the given path
     public static boolean writeRules(ArrayList<Rule> rules, String path) {
         BufferedWriter w;
         try {
@@ -74,6 +75,7 @@ public class RulesIO {
         return true;
     }
 
+    // Encodes a rule object to a string
     public static String encodeRule(Rule rule) {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
@@ -93,6 +95,7 @@ public class RulesIO {
         return sb.toString();
     }
 
+    // Encodes a predicate object to a string, it used the ordinal position of the Feature enum to encode the feature to an integer.
     public static String encodePredicate(Predicate p) {
         String retval = "("+ p.feature.ordinal() + "," + p.predtype.ordinal();
         switch (p.predtype) {
@@ -112,6 +115,8 @@ public class RulesIO {
         return retval;
     }
 
+    // from a string and a hashmap of features, constructs a Predicate object (could turn hashmap into an ArrayList?)
+    // A valid predicate is of the form (0,1,5,6) or (0,1,5) where the first integer is the key to a Faature in the hashmap. The brackets are escaped, so 0,1,5,6 is also valid
     public static Predicate decodePredicate(String str, HashMap<Integer, Predicate.FEATURE> featureList) {
         int n = str.length();
         String arr[] = str.substring((str.charAt(0) == '(') ? 1 : 0, (str.charAt(n - 1) == ')') ? n - 1 : n).split(",");
@@ -122,6 +127,8 @@ public class RulesIO {
         return null;
     }
 
+    // from a string and a hashmap of features, constructs a Rules object (could turn hashmap into an ArrayList?)
+    // a valid rule is of the form {(0,1,5,6)},{(4,0,4)},0.9 for example
     public static Rule decodeRule(String line, HashMap<Integer, Predicate.FEATURE> featureList) {
         Pattern pattern = Pattern.compile("\\{([\\(\\),\\d]+)\\},\\{([\\(\\)\\,\\d]+)\\},([\\d\\.]+)");
         Matcher matcher = pattern.matcher(line);

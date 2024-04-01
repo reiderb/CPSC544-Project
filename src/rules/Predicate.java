@@ -33,7 +33,8 @@ public class Predicate
         V_YEAR,
         P_ID,
         P_AGE,
-        C_CASE //not sure if the case number is relevant to our purposes, but might as well include it.
+        C_CASE, //not sure if the case number is relevant to our purposes, but might as well include it.
+        V_DRAGE // age of the driver of the vehicle, is NULL for 
     }
     
     public PRED_TYPE predtype;

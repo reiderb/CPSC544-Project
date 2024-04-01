@@ -1,6 +1,7 @@
 package parsing;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import parsing.CollisionEntry.*;
 
@@ -16,6 +17,7 @@ public class CollisionEntryParser {
         BufferedReader bReader = null;
         String line = "";
         String delimiter = ",";
+        HashMap<Integer, HashMap<Byte, Byte>> driverAgeMap = new HashMap<>();
 
         try {
             bReader = new BufferedReader(new FileReader(path));
@@ -832,6 +834,17 @@ public class CollisionEntryParser {
                 // System.out.println(p_user);
                 // System.out.println(case_number);
                 
+                // Creating a map which stores the age of the driver for every Case Number + Vehicle Sequence Num combo
+                if(p_position == P_PSN.DRIVER) {
+                    if(driverAgeMap.get(case_number) == null) {
+                        HashMap<Byte, Byte> temp = new HashMap<>();
+                        temp.put(v_seq_num, age);
+                        driverAgeMap.put(case_number, temp);
+                    } else {
+                        driverAgeMap.get(case_number).put(v_seq_num, age);
+                    }
+                }
+                
                 CollisionEntry tempEntry = new CollisionEntry(year, month, weekday, hour, severity, v_count, v_config, road_config, weather, road_surface, raln, traffic_control, v_seq_num, v_type, model_year, person_id, sex, age, p_position, p_injury_sev, p_safety_device, p_user, case_number);
                 returnList.add(tempEntry);
             }
@@ -848,6 +861,13 @@ public class CollisionEntryParser {
                 }
             }
         }
+
+        // Iterate through the entries to populate the driver age 
+        for(int i = 0; i < returnList.size(); i++) {
+            CollisionEntry t = returnList.get(i);
+            t.DRIVER_AGE = driverAgeMap.get(t.CASE_NUMBER).get(t.VEHICLE_SEQUENCE_NUM);
+        }
+
         System.out.printf("Parsed %d entries!\n", returnList.size());
         return returnList;
     }
