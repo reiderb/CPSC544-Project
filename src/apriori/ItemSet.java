@@ -24,6 +24,7 @@ public class ItemSet implements Comparable<ItemSet>
 		items.add(pred);
 		indices = new ArrayList<Integer>();
 		support = 0;
+		blacklist = new ArrayList<ItemSet>();
 	}
 	
 	public void display()

@@ -110,7 +110,7 @@ public class IndexedApriori
 								ArrayList<Predicate> predList = cloneItemList(prevlist.get(i).items);
 								ItemSet Item;
 								ArrayList<Integer> Indices;
-								if (!isPredicateInList(oneitem.get(j).items.get(0), predList)) // if the predicate in a one item list ISN'T in the itemset
+								if (!isPredicateInList(oneitem.get(j).items.get(0), predList) && noSimilarFeature(oneitem.get(j).items.get(0), predList) && notBlacklisted(oneitem.get(j), prevlist.get(i))) // if the predicate in a one item list ISN'T in the itemset
 								{
 									predList.add(oneitem.get(j).items.get(0));
 									Collections.sort(predList);
@@ -123,10 +123,16 @@ public class IndexedApriori
 										// System.out.println("Found intersection of indices");
 										if (Indices.size() >= mincov) {
 											Item.support = Indices.size();
+											Item.blacklist = new ArrayList<ItemSet>(prevlist.get(i).blacklist);
 											synchronized(newlist)
 											{
 												newlist.add(Item);
 												Collections.sort(newlist);
+											}
+										} else {
+											prevlist.get(i).blacklist.add(oneitem.get(j));
+											if (prevlist.get(i).items.size() == 1) {
+												oneitem.get(j).blacklist.add(prevlist.get(i));
 											}
 										}
 									}
@@ -135,6 +141,29 @@ public class IndexedApriori
 				});
 
 		return newlist;
+	}
+	
+	private boolean notBlacklisted(ItemSet sub, ItemSet obj)
+	{
+		int comp;
+		for (int i = 0; i < obj.blacklist.size(); i++)
+		{
+			comp = sub.compareTo(obj.blacklist.get(i));
+			if (comp == 0) {return false;}
+		}
+		return true;
+	}
+	
+	private boolean noSimilarFeature(Predicate sub, ArrayList<Predicate> obj)
+	{
+		for (int i = 0; i < obj.size(); i++)
+		{
+			if (sub.feature == obj.get(i).feature)
+			{
+				return false;
+			}
+		}
+		return true;
 	}
 	
 	public ArrayList<Integer> reconstructIndices(ItemSet item, int mincov)
