@@ -34,7 +34,8 @@ public class Predicate implements Comparable<Predicate>
         P_ID,
         P_AGE,
         C_CASE, //not sure if the case number is relevant to our purposes, but might as well include it.
-        L_COND;
+        L_COND,
+        V_DRAGE; // age of the driver of the vehicle, is NULL for 
     }
     
     public PRED_TYPE predtype;

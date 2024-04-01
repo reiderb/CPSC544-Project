@@ -266,6 +266,8 @@ public class CollisionEntry {
     public P_USER USER;
     public int CASE_NUMBER; //C_CASE, a column not documented on the data sheet.
     public L_COND LIGHT;
+    public byte DRIVER_AGE; // Age of the Driver
+    
 
     //auto generated constructor, thats why the argument names look so bad.
     public CollisionEntry(short yEAR, byte mONTH, CollisionEntry.C_WDAY wEEK_DAY, byte hOUR,

@@ -34,14 +34,14 @@ public class RulesIOTest {
       p3 = new Predicate(FEATURE.C_WDAY, 5, 6); // (0,1,5,6)
       c1 = new Predicate(FEATURE.C_HOUR, 16, 18); // (16,1,16,18)
       c2 = new Predicate(FEATURE.C_WTHR, 4); // (4,0,4)
-      r1 = new Rule(new ArrayList<Predicate>(){ {add(p2); add(p1);} }, new ArrayList<Predicate>(){add(c1);}, 0.8f); // {(15,1,2,3),(7,0,2)},(16,1,16,18),0.8
-      r2 = new Rule(new ArrayList<Predicate>(){ {add(p3);} }, new ArrayList<Predicate>(){add(c2);}, 0.9f); // {(0,1,5,6)},(4,0,4),0.9
+      r1 = new Rule(new ArrayList<Predicate>(){ {add(p2); add(p1);} }, new ArrayList<Predicate>(){{add(c1);}}, 0.8f); // {(15,1,2,3),(7,0,2)},(16,1,16,18),0.8
+      r2 = new Rule(new ArrayList<Predicate>(){ {add(p3);} }, new ArrayList<Predicate>(){{add(c2);}}, 0.9f); // {(0,1,5,6)},(4,0,4),0.9
 
       r = new ArrayList<>(){{add(r1); add(r2);}};
   
       try {
         BufferedWriter w = new BufferedWriter(new FileWriter("./test/testfile1.txt"));
-        w.write("C_WDAY,C_SEV,C_CONF,C_RCFG,C_WTHR,C_RSUR,C_RALN,C_TRAF,V_TYPE,P_SEX,P_PSN,P_ISEV,P_SAFE,P_USER,C_YEAR,C_MNTH,C_HOUR,C_VEHS,V_ID,V_YEAR,P_ID,P_AGE,C_CASE");
+        w.write("C_WDAY,C_SEV,C_CONF,C_RCFG,C_WTHR,C_RSUR,C_RALN,C_TRAF,V_TYPE,P_SEX,P_PSN,P_ISEV,P_SAFE,P_USER,C_YEAR,C_MNTH,C_HOUR,C_VEHS,V_ID,V_YEAR,P_ID,P_AGE,C_CASE,V_DRAGE");
         w.newLine();
         w.write("{(15,1,2,3),(7,0,2)},{(16,1,16,18)},0.8");
         w.newLine();
