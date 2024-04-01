@@ -148,7 +148,35 @@ public class IndexedApriori
 		{
 			nextone = findOneItem(item.items.get(i));
 			indices = indexIntersection(indices, nextone.indices);
+			//indices = linearIntersection(indices, nextone.indices); //the system was failing to make any k-item lists with this, and i genuinely have no idea why ;_;
 			if (indices.size() < mincov) {return indices;}
+		}
+		return indices;
+	}
+	
+	public ArrayList<Integer> linearIntersection(ArrayList<Integer> sub, ArrayList<Integer> obj)
+	{
+		//okay, so, indexIntersection() was way too slow, so we're going to try this instead
+		//we assume the arraylists passed in are sorted
+		int i = 0;
+		int j = 0;
+		ArrayList<Integer> indices = new ArrayList<Integer>();
+		while (i < sub.size() && j < obj.size())
+		{
+			if (sub.get(i) == obj.get(j))
+			{
+				indices.add(sub.get(i));
+				i++;
+				j++;
+			}
+			else if (sub.get(i) < obj.get(j))
+			{
+				i++;
+			}
+			else //if sub.get(i) > obj.get(j)
+			{
+				j++;
+			}
 		}
 		return indices;
 	}
