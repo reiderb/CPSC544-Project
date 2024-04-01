@@ -161,6 +161,9 @@ public class RuleChecker
 			case L_COND:
 				flag = (l_cond[pred.value] == entry.LIGHT);
 				break;
+			case V_DRAGE:
+				flag = (pred.value == entry.DRIVER_AGE);
+				break;
 		}
 		return flag;
 	}
@@ -203,6 +206,9 @@ public class RuleChecker
 				break;
 			case C_CASE:
 				temp = entry.CASE_NUMBER;
+				break;
+			case V_DRAGE:
+				temp = entry.DRIVER_AGE;
 				break;
 			default: //in any other case, the feature value is some non-numeric value
 				temp = pred.min - 1; //we want to return false in that case, so we set temp lower than the minimum
