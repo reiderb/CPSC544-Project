@@ -96,7 +96,7 @@ public class IndexedApriori
 				predlist = cloneItemList(prevlist.get(i).items);
 				//System.out.println("cloned predicate list");
 				//predlist = prevlist.get(i).items; //referencing the list rather than cloning it makes it so when you change the reference you change original. whoops!
-				if (!isPredicateInList(oneitem.get(j).items.get(0), predlist)) //if the predicate in a one item list ISN'T in the itemset
+				if (!isPredicateInList(oneitem.get(j).items.get(0), predlist) && noSimilarFeature(oneitem.get(j).items.get(0), predlist) && notBlacklisted(oneitem.get(j), prevlist.get(i))) //if the predicate in a one item list ISN'T in the itemset
 				{
 					predlist.add(oneitem.get(j).items.get(0));
 					Collections.sort(predlist);
@@ -111,10 +111,19 @@ public class IndexedApriori
 						if (indices.size() >= mincov)
 						{
 							item.support = indices.size();
+							item.blacklist = new ArrayList<ItemSet>(prevlist.get(i).blacklist);
 							newlist.add(item);
 							Collections.sort(newlist); //perhaps it would be better to do a search and insert, but let's see how it runs first
 							//System.out.println("sorted newlist");
 							
+						}
+						else
+						{
+							prevlist.get(i).blacklist.add(oneitem.get(j));
+							if (prevlist.get(i).items.size() == 1)
+							{
+								oneitem.get(j).blacklist.add(prevlist.get(i));
+							}
 						}
 						indices.clear();
 					}
@@ -122,6 +131,29 @@ public class IndexedApriori
 			}
 		}
 		return newlist;
+	}
+	
+	private boolean notBlacklisted(ItemSet sub, ItemSet obj)
+	{
+		int comp;
+		for (int i = 0; i < obj.blacklist.size(); i++)
+		{
+			comp = sub.compareTo(obj.blacklist.get(i));
+			if (comp == 0) {return false;}
+		}
+		return true;
+	}
+	
+	private boolean noSimilarFeature(Predicate sub, ArrayList<Predicate> obj)
+	{
+		for (int i = 0; i < obj.size(); i++)
+		{
+			if (sub.feature == obj.get(i).feature)
+			{
+				return false;
+			}
+		}
+		return true;
 	}
 	
 	public ArrayList<Integer> reconstructIndices(ItemSet item, int mincov)
