@@ -117,37 +117,27 @@ public class IndexedApriori
 									// System.out.println("Sorted predicate list");
 									Item = new ItemSet();
 									Item.items = predList;
-									boolean doesItemSetExist;
-									synchronized(newlist)
-									{
-										doesItemSetExist = doesItemSetExist(Item, newlist);
-									}
-									if (!doesItemSetExist) // check that we haven't already made an itemset with these predicates
-									{
-										Indices = reconstructIndices(Item, mincov);
-										// System.out.println("Found intersection of indices");
-										if (Indices.size() >= mincov) {
-											Item.support = Indices.size();
-											synchronized(prevlist.get(i))
-											{
+									Indices = reconstructIndices(Item, mincov);
+									synchronized (newlist) {
+										if (!doesItemSetExist(Item, newlist)) // check that we haven't already made an itemset with these predicates
+										{
+											// System.out.println("Found intersection of indices");
+											if (Indices.size() >= mincov) {
+												Item.support = Indices.size();
 												Item.blacklist = joinBlacklists(oneitem.get(j), prevlist.get(i));
-											}
-											Item.blacklist = (prevlist.get(i).blacklist);
-											synchronized(newlist)
-											{
+												Item.blacklist = (prevlist.get(i).blacklist);
+
 												newlist.add(Item);
 												Collections.sort(newlist);
-											}
-										} else {
-											synchronized (prevlist.get(i).blacklist) {
+											} else {
 												prevlist.get(i).blacklist.add(oneitem.get(j));
 												if (prevlist.get(i).items.size() == 1) {
 													oneitem.get(j).blacklist.add(prevlist.get(i));
 												}
 											}
-
 										}
 									}
+									
 								}
 							});
 				});
