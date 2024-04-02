@@ -123,7 +123,8 @@ public class IndexedApriori
 										// System.out.println("Found intersection of indices");
 										if (Indices.size() >= mincov) {
 											Item.support = Indices.size();
-											Item.blacklist = new ArrayList<ItemSet>(prevlist.get(i).blacklist);
+											Item.blacklist = joinBlacklists(oneitem.get(j), prevlist.get(i));
+											Item.blacklist = (prevlist.get(i).blacklist);
 											synchronized(newlist)
 											{
 												newlist.add(Item);
@@ -141,6 +142,47 @@ public class IndexedApriori
 				});
 
 		return newlist;
+	}
+	
+	private ArrayList<ItemSet> joinBlacklists(ItemSet sub, ItemSet obj)
+	{
+		Collections.sort(sub.blacklist);
+		Collections.sort(obj.blacklist);
+		ArrayList<ItemSet> newblacklist = new ArrayList<ItemSet>();
+		int i = 0;
+		int j = 0;
+		int comp;
+		while (i < sub.blacklist.size() && j < obj.blacklist.size())
+		{
+			comp = sub.blacklist.get(i).compareTo(obj.blacklist.get(j));
+			if (comp == 0) //if the same itemset is in both blacklists, we only want to add it once
+			{
+				newblacklist.add(sub.blacklist.get(i));
+				i++;
+				j++;
+			}
+			else if (comp < 0)
+			{
+				newblacklist.add(sub.blacklist.get(i));
+				i++;
+			}
+			else
+			{
+				newblacklist.add(obj.blacklist.get(j));
+				j++;
+			}
+		}
+		while (i < sub.blacklist.size())
+		{
+			newblacklist.add(sub.blacklist.get(i));
+			i++;
+		}
+		while (j < obj.blacklist.size())
+		{
+			newblacklist.add(obj.blacklist.get(j));
+			j++;
+		}
+		return newblacklist;
 	}
 	
 	private boolean notBlacklisted(ItemSet sub, ItemSet obj)
