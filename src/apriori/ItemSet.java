@@ -8,12 +8,14 @@ public class ItemSet implements Comparable<ItemSet>
 	public ArrayList<Predicate> items;
 	public ArrayList<Integer> indices; //indices of CollisionEntry objects containing the given items
 	public int support; //the number of times "items" occur in the database
+	ArrayList<ItemSet> blacklist; //list of one item sets such that if we add them to the item set the result won't clear minimum coverage
 	
 	public ItemSet()
 	{
 		items = new ArrayList<Predicate>();
 		indices = new ArrayList<Integer>();
 		support = 0;
+		blacklist = new ArrayList<ItemSet>();
 	}
 	
 	public ItemSet(Predicate pred)
@@ -22,6 +24,7 @@ public class ItemSet implements Comparable<ItemSet>
 		items.add(pred);
 		indices = new ArrayList<Integer>();
 		support = 0;
+		blacklist = new ArrayList<ItemSet>();
 	}
 	
 	public void display()

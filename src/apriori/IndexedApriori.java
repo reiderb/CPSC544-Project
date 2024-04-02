@@ -96,7 +96,7 @@ public class IndexedApriori
 				predlist = cloneItemList(prevlist.get(i).items);
 				//System.out.println("cloned predicate list");
 				//predlist = prevlist.get(i).items; //referencing the list rather than cloning it makes it so when you change the reference you change original. whoops!
-				if (!isPredicateInList(oneitem.get(j).items.get(0), predlist)) //if the predicate in a one item list ISN'T in the itemset
+				if (!isPredicateInList(oneitem.get(j).items.get(0), predlist) && noSimilarFeature(oneitem.get(j).items.get(0), predlist) && notBlacklisted(oneitem.get(j), prevlist.get(i))) //if the predicate in a one item list ISN'T in the itemset
 				{
 					predlist.add(oneitem.get(j).items.get(0));
 					Collections.sort(predlist);
@@ -111,10 +111,20 @@ public class IndexedApriori
 						if (indices.size() >= mincov)
 						{
 							item.support = indices.size();
+							item.blacklist = joinBlacklists(oneitem.get(j), prevlist.get(i));
+							item.blacklist = (prevlist.get(i).blacklist);
 							newlist.add(item);
 							Collections.sort(newlist); //perhaps it would be better to do a search and insert, but let's see how it runs first
 							//System.out.println("sorted newlist");
 							
+						}
+						else
+						{
+							prevlist.get(i).blacklist.add(oneitem.get(j));
+							if (prevlist.get(i).items.size() == 1)
+							{
+								oneitem.get(j).blacklist.add(prevlist.get(i));
+							}
 						}
 						indices.clear();
 					}
@@ -122,6 +132,70 @@ public class IndexedApriori
 			}
 		}
 		return newlist;
+	}
+	
+	private ArrayList<ItemSet> joinBlacklists(ItemSet sub, ItemSet obj)
+	{
+		Collections.sort(sub.blacklist);
+		Collections.sort(obj.blacklist);
+		ArrayList<ItemSet> newblacklist = new ArrayList<ItemSet>();
+		int i = 0;
+		int j = 0;
+		int comp;
+		while (i < sub.blacklist.size() && j < obj.blacklist.size())
+		{
+			comp = sub.blacklist.get(i).compareTo(obj.blacklist.get(j));
+			if (comp == 0) //if the same itemset is in both blacklists, we only want to add it once
+			{
+				newblacklist.add(sub.blacklist.get(i));
+				i++;
+				j++;
+			}
+			else if (comp < 0)
+			{
+				newblacklist.add(sub.blacklist.get(i));
+				i++;
+			}
+			else
+			{
+				newblacklist.add(obj.blacklist.get(j));
+				j++;
+			}
+		}
+		while (i < sub.blacklist.size())
+		{
+			newblacklist.add(sub.blacklist.get(i));
+			i++;
+		}
+		while (j < obj.blacklist.size())
+		{
+			newblacklist.add(obj.blacklist.get(j));
+			j++;
+		}
+		return newblacklist;
+	}
+	
+	private boolean notBlacklisted(ItemSet sub, ItemSet obj)
+	{
+		int comp;
+		for (int i = 0; i < obj.blacklist.size(); i++)
+		{
+			comp = sub.compareTo(obj.blacklist.get(i));
+			if (comp == 0) {return false;}
+		}
+		return true;
+	}
+	
+	private boolean noSimilarFeature(Predicate sub, ArrayList<Predicate> obj)
+	{
+		for (int i = 0; i < obj.size(); i++)
+		{
+			if (sub.feature == obj.get(i).feature)
+			{
+				return false;
+			}
+		}
+		return true;
 	}
 	
 	public ArrayList<Integer> reconstructIndices(ItemSet item, int mincov)
@@ -134,8 +208,38 @@ public class IndexedApriori
 		for (int i = 1; i < item.items.size(); i++)
 		{
 			nextone = findOneItem(item.items.get(i));
-			indices = indexIntersection(indices, nextone.indices);
+			//indices = indexIntersection(indices, nextone.indices);
+			indices = linearIntersection(indices, nextone.indices); //the system was failing to make any k-item lists with this, and i genuinely have no idea why ;_;
 			if (indices.size() < mincov) {return indices;}
+		}
+		return indices;
+	}
+	
+	public ArrayList<Integer> linearIntersection(ArrayList<Integer> sub, ArrayList<Integer> obj)
+	{
+		//okay, so, indexIntersection() was way too slow, so we're going to try this instead
+		//we assume the arraylists passed in are sorted
+		int i = 0;
+		int j = 0;
+		int comp;
+		ArrayList<Integer> indices = new ArrayList<Integer>();
+		while (i < sub.size() && j < obj.size())
+		{
+			comp = sub.get(i).compareTo(obj.get(j));
+			if (comp == 0)
+			{
+				indices.add(sub.get(i));
+				i++;
+				j++;
+			}
+			else if (comp < 0)
+			{
+				i++;
+			}
+			else //if sub.get(i) > obj.get(j)
+			{
+				j++;
+			}
 		}
 		return indices;
 	}
