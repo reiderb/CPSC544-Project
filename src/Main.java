@@ -10,6 +10,9 @@ public class Main {
         System.out.println("Hello, World!");
         ArrayList<CollisionEntry> entrylist = CollisionEntryParser.Parse_CSV("collision-databse_1999-2019.csv");
         int mincov = entrylist.size() / 2;
+        float minacc = (float)3 / (float)4;
+        System.out.println("value of minacc");
+        System.out.println(minacc);
         IndexedApriori apriorisets = new IndexedApriori();
         long start = System.currentTimeMillis();
         apriorisets.itemlists.add(apriorisets.oneItemList(entrylist, mincov));
@@ -25,7 +28,17 @@ public class Main {
             }
         }
         long finish = System.currentTimeMillis();
-        System.out.println("runtime in milliseconds:");
+        System.out.println("runtime of apriori algorithm in milliseconds:");
         System.out.println(finish - start);
+        start = System.currentTimeMillis();
+        RuleGenerator rulelist = new RuleGenerator(itemsets, minacc);
+        finish = System.currentTimeMillis();
+        for (int i = 0; i < rulelist.rulelist.size(); i++)
+        {
+            System.out.println(parsing.RulesIO.encodeRule(rulelist.rulelist.get(i)));
+        }
+        System.out.println("runtime of rule generation in milliseconds:");
+        System.out.println(finish - start);
+        parsing.RulesIO.writeRules(rulelist.rulelist, "../out/rules.txt");
     }
 }

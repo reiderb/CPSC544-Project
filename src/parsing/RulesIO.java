@@ -85,7 +85,7 @@ public class RulesIO {
         for(int i = 1; i < n; i++) {
             sb.append(',').append(encodePredicate(rule.cond.get(i)));
         }
-        sb.append("}").append(',').append("{").append(encodePredicate(rule.conc.get(0)));
+        sb.append("}").append(' ').append('-').append('>').append(' ').append("{").append(encodePredicate(rule.conc.get(0)));
         n = rule.conc.size();
         for(int i = 1; i < n; i++) {
             sb.append(',').append(encodePredicate(rule.conc.get(i)));
