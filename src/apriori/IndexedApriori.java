@@ -47,22 +47,16 @@ public class IndexedApriori
 							});
 				});
 
-		// want to get rid of the following
+		ArrayList<ItemSet> onelist = new ArrayList<ItemSet>();
 		IntStream.range(0, candidates.size())
 				.parallel()
-				.forEach(j -> {
-					Collections.sort(candidates.get(j).indices);
+				.forEach(i -> {
+					Collections.sort(candidates.get(i).indices);
+					if (candidates.get(i).indices.size() >= mincov) {
+						candidates.get(i).support = candidates.get(i).indices.size();
+						onelist.add(candidates.get(i));
+					}
 				});
-
-		ArrayList<ItemSet> onelist = new ArrayList<ItemSet>();
-		for (int i = 0; i < candidates.size(); i++)
-		{
-			if (candidates.get(i).indices.size() >= mincov)
-			{
-				candidates.get(i).support = candidates.get(i).indices.size();
-				onelist.add(candidates.get(i));
-			}
-		}
 		System.out.println("One item lists generated");
 		Collections.sort(onelist);
 		return onelist;
