@@ -97,8 +97,8 @@ public class IndexedApriori
 		//we assume that all sets less than k have already been generated.
 		//so, for example, if we want to generate the 2 item list, then we'd set k to 1 and assume the 1 item list is at index 0
 		//System.out.println("Entering kItemList()");
-		ArrayList<ItemSet> oneitem = itemlists.get(0);
-		ArrayList<ItemSet> prevlist = itemlists.get(k - 1);
+		CopyOnWriteArrayList<ItemSet> oneitem = new CopyOnWriteArrayList<>(itemlists.get(0));
+		CopyOnWriteArrayList<ItemSet> prevlist = new CopyOnWriteArrayList<>(itemlists.get(k - 1));
 		ArrayList<ItemSet> newlist = new ArrayList<ItemSet>();
 
 		IntStream.range(0, prevlist.size())
