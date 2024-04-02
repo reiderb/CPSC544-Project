@@ -97,13 +97,13 @@ public class RulesIO {
 
     // Encodes a predicate object to a string, it used the ordinal position of the Feature enum to encode the feature to an integer.
     public static String encodePredicate(Predicate p) {
-        String retval = "("+ p.feature.ordinal() + "," + p.predtype.ordinal();
+        String retval = "("+ p.feature.toString();
         switch (p.predtype) {
             case FEATURE_VALUE:
-                retval += "," + p.value;
+                retval += " = " + p.value;
                 break;
             case VALUE_RANGE:
-                retval += "," + p.min + "," + p.max;
+                retval += " in [" + p.min + ", " + p.max + ")";
                 break;
             case OTHER:
                 break;
