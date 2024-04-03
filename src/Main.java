@@ -9,7 +9,7 @@ public class Main {
     public static void main(String[] args) throws Exception {
         System.out.println("Hello, World!");
         ArrayList<CollisionEntry> entrylist = CollisionEntryParser.Parse_CSV("collision-databse_1999-2019.csv");
-        int mincov = entrylist.size() / 2;
+        int mincov = (entrylist.size() * 4) / 5;
         float minacc = (float)3 / (float)4;
         System.out.println("value of minacc");
         System.out.println(minacc);
