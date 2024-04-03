@@ -14,9 +14,9 @@ import rules.SunTime;
 
 public class CollisionEntryParser {
 
-    public static ArrayList<CollisionEntry> Parse_CSV(String path) {
+    public static ArrayList<CollisionEntry> Parse_CSV(String path, String suntimesPath) {
         ArrayList<CollisionEntry> returnList = new ArrayList<CollisionEntry>();
-        ArrayList<SunTime> suntable = SunParser.getSunTable("../config/suntimes.txt"); //if this function is called in main (in the "build" directory), it should properly find the suntimes.txt file.
+        ArrayList<SunTime> suntable = SunParser.getSunTable(suntimesPath); //if this function is called in main (in the "build" directory), it should properly find the suntimes.txt file.
         BufferedReader bReader = null;
         String line = ""; 
         String delimiter = ",";

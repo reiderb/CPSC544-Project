@@ -63,7 +63,15 @@ public class IndexedApriori
 			itemlists.add(newlist);
 			k = k + 1;
 			newlist = kItemList(k, mincov);
-			clearIndices(k - 1);
+			//clearIndices(k - 1);
+		}
+	}
+	
+	public void clearBlacklists(int i)
+	{
+		for (int j  =  0; j < itemlists.get(i).size(); j++)
+		{
+			itemlists.get(i).get(j).blacklist.clear();
 		}
 	}
 	

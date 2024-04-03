@@ -1,18 +1,28 @@
 import parsing.CollisionEntryParser;
+import parsing.ConfigFile;
 import apriori.*;
 import rules.*;
 import apriori.*;
 import parsing.CollisionEntry;
+
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
+
+import com.google.gson.Gson;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        System.out.println("Hello, World!");
-        ArrayList<CollisionEntry> entrylist = CollisionEntryParser.Parse_CSV("collision-databse_1999-2019.csv");
-        int mincov = entrylist.size() / 2;
-        float minacc = (float)3 / (float)4;
-        System.out.println("value of minacc");
-        System.out.println(minacc);
+
+        Gson jsonParser = new Gson();
+        ConfigFile config = jsonParser.fromJson(Files.readString(Path.of(args[0])), ConfigFile.class);
+        System.out.printf("Running with configuration:\n\tDatabase path: %s\n\tSuntimes path: %s\n\tMinimum coverage: %f\n\tMinimum rule accuracy: %f\n\tWriting rules to: %s\n",
+        config.database_path, config.suntimes_path, config.min_coverage, config.rule_accuracy, config.rules_out_path);
+
+        ArrayList<CollisionEntry> entrylist = CollisionEntryParser.Parse_CSV(config.database_path, config.suntimes_path);
+        int mincov = (int)(entrylist.size() * config.min_coverage);
+        float minacc = config.rule_accuracy;
+
         IndexedApriori apriorisets = new IndexedApriori();
         long start = System.currentTimeMillis();
         apriorisets.itemlists.add(apriorisets.oneItemList(entrylist, mincov));
@@ -39,6 +49,6 @@ public class Main {
         }
         System.out.println("runtime of rule generation in milliseconds:");
         System.out.println(finish - start);
-        parsing.RulesIO.writeRules(rulelist.rulelist, "../out/rules.txt");
+        parsing.RulesIO.writeRules(rulelist.rulelist, config.rules_out_path);
     }
 }
