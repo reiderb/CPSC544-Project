@@ -13,6 +13,7 @@ import com.google.gson.Gson;
 
 public class Main {
     public static void main(String[] args) throws Exception {
+
         Gson jsonParser = new Gson();
         ConfigFile config = jsonParser.fromJson(Files.readString(Path.of(args[0])), ConfigFile.class);
         System.out.printf("Running with configuration:\n\tDatabase path: %s\n\tSuntimes path: %s\n\tMinimum coverage: %f\n\tMinimum rule accuracy: %f\n\tWriting rules to: %s\n",
@@ -21,6 +22,7 @@ public class Main {
         ArrayList<CollisionEntry> entrylist = CollisionEntryParser.Parse_CSV(config.database_path, config.suntimes_path);
         int mincov = (int)(entrylist.size() * config.min_coverage);
         float minacc = config.rule_accuracy;
+
         IndexedApriori apriorisets = new IndexedApriori();
         long start = System.currentTimeMillis();
         apriorisets.itemlists.add(apriorisets.oneItemList(entrylist, mincov));
