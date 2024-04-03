@@ -18,6 +18,7 @@ public class RuleChecker
 	private CollisionEntry.P_ISEV[] p_isev;
 	private CollisionEntry.P_SAFE[] p_safe;
 	private CollisionEntry.P_USER[] p_user;
+	private CollisionEntry.L_COND[] l_cond;
 	
 	public RuleChecker()
 	{
@@ -35,6 +36,7 @@ public class RuleChecker
 		p_isev = CollisionEntry.P_ISEV.values();
 		p_safe = CollisionEntry.P_SAFE.values();
 		p_user = CollisionEntry.P_USER.values();
+		l_cond = CollisionEntry.L_COND.values();
 	}
 	
 	public boolean checkPredicateList(CollisionEntry entry, ArrayList<Predicate> predlist)
@@ -156,6 +158,12 @@ public class RuleChecker
 			case C_CASE:
 				flag = (pred.value == entry.CASE_NUMBER);
 				break;
+			case L_COND:
+				flag = (l_cond[pred.value] == entry.LIGHT);
+				break;
+			case V_DRAGE:
+				flag = (pred.value == entry.DRIVER_AGE);
+				break;
 		}
 		return flag;
 	}
@@ -198,6 +206,9 @@ public class RuleChecker
 				break;
 			case C_CASE:
 				temp = entry.CASE_NUMBER;
+				break;
+			case V_DRAGE:
+				temp = entry.DRIVER_AGE;
 				break;
 			default: //in any other case, the feature value is some non-numeric value
 				temp = pred.min - 1; //we want to return false in that case, so we set temp lower than the minimum

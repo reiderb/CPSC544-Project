@@ -50,5 +50,4 @@ public class Rule
 			
 			return this.freq == r.freq;
 	}
-
 }
