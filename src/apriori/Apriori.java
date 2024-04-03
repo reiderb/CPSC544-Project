@@ -1,12 +1,17 @@
 package apriori;
 
 import parsing.CollisionEntryParser;
+import parsing.ConfigFile;
 import parsing.CollisionEntry;
 import parsing.CollisionEntry.*;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+
+import com.google.gson.Gson;
 
 public class Apriori {
     int mincount;
@@ -263,8 +268,12 @@ public class Apriori {
     
     
     public static void main(String[] args) throws Exception {
-    	ArrayList<CollisionEntry> entrylist = CollisionEntryParser.Parse_CSV("collision-databse_1999-2019.csv");
-        Apriori ml = new Apriori(0.4, entrylist);
+		Gson jsonParser = new Gson();
+        ConfigFile config = jsonParser.fromJson(Files.readString(Path.of(args[0])), ConfigFile.class);
+        System.out.printf("Running with configuration:\n\tDatabase path: %s\n\tSuntimes path: %s\n\tMinimum coverage: %f\n\tMinimum rule accuracy: %f\n\tWriting rules to: %s\n",
+        config.database_path, config.suntimes_path, config.min_coverage, config.rule_accuracy, config.rules_out_path);
+    	ArrayList<CollisionEntry> entrylist = CollisionEntryParser.Parse_CSV(config.database_path, config.suntimes_path);
+        Apriori ml = new Apriori(config.min_coverage, entrylist);
         HashMap<Object[], Integer> FrequentItemSets = ml.compute();
         for (HashMap.Entry<Object[], Integer> entry : FrequentItemSets.entrySet()) {
             Object[] itemset = entry.getKey();
