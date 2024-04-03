@@ -17,12 +17,10 @@ public class Main {
         ConfigFile config = jsonParser.fromJson(Files.readString(Path.of(args[0])), ConfigFile.class);
         System.out.printf("Running with configuration:\n\tDatabase path: %s\n\tSuntimes path: %s\n\tMinimum coverage: %f\n\tMinimum rule accuracy: %f\n\tWriting rules to: %s\n",
         config.database_path, config.suntimes_path, config.min_coverage, config.rule_accuracy, config.rules_out_path);
-        
+
         ArrayList<CollisionEntry> entrylist = CollisionEntryParser.Parse_CSV(config.database_path, config.suntimes_path);
         int mincov = (int)(entrylist.size() * config.min_coverage);
         float minacc = config.rule_accuracy;
-        System.out.println("value of minacc");
-        System.out.println(minacc);
         IndexedApriori apriorisets = new IndexedApriori();
         long start = System.currentTimeMillis();
         apriorisets.itemlists.add(apriorisets.oneItemList(entrylist, mincov));
