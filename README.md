@@ -19,8 +19,12 @@ If you find a dependency on the maven central repository that you want to add, g
 
 ##Running
 
-Since the system uses so much memory, it may be necessary to allocate more memory on the heap.
+After building, there should be an executable .jar file in the root directory. You can run it with the -jar flag.
 
-Navigate into the "build" directory after compiling and run the program with the -Xmx76t flag like so:
+There is a config file at the path "config/config.json" so pass that to the program as an argument
 
-	java -Xmx76t Main
+Since the system uses so much memory, it may be necessary to allocate more memory on the heap using the -Xmx76t flag.
+
+So, to run the system with the above flags and arguments, execute this command from the root directory:
+
+	java -Xmx76t -jar CPSC544Project.jar config/config.json
