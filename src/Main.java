@@ -7,7 +7,7 @@ import parsing.CollisionEntry;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
+import java.util.*;
 
 import com.google.gson.Gson;
 
@@ -20,6 +20,7 @@ public class Main {
         config.database_path, config.suntimes_path, config.min_coverage, config.rule_accuracy, config.rules_out_path);
 
         ArrayList<CollisionEntry> entrylist = CollisionEntryParser.Parse_CSV(config.database_path, config.suntimes_path);
+        int n_examples = entrylist.size();
         int mincov = (int)(entrylist.size() * config.min_coverage);
         float minacc = config.rule_accuracy;
 
@@ -41,8 +42,9 @@ public class Main {
         System.out.println("runtime of apriori algorithm in milliseconds:");
         System.out.println(finish - start);
         start = System.currentTimeMillis();
-        RuleGenerator rulelist = new RuleGenerator(itemsets, minacc);
+        RuleGenerator rulelist = new RuleGenerator(itemsets, minacc, n_examples);
         finish = System.currentTimeMillis();
+        Collections.sort(rulelist.rulelist, Comparator.comparing(Rule::getLift));
         for (int i = 0; i < rulelist.rulelist.size(); i++)
         {
             System.out.println(parsing.RulesIO.encodeRule(rulelist.rulelist.get(i)));

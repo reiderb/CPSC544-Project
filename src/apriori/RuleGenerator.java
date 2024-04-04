@@ -6,14 +6,16 @@ import rules.*;
 public class RuleGenerator
 {
 	public ArrayList<Rule> rulelist;
+        public int n_examples;
 	
 	public RuleGenerator()
 	{
 		rulelist = new ArrayList<Rule>();
 	}
 	
-	public RuleGenerator(ArrayList<ArrayList<ItemSet>> aprioriset, float minacc)
+    public RuleGenerator(ArrayList<ArrayList<ItemSet>> aprioriset, float minacc, int n_examples)
 	{
+                this.n_examples = n_examples;
 		rulelist = makeAllRules(aprioriset, minacc);
 	}
 	
@@ -33,7 +35,7 @@ public class RuleGenerator
 					checkval = (float) supersets.get(k).support / (float) aprioriset.get(i).get(j).support;
 					if (checkval >= minacc)
 					{
-						temprule = makeRule(aprioriset.get(i).get(j), supersets.get(k));
+                                                temprule = makeRule(aprioriset.get(i).get(j), supersets.get(k), aprioriset);
 						newrules.add(temprule);
 					}
 				}
@@ -42,13 +44,15 @@ public class RuleGenerator
 		return newrules;
 	}
 	
-	public Rule makeRule(ItemSet sub, ItemSet obj)
+        public Rule makeRule(ItemSet sub, ItemSet obj, ArrayList<ArrayList<ItemSet>> aprioriset)
 	{
 		//assuming sub is a subset of obj
 		Rule newrule = new Rule();
 		newrule.cond = sub.items;
 		newrule.conc = splitSet(sub, obj);
+                ItemSet concSet = findItemSet(newrule.conc, aprioriset);
 		newrule.freq = (float) obj.support / (float) sub.support;
+                newrule.lift = newrule.freq / ((float) concSet.support / (float) n_examples);
 		return newrule;
 	}
 	
@@ -87,6 +91,26 @@ public class RuleGenerator
 		}
 		return disjoint;
 	}
+
+    // Given a list of predicates, find the item set corresponding to it
+    public ItemSet findItemSet(ArrayList<Predicate> preds, ArrayList<ArrayList<ItemSet>> aprioriset) {
+        ArrayList<Predicate> preds1 = new ArrayList<Predicate>(preds);
+        Collections.sort(preds1);
+        for (ItemSet i : aprioriset.get(preds.size() - 1)) {
+            ArrayList<Predicate> preds2 = new ArrayList<Predicate>(i.items);
+            Collections.sort(preds2);
+            if (preds1.equals(preds2))
+                return i;
+            if (preds1.containsAll(preds2) && preds2.containsAll(preds1))
+                System.out.println("Shouldn't happend");
+        }
+        System.out.println(preds.size());
+        for (Predicate p : preds1)
+            System.out.println(p.display());
+        for (Predicate p : preds)
+            System.out.println(p.display());
+        throw new RuntimeException("Item set not found! This should never happen.");
+    }
 	
 	public ArrayList<ItemSet> findSuperSets(ItemSet sub, ArrayList<ArrayList<ItemSet>> obj)
 	{

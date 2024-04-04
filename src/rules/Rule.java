@@ -6,12 +6,14 @@ public class Rule
 	public ArrayList<Predicate> cond;
 	public ArrayList<Predicate> conc;
 	public float freq;
+        public float lift;
 	
 	public Rule()
 	{
 		cond = new ArrayList<Predicate>();
 		conc = new ArrayList<Predicate>();
 		freq = 0;
+                lift = 0;
 	}
 	
 	public Rule(ArrayList<Predicate> newcond, ArrayList<Predicate> newconc, float newfreq)
@@ -50,4 +52,8 @@ public class Rule
 			
 			return this.freq == r.freq;
 	}
+
+    public float getLift() {
+        return this.lift;
+    }
 }

@@ -90,7 +90,7 @@ public class RulesIO {
         for(int i = 1; i < n; i++) {
             sb.append(',').append(encodePredicate(rule.conc.get(i)));
         }
-        sb.append("}").append(",").append(rule.freq);
+        sb.append("}").append(", acc=").append(rule.freq).append(", lift=").append(rule.lift);
 
         return sb.toString();
     }
