@@ -1,3 +1,1344 @@
 C_WDAY,C_SEV,C_CONF,C_RCFG,C_WTHR,C_RSUR,C_RALN,C_TRAF,V_TYPE,P_SEX,P_PSN,P_ISEV,P_SAFE,P_USER,C_YEAR,C_MNTH,C_HOUR,C_VEHS,V_ID,V_YEAR,P_ID,P_AGE,C_CASE,V_DRAGE,L_COND
 {(C_SEV = 1)} -> {(V_TYPE = 0)},0.8265538
+{(C_SEV = 1)} -> {(L_COND = 0)},0.75745285
+{(C_CONF = 6)} -> {(C_SEV = 1)},0.99605316
+{(C_CONF = 6)} -> {(V_TYPE = 0)},0.8993449
+{(C_CONF = 6)} -> {(P_SAFE = 1)},0.7991948
+{(C_CONF = 6)} -> {(L_COND = 0)},0.82472956
+{(C_CONF = 6)} -> {(C_SEV = 1),(V_TYPE = 0)},0.8968473
+{(C_CONF = 6)} -> {(C_SEV = 1),(P_SAFE = 1)},0.7968954
+{(C_CONF = 6)} -> {(C_SEV = 1),(L_COND = 0)},0.8219736
+{(C_RCFG = 0)} -> {(C_SEV = 1)},0.97324044
+{(C_RCFG = 0)} -> {(C_TRAF = 17)},0.86538404
+{(C_RCFG = 0)} -> {(V_TYPE = 0)},0.82379735
+{(C_RCFG = 0)} -> {(C_SEV = 1),(C_TRAF = 17)},0.840492
+{(C_RCFG = 0)} -> {(C_SEV = 1),(V_TYPE = 0)},0.80473447
+{(C_RCFG = 1)} -> {(C_SEV = 1)},0.9903763
+{(C_RCFG = 1)} -> {(C_RALN = 0)},0.8279614
+{(C_RCFG = 1)} -> {(V_TYPE = 0)},0.82940227
+{(C_RCFG = 1)} -> {(L_COND = 0)},0.77242106
+{(C_RCFG = 1)} -> {(C_SEV = 1),(C_RALN = 0)},0.82081413
+{(C_RCFG = 1)} -> {(C_SEV = 1),(V_TYPE = 0)},0.82283056
+{(C_RCFG = 1)} -> {(C_SEV = 1),(L_COND = 0)},0.76575005
+{(C_WTHR = 0)} -> {(C_SEV = 1)},0.9842028
+{(C_WTHR = 0)} -> {(C_RSUR = 0)},0.847859
+{(C_WTHR = 0)} -> {(V_TYPE = 0)},0.8241676
+{(C_WTHR = 0)} -> {(L_COND = 0)},0.7819891
+{(C_WTHR = 0)} -> {(C_SEV = 1),(C_RSUR = 0)},0.8343116
+{(C_WTHR = 0)} -> {(C_SEV = 1),(V_TYPE = 0)},0.81321037
+{(C_WTHR = 0)} -> {(C_SEV = 1),(L_COND = 0)},0.7718806
+{(C_RSUR = 0)} -> {(C_SEV = 1)},0.983335
+{(C_RSUR = 0)} -> {(C_WTHR = 0)},0.8978936
+{(C_RSUR = 0)} -> {(V_TYPE = 0)},0.8151442
+{(C_RSUR = 0)} -> {(L_COND = 0)},0.7896644
+{(C_RSUR = 0)} -> {(C_SEV = 1),(C_WTHR = 0)},0.88354665
+{(C_RSUR = 0)} -> {(C_SEV = 1),(V_TYPE = 0)},0.80374646
+{(C_RSUR = 0)} -> {(C_SEV = 1),(L_COND = 0)},0.77896476
+{(C_RALN = 0)} -> {(C_SEV = 1)},0.98634434
+{(C_RALN = 0)} -> {(V_TYPE = 0)},0.82851386
+{(C_RALN = 0)} -> {(L_COND = 0)},0.7630223
+{(C_RALN = 0)} -> {(C_SEV = 1),(V_TYPE = 0)},0.8190258
+{(C_RALN = 0)} -> {(C_SEV = 1),(L_COND = 0)},0.75442433
+{(C_TRAF = 0)} -> {(C_SEV = 1)},0.99475795
+{(C_TRAF = 0)} -> {(C_RCFG = 1)},0.85207987
+{(C_TRAF = 0)} -> {(C_RALN = 0)},0.8175168
+{(C_TRAF = 0)} -> {(V_TYPE = 0)},0.8522428
+{(C_TRAF = 0)} -> {(L_COND = 0)},0.75578105
+{(C_TRAF = 0)} -> {(C_SEV = 1),(C_RCFG = 1)},0.8474798
+{(C_TRAF = 0)} -> {(C_SEV = 1),(C_RALN = 0)},0.81340605
+{(C_TRAF = 0)} -> {(C_SEV = 1),(V_TYPE = 0)},0.8488251
+{(C_TRAF = 0)} -> {(C_SEV = 1),(L_COND = 0)},0.75239015
+{(C_TRAF = 17)} -> {(C_SEV = 1)},0.9761253
+{(C_TRAF = 17)} -> {(V_TYPE = 0)},0.81562465
+{(C_TRAF = 17)} -> {(C_SEV = 1),(V_TYPE = 0)},0.7988636
 {(V_TYPE = 0)} -> {(C_SEV = 1)},0.9860543
+{(V_TYPE = 0)} -> {(P_SAFE = 1)},0.7878106
+{(V_TYPE = 0)} -> {(L_COND = 0)},0.75129586
+{(V_TYPE = 0)} -> {(C_SEV = 1),(P_SAFE = 1)},0.77882266
+{(P_SEX = 0)} -> {(C_SEV = 1)},0.98766553
+{(P_SEX = 0)} -> {(V_TYPE = 0)},0.8854816
+{(P_SEX = 0)} -> {(P_SAFE = 1)},0.79712796
+{(P_SEX = 0)} -> {(L_COND = 0)},0.7832429
+{(P_SEX = 0)} -> {(C_SEV = 1),(V_TYPE = 0)},0.8756921
+{(P_SEX = 0)} -> {(C_SEV = 1),(P_SAFE = 1)},0.78932655
+{(P_SEX = 0)} -> {(C_SEV = 1),(L_COND = 0)},0.7748943
+{(P_SEX = 0)} -> {(V_TYPE = 0),(P_SAFE = 1)},0.7628141
+{(P_SEX = 0)} -> {(C_SEV = 1),(V_TYPE = 0),(P_SAFE = 1)},0.75563943
+{(P_SEX = 1)} -> {(C_SEV = 1)},0.97965354
+{(P_SEX = 1)} -> {(V_TYPE = 0)},0.7850525
+{(P_SEX = 1)} -> {(C_SEV = 1),(V_TYPE = 0)},0.7718183
+{(P_PSN = 0)} -> {(C_SEV = 1)},0.98562
+{(P_PSN = 0)} -> {(V_TYPE = 0)},0.8470854
+{(P_PSN = 0)} -> {(P_USER = 0)},0.9317914
+{(P_PSN = 0)} -> {(L_COND = 0)},0.7685519
+{(P_PSN = 0)} -> {(C_SEV = 1),(V_TYPE = 0)},0.836847
+{(P_PSN = 0)} -> {(C_SEV = 1),(P_USER = 0)},0.91878146
+{(P_PSN = 0)} -> {(C_SEV = 1),(L_COND = 0)},0.75929695
+{(P_PSN = 0)} -> {(V_TYPE = 0),(P_USER = 0)},0.8470854
+{(P_PSN = 0)} -> {(C_SEV = 1),(V_TYPE = 0),(P_USER = 0)},0.836847
+{(P_ISEV = 0)} -> {(C_SEV = 1)},0.9912966
+{(P_ISEV = 0)} -> {(V_TYPE = 0)},0.866695
+{(P_ISEV = 0)} -> {(P_SAFE = 1)},0.7672369
+{(P_ISEV = 0)} -> {(L_COND = 0)},0.7775779
+{(P_ISEV = 0)} -> {(C_SEV = 1),(V_TYPE = 0)},0.8612622
+{(P_ISEV = 0)} -> {(C_SEV = 1),(P_SAFE = 1)},0.76146203
+{(P_ISEV = 0)} -> {(C_SEV = 1),(L_COND = 0)},0.7720214
+{(P_ISEV = 1)} -> {(C_SEV = 1)},0.9893999
+{(P_ISEV = 1)} -> {(V_TYPE = 0)},0.79383045
+{(P_ISEV = 1)} -> {(P_SAFE = 1)},0.75455403
+{(P_ISEV = 1)} -> {(C_SEV = 1),(V_TYPE = 0)},0.78541523
+{(P_SAFE = 1)} -> {(C_SEV = 1)},0.9873391
+{(P_SAFE = 1)} -> {(V_TYPE = 0)},0.9161717
+{(P_SAFE = 1)} -> {(L_COND = 0)},0.7631853
+{(P_SAFE = 1)} -> {(C_SEV = 1),(V_TYPE = 0)},0.9057193
+{(P_SAFE = 1)} -> {(C_SEV = 1),(L_COND = 0)},0.7546634
+{(P_USER = 0)} -> {(C_SEV = 1)},0.9860377
+{(P_USER = 0)} -> {(V_TYPE = 0)},0.9090934
+{(P_USER = 0)} -> {(P_PSN = 0)},1.0
+{(P_USER = 0)} -> {(P_SAFE = 1)},0.76139045
+{(P_USER = 0)} -> {(L_COND = 0)},0.7652245
+{(P_USER = 0)} -> {(C_SEV = 1),(V_TYPE = 0)},0.8981055
+{(P_USER = 0)} -> {(C_SEV = 1),(P_PSN = 0)},0.9860377
+{(P_USER = 0)} -> {(C_SEV = 1),(P_SAFE = 1)},0.75241053
+{(P_USER = 0)} -> {(C_SEV = 1),(L_COND = 0)},0.7563493
+{(P_USER = 0)} -> {(V_TYPE = 0),(P_PSN = 0)},0.9090934
+{(P_USER = 0)} -> {(P_PSN = 0),(P_SAFE = 1)},0.76139045
+{(P_USER = 0)} -> {(P_PSN = 0),(L_COND = 0)},0.7652245
+{(P_USER = 0)} -> {(C_SEV = 1),(V_TYPE = 0),(P_PSN = 0)},0.8981055
+{(P_USER = 0)} -> {(C_SEV = 1),(P_PSN = 0),(P_SAFE = 1)},0.75241053
+{(P_USER = 0)} -> {(C_SEV = 1),(P_PSN = 0),(L_COND = 0)},0.7563493
+{(P_USER = 1)} -> {(C_SEV = 1)},0.9802174
+{(P_USER = 1)} -> {(V_TYPE = 0)},0.91767824
+{(P_USER = 1)} -> {(P_SAFE = 1)},0.8620668
+{(P_USER = 1)} -> {(C_SEV = 1),(V_TYPE = 0)},0.90082973
+{(P_USER = 1)} -> {(C_SEV = 1),(P_SAFE = 1)},0.84960306
+{(P_USER = 1)} -> {(V_TYPE = 0),(P_SAFE = 1)},0.81448114
+{(P_USER = 1)} -> {(C_SEV = 1),(V_TYPE = 0),(P_SAFE = 1)},0.8032382
+{(C_HOUR in [12, 16))} -> {(C_SEV = 1)},0.9869176
+{(C_HOUR in [12, 16))} -> {(V_TYPE = 0)},0.8244778
+{(C_HOUR in [12, 16))} -> {(L_COND = 0)},0.99998677
+{(C_HOUR in [12, 16))} -> {(C_SEV = 1),(V_TYPE = 0)},0.81559557
+{(C_HOUR in [12, 16))} -> {(C_SEV = 1),(L_COND = 0)},0.9869044
+{(C_HOUR in [12, 16))} -> {(V_TYPE = 0),(L_COND = 0)},0.824469
+{(C_HOUR in [12, 16))} -> {(C_SEV = 1),(V_TYPE = 0),(L_COND = 0)},0.81558675
+{(C_HOUR in [16, 20))} -> {(C_SEV = 1)},0.98629564
+{(C_HOUR in [16, 20))} -> {(V_TYPE = 0)},0.83370656
+{(C_HOUR in [16, 20))} -> {(L_COND = 0)},0.78477097
+{(C_HOUR in [16, 20))} -> {(C_SEV = 1),(V_TYPE = 0)},0.82405674
+{(C_HOUR in [16, 20))} -> {(C_SEV = 1),(L_COND = 0)},0.7746208
+{(C_VEHS = 1)} -> {(C_SEV = 1)},0.97190464
+{(C_VEHS = 2)} -> {(C_SEV = 1)},0.9872398
+{(C_VEHS = 2)} -> {(V_TYPE = 0)},0.8520163
+{(C_VEHS = 2)} -> {(L_COND = 0)},0.78487355
+{(C_VEHS = 2)} -> {(C_SEV = 1),(V_TYPE = 0)},0.8430278
+{(C_VEHS = 2)} -> {(C_SEV = 1),(L_COND = 0)},0.7760451
+{(V_YEAR in [1980, 2000))} -> {(C_SEV = 1)},0.98282343
+{(V_YEAR in [1980, 2000))} -> {(V_TYPE = 0)},0.8841844
+{(V_YEAR in [1980, 2000))} -> {(P_SAFE = 1)},0.76737297
+{(V_YEAR in [1980, 2000))} -> {(C_SEV = 1),(V_TYPE = 0)},0.87058353
+{(V_YEAR in [2000, 2020))} -> {(C_SEV = 1)},0.9847612
+{(V_YEAR in [2000, 2020))} -> {(V_TYPE = 0)},0.8845653
+{(V_YEAR in [2000, 2020))} -> {(P_SAFE = 1)},0.7685696
+{(V_YEAR in [2000, 2020))} -> {(L_COND = 0)},0.7673741
+{(V_YEAR in [2000, 2020))} -> {(C_SEV = 1),(V_TYPE = 0)},0.8731278
+{(V_YEAR in [2000, 2020))} -> {(C_SEV = 1),(L_COND = 0)},0.7575034
+{(P_AGE in [20, 30))} -> {(C_SEV = 1)},0.9836361
+{(V_DRAGE in [25, 45))} -> {(C_SEV = 1)},0.9852706
+{(V_DRAGE in [25, 45))} -> {(V_TYPE = 0)},0.8650186
+{(V_DRAGE in [25, 45))} -> {(P_SAFE = 1)},0.7816771
+{(V_DRAGE in [25, 45))} -> {(L_COND = 0)},0.7612171
+{(V_DRAGE in [25, 45))} -> {(C_SEV = 1),(V_TYPE = 0)},0.8542127
+{(V_DRAGE in [25, 45))} -> {(C_SEV = 1),(L_COND = 0)},0.75219464
+{(V_DRAGE in [45, 65))} -> {(C_SEV = 1)},0.9833575
+{(V_DRAGE in [45, 65))} -> {(V_TYPE = 0)},0.83857584
+{(V_DRAGE in [45, 65))} -> {(C_SEV = 1),(V_TYPE = 0)},0.8276911
+{(L_COND = 0)} -> {(C_SEV = 1)},0.98624504
+{(L_COND = 0)} -> {(V_TYPE = 0)},0.81999373
+{(L_COND = 0)} -> {(C_SEV = 1),(V_TYPE = 0)},0.8106894
+{(L_COND = 1)} -> {(C_SEV = 1)},0.9743094
+{(C_SEV = 1),(C_CONF = 6)} -> {(V_TYPE = 0)},0.90040106
+{(C_SEV = 1),(C_CONF = 6)} -> {(P_SAFE = 1)},0.80005306
+{(C_SEV = 1),(C_CONF = 6)} -> {(L_COND = 0)},0.82523066
+{(C_SEV = 1),(C_RCFG = 0)} -> {(C_TRAF = 17)},0.8636016
+{(C_SEV = 1),(C_RCFG = 0)} -> {(V_TYPE = 0)},0.8268609
+{(C_SEV = 1),(C_RCFG = 1)} -> {(C_RALN = 0)},0.8287902
+{(C_SEV = 1),(C_RCFG = 1)} -> {(V_TYPE = 0)},0.83082616
+{(C_SEV = 1),(C_RCFG = 1)} -> {(L_COND = 0)},0.77319103
+{(C_SEV = 1),(C_WTHR = 0)} -> {(C_RSUR = 0)},0.8477029
+{(C_SEV = 1),(C_WTHR = 0)} -> {(V_TYPE = 0)},0.826263
+{(C_SEV = 1),(C_WTHR = 0)} -> {(L_COND = 0)},0.78426987
+{(C_SEV = 1),(C_RSUR = 0)} -> {(C_WTHR = 0)},0.8985205
+{(C_SEV = 1),(C_RSUR = 0)} -> {(C_RALN = 0)},0.75194985
+{(C_SEV = 1),(C_RSUR = 0)} -> {(V_TYPE = 0)},0.8173679
+{(C_SEV = 1),(C_RSUR = 0)} -> {(L_COND = 0)},0.7921662
+{(C_SEV = 1),(C_RALN = 0)} -> {(V_TYPE = 0)},0.830365
+{(C_SEV = 1),(C_RALN = 0)} -> {(L_COND = 0)},0.76486915
+{(C_SEV = 1),(C_TRAF = 0)} -> {(C_RCFG = 1)},0.85194576
+{(C_SEV = 1),(C_TRAF = 0)} -> {(C_RALN = 0)},0.81769246
+{(C_SEV = 1),(C_TRAF = 0)} -> {(V_TYPE = 0)},0.8532981
+{(C_SEV = 1),(C_TRAF = 0)} -> {(L_COND = 0)},0.756355
+{(C_SEV = 1),(C_TRAF = 17)} -> {(V_TYPE = 0)},0.8184027
+{(C_SEV = 1),(V_TYPE = 0)} -> {(P_SAFE = 1)},0.78983754
+{(C_SEV = 1),(V_TYPE = 0)} -> {(L_COND = 0)},0.753276
+{(C_SEV = 1),(P_SEX = 0)} -> {(V_TYPE = 0)},0.8866282
+{(C_SEV = 1),(P_SEX = 0)} -> {(P_SAFE = 1)},0.7991841
+{(C_SEV = 1),(P_SEX = 0)} -> {(L_COND = 0)},0.7845716
+{(C_SEV = 1),(P_SEX = 0)} -> {(V_TYPE = 0),(P_SAFE = 1)},0.7650763
+{(C_SEV = 1),(P_SEX = 1)} -> {(V_TYPE = 0)},0.78784823
+{(C_SEV = 1),(P_PSN = 0)} -> {(V_TYPE = 0)},0.8490565
+{(C_SEV = 1),(P_PSN = 0)} -> {(P_USER = 0)},0.9321863
+{(C_SEV = 1),(P_PSN = 0)} -> {(L_COND = 0)},0.77037495
+{(C_SEV = 1),(P_PSN = 0)} -> {(V_TYPE = 0),(P_USER = 0)},0.8490565
+{(C_SEV = 1),(P_ISEV = 0)} -> {(V_TYPE = 0)},0.86882395
+{(C_SEV = 1),(P_ISEV = 0)} -> {(P_SAFE = 1)},0.7681475
+{(C_SEV = 1),(P_ISEV = 0)} -> {(L_COND = 0)},0.77879965
+{(C_SEV = 1),(P_ISEV = 1)} -> {(V_TYPE = 0)},0.7938299
+{(C_SEV = 1),(P_ISEV = 1)} -> {(P_SAFE = 1)},0.7552057
+{(C_SEV = 1),(P_SAFE = 1)} -> {(V_TYPE = 0)},0.9173336
+{(C_SEV = 1),(P_SAFE = 1)} -> {(L_COND = 0)},0.7643407
+{(C_SEV = 1),(P_USER = 0)} -> {(V_TYPE = 0)},0.9108227
+{(C_SEV = 1),(P_USER = 0)} -> {(P_PSN = 0)},1.0
+{(C_SEV = 1),(P_USER = 0)} -> {(P_SAFE = 1)},0.7630647
+{(C_SEV = 1),(P_USER = 0)} -> {(L_COND = 0)},0.76705927
+{(C_SEV = 1),(P_USER = 0)} -> {(V_TYPE = 0),(P_PSN = 0)},0.9108227
+{(C_SEV = 1),(P_USER = 0)} -> {(P_PSN = 0),(P_SAFE = 1)},0.7630647
+{(C_SEV = 1),(P_USER = 0)} -> {(P_PSN = 0),(L_COND = 0)},0.76705927
+{(C_SEV = 1),(P_USER = 1)} -> {(V_TYPE = 0)},0.91901016
+{(C_SEV = 1),(P_USER = 1)} -> {(P_SAFE = 1)},0.86674964
+{(C_SEV = 1),(P_USER = 1)} -> {(V_TYPE = 0),(P_SAFE = 1)},0.81944907
+{(C_SEV = 1),(C_HOUR in [12, 16))} -> {(V_TYPE = 0)},0.82640696
+{(C_SEV = 1),(C_HOUR in [12, 16))} -> {(L_COND = 0)},0.9999866
+{(C_SEV = 1),(C_HOUR in [12, 16))} -> {(V_TYPE = 0),(L_COND = 0)},0.826398
+{(C_SEV = 1),(C_HOUR in [16, 20))} -> {(V_TYPE = 0)},0.83550686
+{(C_SEV = 1),(C_HOUR in [16, 20))} -> {(L_COND = 0)},0.78538394
+{(C_SEV = 1),(C_VEHS = 2)} -> {(V_TYPE = 0)},0.85392404
+{(C_SEV = 1),(C_VEHS = 2)} -> {(L_COND = 0)},0.7860756
+{(C_SEV = 1),(V_YEAR in [1980, 2000))} -> {(V_TYPE = 0)},0.8857985
+{(C_SEV = 1),(V_YEAR in [2000, 2020))} -> {(V_TYPE = 0)},0.8866391
+{(C_SEV = 1),(V_YEAR in [2000, 2020))} -> {(L_COND = 0)},0.7692254
+{(C_SEV = 1),(V_DRAGE in [25, 45))} -> {(V_TYPE = 0)},0.8669829
+{(C_SEV = 1),(V_DRAGE in [25, 45))} -> {(L_COND = 0)},0.76343966
+{(C_SEV = 1),(V_DRAGE in [45, 65))} -> {(V_TYPE = 0)},0.841699
+{(C_SEV = 1),(L_COND = 0)} -> {(V_TYPE = 0)},0.82199585
+{(C_CONF = 6),(C_WTHR = 0)} -> {(C_SEV = 1)},0.996298
+{(C_CONF = 6),(C_RSUR = 0)} -> {(C_SEV = 1)},0.9958849
+{(C_CONF = 6),(C_RALN = 0)} -> {(C_SEV = 1)},0.99621993
+{(C_CONF = 6),(V_TYPE = 0)} -> {(C_SEV = 1)},0.99722284
+{(C_CONF = 6),(P_PSN = 0)} -> {(C_SEV = 1)},0.99635977
+{(C_CONF = 6),(P_SAFE = 1)} -> {(C_SEV = 1)},0.9971228
+{(C_CONF = 6),(P_USER = 0)} -> {(C_SEV = 1)},0.9967171
+{(C_CONF = 6),(C_VEHS = 2)} -> {(C_SEV = 1)},0.9970767
+{(C_CONF = 6),(L_COND = 0)} -> {(C_SEV = 1)},0.9966583
+{(C_RCFG = 0),(C_WTHR = 0)} -> {(C_SEV = 1)},0.97448146
+{(C_RCFG = 0),(C_WTHR = 0)} -> {(C_RSUR = 0)},0.8389335
+{(C_RCFG = 0),(C_WTHR = 0)} -> {(C_TRAF = 17)},0.8660249
+{(C_RCFG = 0),(C_WTHR = 0)} -> {(V_TYPE = 0)},0.82136637
+{(C_RCFG = 0),(C_RSUR = 0)} -> {(C_SEV = 1)},0.9732145
+{(C_RCFG = 0),(C_RSUR = 0)} -> {(C_WTHR = 0)},0.88378257
+{(C_RCFG = 0),(C_RALN = 0)} -> {(C_SEV = 1)},0.9787397
+{(C_RCFG = 0),(C_TRAF = 17)} -> {(C_SEV = 1)},0.9712359
+{(C_RCFG = 0),(C_TRAF = 17)} -> {(V_TYPE = 0)},0.8215907
+{(C_RCFG = 0),(V_TYPE = 0)} -> {(C_SEV = 1)},0.97685975
+{(C_RCFG = 0),(V_TYPE = 0)} -> {(C_TRAF = 17)},0.863066
+{(C_RCFG = 0),(P_PSN = 0)} -> {(C_SEV = 1)},0.9770011
+{(C_RCFG = 0),(P_SAFE = 1)} -> {(C_SEV = 1)},0.9792724
+{(C_RCFG = 0),(P_USER = 0)} -> {(C_SEV = 1)},0.977399
+{(C_RCFG = 0),(L_COND = 0)} -> {(C_SEV = 1)},0.9779838
+{(C_RCFG = 1),(C_WTHR = 0)} -> {(C_SEV = 1)},0.99017847
+{(C_RCFG = 1),(C_WTHR = 0)} -> {(C_RSUR = 0)},0.8650002
+{(C_RCFG = 1),(C_WTHR = 0)} -> {(C_RALN = 0)},0.8477203
+{(C_RCFG = 1),(C_WTHR = 0)} -> {(V_TYPE = 0)},0.8298937
+{(C_RCFG = 1),(C_WTHR = 0)} -> {(L_COND = 0)},0.80067575
+{(C_RCFG = 1),(C_RSUR = 0)} -> {(C_SEV = 1)},0.9897087
+{(C_RCFG = 1),(C_RSUR = 0)} -> {(C_WTHR = 0)},0.9046921
+{(C_RCFG = 1),(C_RSUR = 0)} -> {(C_RALN = 0)},0.84140235
+{(C_RCFG = 1),(C_RSUR = 0)} -> {(V_TYPE = 0)},0.8219071
+{(C_RCFG = 1),(C_RSUR = 0)} -> {(L_COND = 0)},0.80843633
+{(C_RCFG = 1),(C_RALN = 0)} -> {(C_SEV = 1)},0.9913677
+{(C_RCFG = 1),(C_RALN = 0)} -> {(V_TYPE = 0)},0.83381176
+{(C_RCFG = 1),(C_RALN = 0)} -> {(L_COND = 0)},0.7745316
+{(C_RCFG = 1),(C_TRAF = 0)} -> {(C_SEV = 1)},0.99460137
+{(C_RCFG = 1),(C_TRAF = 0)} -> {(C_RALN = 0)},0.87643206
+{(C_RCFG = 1),(C_TRAF = 0)} -> {(V_TYPE = 0)},0.84494746
+{(C_RCFG = 1),(V_TYPE = 0)} -> {(C_SEV = 1)},0.9920766
+{(C_RCFG = 1),(V_TYPE = 0)} -> {(C_RALN = 0)},0.83236325
+{(C_RCFG = 1),(P_PSN = 0)} -> {(C_SEV = 1)},0.9916619
+{(C_RCFG = 1),(P_PSN = 0)} -> {(C_RALN = 0)},0.828429
+{(C_RCFG = 1),(P_SAFE = 1)} -> {(C_SEV = 1)},0.99238694
+{(C_RCFG = 1),(P_SAFE = 1)} -> {(C_RALN = 0)},0.8272335
+{(C_RCFG = 1),(P_USER = 0)} -> {(C_SEV = 1)},0.99194807
+{(C_RCFG = 1),(P_USER = 0)} -> {(P_SAFE = 1)},0.76173794
+{(C_RCFG = 1),(C_VEHS = 2)} -> {(C_RALN = 0)},0.8309035
+{(C_RCFG = 1),(L_COND = 0)} -> {(C_SEV = 1)},0.99136347
+{(C_RCFG = 1),(L_COND = 0)} -> {(C_RALN = 0)},0.8302236
+{(C_WTHR = 0),(C_RSUR = 0)} -> {(C_SEV = 1)},0.9840216
+{(C_WTHR = 0),(C_RSUR = 0)} -> {(C_RALN = 0)},0.7559506
+{(C_WTHR = 0),(C_RSUR = 0)} -> {(V_TYPE = 0)},0.8182436
+{(C_WTHR = 0),(C_RSUR = 0)} -> {(L_COND = 0)},0.79417247
+{(C_WTHR = 0),(C_RALN = 0)} -> {(C_SEV = 1)},0.98685235
+{(C_WTHR = 0),(C_RALN = 0)} -> {(C_RSUR = 0)},0.8636911
+{(C_WTHR = 0),(C_RALN = 0)} -> {(V_TYPE = 0)},0.8277859
+{(C_WTHR = 0),(C_RALN = 0)} -> {(L_COND = 0)},0.78936815
+{(C_WTHR = 0),(C_TRAF = 0)} -> {(C_SEV = 1)},0.9945856
+{(C_WTHR = 0),(C_TRAF = 17)} -> {(C_SEV = 1)},0.97737706
+{(C_WTHR = 0),(C_TRAF = 17)} -> {(C_RSUR = 0)},0.83971465
+{(C_WTHR = 0),(C_TRAF = 17)} -> {(V_TYPE = 0)},0.81273985
+{(C_WTHR = 0),(C_TRAF = 17)} -> {(C_SEV = 1),(C_RSUR = 0)},0.8206033
+{(C_WTHR = 0),(V_TYPE = 0)} -> {(C_SEV = 1)},0.98670506
+{(C_WTHR = 0),(V_TYPE = 0)} -> {(C_RSUR = 0)},0.84176475
+{(C_WTHR = 0),(V_TYPE = 0)} -> {(P_SAFE = 1)},0.7895791
+{(C_WTHR = 0),(V_TYPE = 0)} -> {(C_SEV = 1),(P_SAFE = 1)},0.7812308
+{(C_WTHR = 0),(P_SEX = 0)} -> {(C_SEV = 1)},0.9883495
+{(C_WTHR = 0),(P_SEX = 0)} -> {(C_RSUR = 0)},0.84471005
+{(C_WTHR = 0),(P_SEX = 0)} -> {(V_TYPE = 0)},0.8870403
+{(C_WTHR = 0),(P_SEX = 0)} -> {(C_SEV = 1),(C_RSUR = 0)},0.83471334
+{(C_WTHR = 0),(P_SEX = 0)} -> {(C_SEV = 1),(V_TYPE = 0)},0.8777873
+{(C_WTHR = 0),(P_SEX = 1)} -> {(C_SEV = 1)},0.98059815
+{(C_WTHR = 0),(P_SEX = 1)} -> {(C_RSUR = 0)},0.85138905
+{(C_WTHR = 0),(P_SEX = 1)} -> {(V_TYPE = 0)},0.78478724
+{(C_WTHR = 0),(P_SEX = 1)} -> {(C_SEV = 1),(C_RSUR = 0)},0.8347268
+{(C_WTHR = 0),(P_SEX = 1)} -> {(C_SEV = 1),(V_TYPE = 0)},0.7721467
+{(C_WTHR = 0),(P_PSN = 0)} -> {(C_SEV = 1)},0.98640174
+{(C_WTHR = 0),(P_PSN = 0)} -> {(C_RSUR = 0)},0.84769523
+{(C_WTHR = 0),(P_PSN = 0)} -> {(V_TYPE = 0)},0.84624547
+{(C_WTHR = 0),(P_PSN = 0)} -> {(P_USER = 0)},0.9234477
+{(C_WTHR = 0),(P_PSN = 0)} -> {(C_SEV = 1),(V_TYPE = 0)},0.83659804
+{(C_WTHR = 0),(P_PSN = 0)} -> {(C_SEV = 1),(P_USER = 0)},0.91138077
+{(C_WTHR = 0),(P_ISEV = 0)} -> {(C_SEV = 1)},0.9918524
+{(C_WTHR = 0),(P_ISEV = 0)} -> {(C_RSUR = 0)},0.8576794
+{(C_WTHR = 0),(P_ISEV = 0)} -> {(C_RALN = 0)},0.7610866
+{(C_WTHR = 0),(P_ISEV = 0)} -> {(V_TYPE = 0)},0.8746635
+{(C_WTHR = 0),(P_ISEV = 0)} -> {(P_SAFE = 1)},0.7648309
+{(C_WTHR = 0),(P_ISEV = 0)} -> {(C_SEV = 1),(C_RSUR = 0)},0.8506228
+{(C_WTHR = 0),(P_ISEV = 0)} -> {(C_SEV = 1),(V_TYPE = 0)},0.86942655
+{(C_WTHR = 0),(P_ISEV = 0)} -> {(C_SEV = 1),(P_SAFE = 1)},0.75951165
+{(C_WTHR = 0),(P_ISEV = 1)} -> {(C_SEV = 1)},0.9899361
+{(C_WTHR = 0),(P_ISEV = 1)} -> {(C_RSUR = 0)},0.8413606
+{(C_WTHR = 0),(P_ISEV = 1)} -> {(V_TYPE = 0)},0.78504515
+{(C_WTHR = 0),(P_ISEV = 1)} -> {(C_SEV = 1),(C_RSUR = 0)},0.83276683
+{(C_WTHR = 0),(P_ISEV = 1)} -> {(C_SEV = 1),(V_TYPE = 0)},0.77695394
+{(C_WTHR = 0),(P_SAFE = 1)} -> {(C_SEV = 1)},0.98834306
+{(C_WTHR = 0),(P_SAFE = 1)} -> {(C_RSUR = 0)},0.84558266
+{(C_WTHR = 0),(P_SAFE = 1)} -> {(V_TYPE = 0)},0.9236674
+{(C_WTHR = 0),(P_SAFE = 1)} -> {(C_SEV = 1),(V_TYPE = 0)},0.9139013
+{(C_WTHR = 0),(P_USER = 0)} -> {(C_SEV = 1)},0.9869327
+{(C_WTHR = 0),(P_USER = 0)} -> {(C_RSUR = 0)},0.84086144
+{(C_WTHR = 0),(P_USER = 0)} -> {(V_TYPE = 0)},0.9163978
+{(C_WTHR = 0),(P_USER = 0)} -> {(P_PSN = 0)},1.0
+{(C_WTHR = 0),(P_USER = 0)} -> {(P_SAFE = 1)},0.76302016
+{(C_WTHR = 0),(P_USER = 0)} -> {(C_SEV = 1),(V_TYPE = 0)},0.9059506
+{(C_WTHR = 0),(P_USER = 0)} -> {(C_SEV = 1),(P_PSN = 0)},0.9869327
+{(C_WTHR = 0),(P_USER = 0)} -> {(P_PSN = 0),(P_SAFE = 1)},0.76302016
+{(C_WTHR = 0),(C_HOUR in [12, 16))} -> {(L_COND = 0)},0.99998516
+{(C_WTHR = 0),(C_VEHS = 2)} -> {(C_RSUR = 0)},0.8524136
+{(C_WTHR = 0),(C_VEHS = 2)} -> {(C_RALN = 0)},0.76083285
+{(C_WTHR = 0),(C_VEHS = 2)} -> {(C_SEV = 1),(C_RSUR = 0)},0.84230185
+{(C_WTHR = 0),(V_YEAR in [1980, 2000))} -> {(C_RSUR = 0)},0.8399095
+{(C_WTHR = 0),(V_YEAR in [1980, 2000))} -> {(L_COND = 0)},0.7671279
+{(C_WTHR = 0),(V_YEAR in [1980, 2000))} -> {(C_SEV = 1),(C_RSUR = 0)},0.82583135
+{(C_WTHR = 0),(V_YEAR in [2000, 2020))} -> {(C_RSUR = 0)},0.84706205
+{(C_WTHR = 0),(V_YEAR in [2000, 2020))} -> {(C_RALN = 0)},0.75717205
+{(C_WTHR = 0),(V_YEAR in [2000, 2020))} -> {(C_SEV = 1),(C_RSUR = 0)},0.8345493
+{(C_WTHR = 0),(V_DRAGE in [25, 45))} -> {(C_RSUR = 0)},0.8432709
+{(C_WTHR = 0),(V_DRAGE in [25, 45))} -> {(L_COND = 0)},0.78672856
+{(C_WTHR = 0),(V_DRAGE in [25, 45))} -> {(C_SEV = 1),(C_RSUR = 0)},0.8314345
+{(C_WTHR = 0),(V_DRAGE in [25, 45))} -> {(C_SEV = 1),(L_COND = 0)},0.7781221
+{(C_WTHR = 0),(L_COND = 0)} -> {(C_SEV = 1)},0.98707336
+{(C_WTHR = 0),(L_COND = 0)} -> {(C_RSUR = 0)},0.86106867
+{(C_RSUR = 0),(C_RALN = 0)} -> {(C_SEV = 1)},0.9863375
+{(C_RSUR = 0),(C_RALN = 0)} -> {(C_WTHR = 0)},0.90542704
+{(C_RSUR = 0),(C_RALN = 0)} -> {(V_TYPE = 0)},0.8200518
+{(C_RSUR = 0),(C_RALN = 0)} -> {(L_COND = 0)},0.79705346
+{(C_RSUR = 0),(C_RALN = 0)} -> {(C_SEV = 1),(V_TYPE = 0)},0.81070197
+{(C_RSUR = 0),(C_RALN = 0)} -> {(C_SEV = 1),(L_COND = 0)},0.7881633
+{(C_RSUR = 0),(C_TRAF = 17)} -> {(C_SEV = 1)},0.97630876
+{(C_RSUR = 0),(C_TRAF = 17)} -> {(C_WTHR = 0)},0.89006203
+{(C_RSUR = 0),(C_TRAF = 17)} -> {(V_TYPE = 0)},0.8038018
+{(C_RSUR = 0),(C_TRAF = 17)} -> {(L_COND = 0)},0.7736044
+{(C_RSUR = 0),(C_TRAF = 17)} -> {(C_SEV = 1),(C_WTHR = 0)},0.86980474
+{(C_RSUR = 0),(C_TRAF = 17)} -> {(C_SEV = 1),(V_TYPE = 0)},0.7874537
+{(C_RSUR = 0),(C_TRAF = 17)} -> {(C_SEV = 1),(L_COND = 0)},0.7590584
+{(C_RSUR = 0),(V_TYPE = 0)} -> {(C_SEV = 1)},0.9860176
+{(C_RSUR = 0),(V_TYPE = 0)} -> {(C_WTHR = 0)},0.90130764
+{(C_RSUR = 0),(V_TYPE = 0)} -> {(C_RALN = 0)},0.7541743
+{(C_RSUR = 0),(V_TYPE = 0)} -> {(P_SAFE = 1)},0.7878873
+{(C_RSUR = 0),(V_TYPE = 0)} -> {(L_COND = 0)},0.78430855
+{(C_RSUR = 0),(V_TYPE = 0)} -> {(C_SEV = 1),(P_SAFE = 1)},0.7790275
+{(C_RSUR = 0),(V_TYPE = 0)} -> {(C_SEV = 1),(L_COND = 0)},0.7756477
+{(C_RSUR = 0),(P_SEX = 0)} -> {(C_SEV = 1)},0.98767877
+{(C_RSUR = 0),(P_SEX = 0)} -> {(C_WTHR = 0)},0.9006367
+{(C_RSUR = 0),(P_SEX = 0)} -> {(C_RALN = 0)},0.758075
+{(C_RSUR = 0),(P_SEX = 0)} -> {(V_TYPE = 0)},0.8810717
+{(C_RSUR = 0),(P_SEX = 0)} -> {(P_SAFE = 1)},0.7905514
+{(C_RSUR = 0),(P_SEX = 0)} -> {(L_COND = 0)},0.8168381
+{(C_RSUR = 0),(P_SEX = 0)} -> {(C_SEV = 1),(C_WTHR = 0)},0.88997805
+{(C_RSUR = 0),(P_SEX = 0)} -> {(C_SEV = 1),(C_RALN = 0)},0.75024855
+{(C_RSUR = 0),(P_SEX = 0)} -> {(C_SEV = 1),(V_TYPE = 0)},0.8713958
+{(C_RSUR = 0),(P_SEX = 0)} -> {(C_SEV = 1),(P_SAFE = 1)},0.7829307
+{(C_RSUR = 0),(P_SEX = 0)} -> {(C_SEV = 1),(L_COND = 0)},0.80827945
+{(C_RSUR = 0),(P_SEX = 1)} -> {(C_SEV = 1)},0.97955066
+{(C_RSUR = 0),(P_SEX = 1)} -> {(C_WTHR = 0)},0.8990375
+{(C_RSUR = 0),(P_SEX = 1)} -> {(V_TYPE = 0)},0.77362615
+{(C_RSUR = 0),(P_SEX = 1)} -> {(L_COND = 0)},0.77102005
+{(C_RSUR = 0),(P_SEX = 1)} -> {(C_SEV = 1),(C_WTHR = 0)},0.8814427
+{(C_RSUR = 0),(P_SEX = 1)} -> {(C_SEV = 1),(V_TYPE = 0)},0.76051015
+{(C_RSUR = 0),(P_SEX = 1)} -> {(C_SEV = 1),(L_COND = 0)},0.7583273
+{(C_RSUR = 0),(P_PSN = 0)} -> {(C_SEV = 1)},0.98554605
+{(C_RSUR = 0),(P_PSN = 0)} -> {(C_WTHR = 0)},0.89618033
+{(C_RSUR = 0),(P_PSN = 0)} -> {(C_RALN = 0)},0.75364655
+{(C_RSUR = 0),(P_PSN = 0)} -> {(V_TYPE = 0)},0.8355501
+{(C_RSUR = 0),(P_PSN = 0)} -> {(L_COND = 0)},0.80194634
+{(C_RSUR = 0),(P_PSN = 0)} -> {(C_SEV = 1),(V_TYPE = 0)},0.82544386
+{(C_RSUR = 0),(P_PSN = 0)} -> {(C_SEV = 1),(L_COND = 0)},0.79242206
+{(C_RSUR = 0),(P_ISEV = 0)} -> {(C_SEV = 1)},0.99144256
+{(C_RSUR = 0),(P_ISEV = 0)} -> {(C_WTHR = 0)},0.9180781
+{(C_RSUR = 0),(P_ISEV = 0)} -> {(C_RALN = 0)},0.7695309
+{(C_RSUR = 0),(P_ISEV = 0)} -> {(V_TYPE = 0)},0.8701689
+{(C_RSUR = 0),(P_ISEV = 0)} -> {(P_SAFE = 1)},0.7716791
+{(C_RSUR = 0),(P_ISEV = 0)} -> {(L_COND = 0)},0.8113054
+{(C_RSUR = 0),(P_ISEV = 0)} -> {(C_SEV = 1),(C_WTHR = 0)},0.91052455
+{(C_RSUR = 0),(P_ISEV = 0)} -> {(C_SEV = 1),(C_RALN = 0)},0.7637185
+{(C_RSUR = 0),(P_ISEV = 0)} -> {(C_SEV = 1),(V_TYPE = 0)},0.8647027
+{(C_RSUR = 0),(P_ISEV = 0)} -> {(C_SEV = 1),(P_SAFE = 1)},0.7659753
+{(C_RSUR = 0),(P_ISEV = 0)} -> {(C_SEV = 1),(L_COND = 0)},0.805612
+{(C_RSUR = 0),(P_ISEV = 1)} -> {(C_SEV = 1)},0.9894125
+{(C_RSUR = 0),(P_ISEV = 1)} -> {(C_WTHR = 0)},0.8924487
+{(C_RSUR = 0),(P_ISEV = 1)} -> {(V_TYPE = 0)},0.77205026
+{(C_RSUR = 0),(P_ISEV = 1)} -> {(L_COND = 0)},0.7741936
+{(C_RSUR = 0),(P_ISEV = 1)} -> {(C_SEV = 1),(C_WTHR = 0)},0.88333315
+{(C_RSUR = 0),(P_ISEV = 1)} -> {(C_SEV = 1),(V_TYPE = 0)},0.7636474
+{(C_RSUR = 0),(P_ISEV = 1)} -> {(C_SEV = 1),(L_COND = 0)},0.7671873
+{(C_RSUR = 0),(P_SAFE = 1)} -> {(C_SEV = 1)},0.9875502
+{(C_RSUR = 0),(P_SAFE = 1)} -> {(C_WTHR = 0)},0.9031607
+{(C_RSUR = 0),(P_SAFE = 1)} -> {(V_TYPE = 0)},0.9194131
+{(C_RSUR = 0),(P_SAFE = 1)} -> {(L_COND = 0)},0.797094
+{(C_RSUR = 0),(P_SAFE = 1)} -> {(C_SEV = 1),(V_TYPE = 0)},0.9090743
+{(C_RSUR = 0),(P_SAFE = 1)} -> {(C_SEV = 1),(L_COND = 0)},0.7885424
+{(C_RSUR = 0),(P_USER = 0)} -> {(C_SEV = 1)},0.98606986
+{(C_RSUR = 0),(P_USER = 0)} -> {(C_WTHR = 0)},0.8962569
+{(C_RSUR = 0),(P_USER = 0)} -> {(C_RALN = 0)},0.7551204
+{(C_RSUR = 0),(P_USER = 0)} -> {(V_TYPE = 0)},0.9122473
+{(C_RSUR = 0),(P_USER = 0)} -> {(P_SAFE = 1)},0.75996596
+{(C_RSUR = 0),(P_USER = 0)} -> {(L_COND = 0)},0.7984436
+{(C_RSUR = 0),(P_USER = 0)} -> {(C_SEV = 1),(V_TYPE = 0)},0.90121335
+{(C_RSUR = 0),(P_USER = 0)} -> {(C_SEV = 1),(P_SAFE = 1)},0.7511597
+{(C_RSUR = 0),(P_USER = 0)} -> {(C_SEV = 1),(L_COND = 0)},0.78943205
+{(C_RSUR = 0),(C_VEHS = 2)} -> {(C_SEV = 1)},0.9877514
+{(C_RSUR = 0),(C_VEHS = 2)} -> {(C_WTHR = 0)},0.9030066
+{(C_RSUR = 0),(C_VEHS = 2)} -> {(C_RALN = 0)},0.7683785
+{(C_RSUR = 0),(C_VEHS = 2)} -> {(V_TYPE = 0)},0.8410705
+{(C_RSUR = 0),(C_VEHS = 2)} -> {(L_COND = 0)},0.8158896
+{(C_RSUR = 0),(C_VEHS = 2)} -> {(C_SEV = 1),(C_WTHR = 0)},0.89229476
+{(C_RSUR = 0),(C_VEHS = 2)} -> {(C_SEV = 1),(C_RALN = 0)},0.76037604
+{(C_RSUR = 0),(C_VEHS = 2)} -> {(C_SEV = 1),(V_TYPE = 0)},0.8326548
+{(C_RSUR = 0),(C_VEHS = 2)} -> {(C_SEV = 1),(L_COND = 0)},0.8071263
+{(C_RSUR = 0),(V_YEAR in [1980, 2000))} -> {(C_SEV = 1)},0.98247695
+{(C_RSUR = 0),(V_YEAR in [1980, 2000))} -> {(C_WTHR = 0)},0.8943338
+{(C_RSUR = 0),(V_YEAR in [1980, 2000))} -> {(V_TYPE = 0)},0.8811943
+{(C_RSUR = 0),(V_YEAR in [1980, 2000))} -> {(C_SEV = 1),(C_WTHR = 0)},0.87934345
+{(C_RSUR = 0),(V_YEAR in [1980, 2000))} -> {(C_SEV = 1),(V_TYPE = 0)},0.8673536
+{(C_RSUR = 0),(V_YEAR in [2000, 2020))} -> {(C_SEV = 1)},0.98469853
+{(C_RSUR = 0),(V_YEAR in [2000, 2020))} -> {(C_WTHR = 0)},0.90438807
+{(C_RSUR = 0),(V_YEAR in [2000, 2020))} -> {(C_RALN = 0)},0.7655952
+{(C_RSUR = 0),(V_YEAR in [2000, 2020))} -> {(V_TYPE = 0)},0.8803908
+{(C_RSUR = 0),(V_YEAR in [2000, 2020))} -> {(C_SEV = 1),(C_WTHR = 0)},0.8910286
+{(C_RSUR = 0),(V_YEAR in [2000, 2020))} -> {(C_SEV = 1),(C_RALN = 0)},0.75611955
+{(C_RSUR = 0),(V_YEAR in [2000, 2020))} -> {(C_SEV = 1),(V_TYPE = 0)},0.8691059
+{(C_RSUR = 0),(V_DRAGE in [25, 45))} -> {(C_SEV = 1)},0.9852863
+{(C_RSUR = 0),(V_DRAGE in [25, 45))} -> {(C_WTHR = 0)},0.9024964
+{(C_RSUR = 0),(V_DRAGE in [25, 45))} -> {(V_TYPE = 0)},0.8593229
+{(C_RSUR = 0),(V_DRAGE in [25, 45))} -> {(C_SEV = 1),(C_WTHR = 0)},0.8898287
+{(C_RSUR = 0),(V_DRAGE in [25, 45))} -> {(C_SEV = 1),(V_TYPE = 0)},0.8486212
+{(C_RSUR = 0),(L_COND = 0)} -> {(C_SEV = 1)},0.9864504
+{(C_RSUR = 0),(L_COND = 0)} -> {(C_WTHR = 0)},0.9030195
+{(C_RSUR = 0),(L_COND = 0)} -> {(C_RALN = 0)},0.75667566
+{(C_RSUR = 0),(L_COND = 0)} -> {(V_TYPE = 0)},0.8096155
+{(C_RSUR = 0),(L_COND = 0)} -> {(C_SEV = 1),(V_TYPE = 0)},0.8006752
+{(C_RALN = 0),(C_TRAF = 0)} -> {(C_SEV = 1)},0.99497163
+{(C_RALN = 0),(C_TRAF = 0)} -> {(C_RCFG = 1)},0.91348594
+{(C_RALN = 0),(C_TRAF = 17)} -> {(C_SEV = 1)},0.98046637
+{(C_RALN = 0),(C_TRAF = 17)} -> {(V_TYPE = 0)},0.8225176
+{(C_RALN = 0),(C_TRAF = 17)} -> {(C_SEV = 1),(V_TYPE = 0)},0.8087403
+{(C_RALN = 0),(V_TYPE = 0)} -> {(C_SEV = 1)},0.9885481
+{(C_RALN = 0),(V_TYPE = 0)} -> {(P_SAFE = 1)},0.7827736
+{(C_RALN = 0),(V_TYPE = 0)} -> {(C_SEV = 1),(P_SAFE = 1)},0.77529967
+{(C_RALN = 0),(P_SEX = 0)} -> {(C_SEV = 1)},0.98968345
+{(C_RALN = 0),(P_SEX = 0)} -> {(V_TYPE = 0)},0.88541657
+{(C_RALN = 0),(P_SEX = 0)} -> {(C_SEV = 1),(V_TYPE = 0)},0.8772319
+{(C_RALN = 0),(P_SEX = 1)} -> {(C_SEV = 1)},0.9833213
+{(C_RALN = 0),(P_SEX = 1)} -> {(V_TYPE = 0)},0.79237604
+{(C_RALN = 0),(P_SEX = 1)} -> {(P_PSN = 0)},0.7524766
+{(C_RALN = 0),(P_SEX = 1)} -> {(C_SEV = 1),(V_TYPE = 0)},0.7815192
+{(C_RALN = 0),(P_PSN = 0)} -> {(C_SEV = 1)},0.9881784
+{(C_RALN = 0),(P_PSN = 0)} -> {(V_TYPE = 0)},0.8535197
+{(C_RALN = 0),(P_PSN = 0)} -> {(P_USER = 0)},0.9320739
+{(C_RALN = 0),(P_PSN = 0)} -> {(C_SEV = 1),(V_TYPE = 0)},0.8449573
+{(C_RALN = 0),(P_PSN = 0)} -> {(C_SEV = 1),(P_USER = 0)},0.9213052
+{(C_RALN = 0),(P_ISEV = 0)} -> {(C_SEV = 1)},0.9924175
+{(C_RALN = 0),(P_ISEV = 0)} -> {(V_TYPE = 0)},0.8717536
+{(C_RALN = 0),(P_ISEV = 0)} -> {(P_SAFE = 1)},0.7570223
+{(C_RALN = 0),(P_ISEV = 0)} -> {(C_SEV = 1),(V_TYPE = 0)},0.8668954
+{(C_RALN = 0),(P_ISEV = 1)} -> {(C_SEV = 1)},0.9912482
+{(C_RALN = 0),(P_ISEV = 1)} -> {(V_TYPE = 0)},0.7939662
+{(C_RALN = 0),(P_ISEV = 1)} -> {(P_SAFE = 1)},0.75385654
+{(C_RALN = 0),(P_ISEV = 1)} -> {(C_SEV = 1),(V_TYPE = 0)},0.7869077
+{(C_RALN = 0),(P_SAFE = 1)} -> {(C_SEV = 1)},0.98943484
+{(C_RALN = 0),(P_SAFE = 1)} -> {(V_TYPE = 0)},0.9224133
+{(C_RALN = 0),(P_SAFE = 1)} -> {(C_SEV = 1),(V_TYPE = 0)},0.913606
+{(C_RALN = 0),(P_USER = 0)} -> {(C_SEV = 1)},0.98844653
+{(C_RALN = 0),(P_USER = 0)} -> {(V_TYPE = 0)},0.91572106
+{(C_RALN = 0),(P_USER = 0)} -> {(P_PSN = 0)},1.0
+{(C_RALN = 0),(P_USER = 0)} -> {(P_SAFE = 1)},0.7521643
+{(C_RALN = 0),(P_USER = 0)} -> {(C_SEV = 1),(V_TYPE = 0)},0.9065347
+{(C_RALN = 0),(P_USER = 0)} -> {(C_SEV = 1),(P_PSN = 0)},0.98844653
+{(C_RALN = 0),(P_USER = 0)} -> {(P_PSN = 0),(P_SAFE = 1)},0.7521643
+{(C_RALN = 0),(C_HOUR in [12, 16))} -> {(C_SEV = 1)},0.98961735
+{(C_RALN = 0),(C_HOUR in [12, 16))} -> {(L_COND = 0)},0.99999464
+{(C_RALN = 0),(C_HOUR in [12, 16))} -> {(C_SEV = 1),(L_COND = 0)},0.989612
+{(C_RALN = 0),(C_HOUR in [16, 20))} -> {(C_SEV = 1)},0.98850584
+{(C_RALN = 0),(C_VEHS = 2)} -> {(C_SEV = 1)},0.9894105
+{(C_RALN = 0),(V_YEAR in [1980, 2000))} -> {(C_SEV = 1)},0.9855363
+{(C_RALN = 0),(V_YEAR in [2000, 2020))} -> {(C_SEV = 1)},0.9877104
+{(C_RALN = 0),(V_DRAGE in [25, 45))} -> {(C_SEV = 1)},0.9881204
+{(C_RALN = 0),(V_DRAGE in [25, 45))} -> {(L_COND = 0)},0.7677496
+{(C_RALN = 0),(V_DRAGE in [25, 45))} -> {(C_SEV = 1),(L_COND = 0)},0.76040983
+{(C_RALN = 0),(L_COND = 0)} -> {(C_SEV = 1)},0.9887317
+{(C_TRAF = 0),(V_TYPE = 0)} -> {(C_SEV = 1)},0.9959898
+{(C_TRAF = 0),(V_TYPE = 0)} -> {(C_RCFG = 1)},0.8447859
+{(C_TRAF = 0),(P_SAFE = 1)} -> {(C_SEV = 1)},0.9961093
+{(C_TRAF = 0),(L_COND = 0)} -> {(C_SEV = 1)},0.9955133
+{(C_TRAF = 17),(V_TYPE = 0)} -> {(C_SEV = 1)},0.97945005
+{(C_TRAF = 17),(V_TYPE = 0)} -> {(P_SAFE = 1)},0.78369343
+{(C_TRAF = 17),(P_SEX = 0)} -> {(C_SEV = 1)},0.98193485
+{(C_TRAF = 17),(P_SEX = 1)} -> {(C_SEV = 1)},0.9712508
+{(C_TRAF = 17),(P_SEX = 1)} -> {(V_TYPE = 0)},0.7689174
+{(C_TRAF = 17),(P_PSN = 0)} -> {(C_SEV = 1)},0.9792879
+{(C_TRAF = 17),(P_PSN = 0)} -> {(V_TYPE = 0)},0.8308062
+{(C_TRAF = 17),(P_ISEV = 1)} -> {(C_SEV = 1)},0.9852606
+{(C_TRAF = 17),(P_ISEV = 1)} -> {(V_TYPE = 0)},0.79350364
+{(C_TRAF = 17),(P_ISEV = 1)} -> {(P_SAFE = 1)},0.75414836
+{(C_TRAF = 17),(P_SAFE = 1)} -> {(C_SEV = 1)},0.98171514
+{(C_TRAF = 17),(P_SAFE = 1)} -> {(V_TYPE = 0)},0.9068606
+{(C_TRAF = 17),(P_USER = 0)} -> {(C_SEV = 1)},0.9797067
+{(C_TRAF = 17),(P_USER = 0)} -> {(V_TYPE = 0)},0.89637166
+{(C_TRAF = 17),(P_USER = 0)} -> {(P_SAFE = 1)},0.757541
+{(C_TRAF = 17),(C_VEHS = 2)} -> {(C_SEV = 1)},0.98003614
+{(C_TRAF = 17),(C_VEHS = 2)} -> {(V_TYPE = 0)},0.829935
+{(C_TRAF = 17),(V_YEAR in [2000, 2020))} -> {(V_TYPE = 0)},0.8659609
+{(C_TRAF = 17),(L_COND = 0)} -> {(C_SEV = 1)},0.9804468
+{(C_TRAF = 17),(L_COND = 0)} -> {(V_TYPE = 0)},0.8092875
+{(V_TYPE = 0),(P_SEX = 0)} -> {(C_SEV = 1)},0.9889444
+{(V_TYPE = 0),(P_SEX = 0)} -> {(P_SAFE = 1)},0.8614681
+{(V_TYPE = 0),(P_SEX = 0)} -> {(L_COND = 0)},0.78321785
+{(V_TYPE = 0),(P_SEX = 0)} -> {(C_SEV = 1),(P_SAFE = 1)},0.8533655
+{(V_TYPE = 0),(P_SEX = 0)} -> {(C_SEV = 1),(L_COND = 0)},0.775752
+{(V_TYPE = 0),(P_SEX = 1)} -> {(C_SEV = 1)},0.9831423
+{(V_TYPE = 0),(P_SEX = 1)} -> {(P_PSN = 0)},0.7627641
+{(V_TYPE = 0),(P_SEX = 1)} -> {(P_SAFE = 1)},0.77863336
+{(V_TYPE = 0),(P_SEX = 1)} -> {(P_USER = 0)},0.7627641
+{(V_TYPE = 0),(P_SEX = 1)} -> {(C_SEV = 1),(P_PSN = 0)},0.7511501
+{(V_TYPE = 0),(P_SEX = 1)} -> {(C_SEV = 1),(P_SAFE = 1)},0.7682073
+{(V_TYPE = 0),(P_SEX = 1)} -> {(C_SEV = 1),(P_USER = 0)},0.7511501
+{(V_TYPE = 0),(P_PSN = 0)} -> {(C_SEV = 1)},0.9879134
+{(V_TYPE = 0),(P_PSN = 0)} -> {(P_SAFE = 1)},0.76753396
+{(V_TYPE = 0),(P_PSN = 0)} -> {(P_USER = 0)},1.0
+{(V_TYPE = 0),(P_PSN = 0)} -> {(L_COND = 0)},0.76318663
+{(V_TYPE = 0),(P_PSN = 0)} -> {(C_SEV = 1),(P_SAFE = 1)},0.75966245
+{(V_TYPE = 0),(P_PSN = 0)} -> {(C_SEV = 1),(P_USER = 0)},0.9879134
+{(V_TYPE = 0),(P_PSN = 0)} -> {(C_SEV = 1),(L_COND = 0)},0.7556903
+{(V_TYPE = 0),(P_ISEV = 0)} -> {(C_SEV = 1)},0.9937317
+{(V_TYPE = 0),(P_ISEV = 0)} -> {(P_SAFE = 1)},0.7912463
+{(V_TYPE = 0),(P_ISEV = 0)} -> {(L_COND = 0)},0.7737827
+{(V_TYPE = 0),(P_ISEV = 0)} -> {(C_SEV = 1),(P_SAFE = 1)},0.7867067
+{(V_TYPE = 0),(P_ISEV = 0)} -> {(C_SEV = 1),(L_COND = 0)},0.77002835
+{(V_TYPE = 0),(P_ISEV = 1)} -> {(C_SEV = 1)},0.9893992
+{(V_TYPE = 0),(P_ISEV = 1)} -> {(P_SAFE = 1)},0.887539
+{(V_TYPE = 0),(P_ISEV = 1)} -> {(C_SEV = 1),(P_SAFE = 1)},0.879699
+{(V_TYPE = 0),(P_SAFE = 1)} -> {(C_SEV = 1)},0.9885912
+{(V_TYPE = 0),(P_SAFE = 1)} -> {(L_COND = 0)},0.7616105
+{(V_TYPE = 0),(P_SAFE = 1)} -> {(C_SEV = 1),(L_COND = 0)},0.7540131
+{(V_TYPE = 0),(P_USER = 0)} -> {(C_SEV = 1)},0.9879134
+{(V_TYPE = 0),(P_USER = 0)} -> {(P_PSN = 0)},1.0
+{(V_TYPE = 0),(P_USER = 0)} -> {(P_SAFE = 1)},0.76753396
+{(V_TYPE = 0),(P_USER = 0)} -> {(L_COND = 0)},0.76318663
+{(V_TYPE = 0),(P_USER = 0)} -> {(C_SEV = 1),(P_PSN = 0)},0.9879134
+{(V_TYPE = 0),(P_USER = 0)} -> {(C_SEV = 1),(P_SAFE = 1)},0.75966245
+{(V_TYPE = 0),(P_USER = 0)} -> {(C_SEV = 1),(L_COND = 0)},0.7556903
+{(V_TYPE = 0),(P_USER = 1)} -> {(C_SEV = 1)},0.98164004
+{(V_TYPE = 0),(P_USER = 1)} -> {(P_SAFE = 1)},0.8875454
+{(V_TYPE = 0),(P_USER = 1)} -> {(C_SEV = 1),(P_SAFE = 1)},0.87529397
+{(V_TYPE = 0),(C_HOUR in [12, 16))} -> {(C_SEV = 1)},0.9892269
+{(V_TYPE = 0),(C_HOUR in [12, 16))} -> {(L_COND = 0)},0.9999893
+{(V_TYPE = 0),(C_HOUR in [12, 16))} -> {(C_SEV = 1),(L_COND = 0)},0.9892162
+{(V_TYPE = 0),(C_HOUR in [16, 20))} -> {(C_SEV = 1)},0.98842543
+{(V_TYPE = 0),(C_VEHS = 2)} -> {(C_SEV = 1)},0.9894502
+{(V_TYPE = 0),(C_VEHS = 2)} -> {(P_SAFE = 1)},0.7990267
+{(V_TYPE = 0),(C_VEHS = 2)} -> {(L_COND = 0)},0.7795077
+{(V_TYPE = 0),(C_VEHS = 2)} -> {(C_SEV = 1),(P_SAFE = 1)},0.7914458
+{(V_TYPE = 0),(C_VEHS = 2)} -> {(C_SEV = 1),(L_COND = 0)},0.7723188
+{(V_TYPE = 0),(V_YEAR in [1980, 2000))} -> {(C_SEV = 1)},0.9846176
+{(V_TYPE = 0),(V_YEAR in [2000, 2020))} -> {(C_SEV = 1)},0.98706996
+{(V_TYPE = 0),(V_DRAGE in [25, 45))} -> {(C_SEV = 1)},0.98750794
+{(V_TYPE = 0),(V_DRAGE in [25, 45))} -> {(L_COND = 0)},0.7578791
+{(V_TYPE = 0),(V_DRAGE in [25, 45))} -> {(C_SEV = 1),(L_COND = 0)},0.7505103
+{(V_TYPE = 0),(V_DRAGE in [45, 65))} -> {(C_SEV = 1)},0.98701996
+{(V_TYPE = 0),(L_COND = 0)} -> {(C_SEV = 1)},0.9886531
+{(V_TYPE = 0),(L_COND = 0)} -> {(P_SAFE = 1)},0.7986266
+{(V_TYPE = 0),(L_COND = 0)} -> {(C_SEV = 1),(P_SAFE = 1)},0.79065996
+{(P_SEX = 0),(P_PSN = 0)} -> {(C_SEV = 1)},0.9915856
+{(P_SEX = 0),(P_PSN = 0)} -> {(V_TYPE = 0)},0.9390981
+{(P_SEX = 0),(P_PSN = 0)} -> {(P_SAFE = 1)},0.8180006
+{(P_SEX = 0),(P_PSN = 0)} -> {(P_USER = 0)},0.97032875
+{(P_SEX = 0),(P_PSN = 0)} -> {(C_SEV = 1),(V_TYPE = 0)},0.93149567
+{(P_SEX = 0),(P_ISEV = 1)} -> {(C_SEV = 1)},0.9919986
+{(P_SEX = 0),(P_ISEV = 1)} -> {(V_TYPE = 0)},0.86084366
+{(P_SEX = 0),(P_ISEV = 1)} -> {(P_SAFE = 1)},0.8157744
+{(P_SEX = 0),(P_ISEV = 1)} -> {(C_SEV = 1),(V_TYPE = 0)},0.8540063
+{(P_SEX = 0),(P_SAFE = 1)} -> {(C_SEV = 1)},0.99021304
+{(P_SEX = 0),(P_SAFE = 1)} -> {(V_TYPE = 0)},0.9569531
+{(P_SEX = 0),(P_SAFE = 1)} -> {(C_SEV = 1),(V_TYPE = 0)},0.9479525
+{(P_SEX = 0),(P_USER = 0)} -> {(C_SEV = 1)},0.9916452
+{(P_SEX = 0),(P_USER = 0)} -> {(V_TYPE = 0)},0.9678143
+{(P_SEX = 0),(P_USER = 0)} -> {(P_PSN = 0)},1.0
+{(P_SEX = 0),(P_USER = 0)} -> {(C_SEV = 1),(V_TYPE = 0)},0.9599794
+{(P_SEX = 0),(C_VEHS = 2)} -> {(C_SEV = 1)},0.99046284
+{(P_SEX = 0),(C_VEHS = 2)} -> {(V_TYPE = 0)},0.9256177
+{(P_SEX = 0),(C_VEHS = 2)} -> {(C_SEV = 1),(V_TYPE = 0)},0.91751647
+{(P_SEX = 0),(V_YEAR in [2000, 2020))} -> {(C_SEV = 1)},0.9890685
+{(P_SEX = 0),(V_YEAR in [2000, 2020))} -> {(V_TYPE = 0)},0.94365597
+{(P_SEX = 0),(V_YEAR in [2000, 2020))} -> {(C_SEV = 1),(V_TYPE = 0)},0.9340388
+{(P_SEX = 0),(L_COND = 0)} -> {(C_SEV = 1)},0.989341
+{(P_SEX = 0),(L_COND = 0)} -> {(V_TYPE = 0)},0.88545334
+{(P_SEX = 0),(L_COND = 0)} -> {(C_SEV = 1),(V_TYPE = 0)},0.8770129
+{(P_SEX = 1),(P_PSN = 0)} -> {(C_SEV = 1)},0.981541
+{(P_SEX = 1),(P_PSN = 0)} -> {(V_TYPE = 0)},0.8029421
+{(P_SEX = 1),(P_PSN = 0)} -> {(P_USER = 0)},0.91900957
+{(P_SEX = 1),(P_PSN = 0)} -> {(C_SEV = 1),(V_TYPE = 0)},0.79071635
+{(P_SEX = 1),(P_PSN = 0)} -> {(C_SEV = 1),(P_USER = 0)},0.90256846
+{(P_SEX = 1),(P_ISEV = 0)} -> {(C_SEV = 1)},0.98989296
+{(P_SEX = 1),(P_ISEV = 0)} -> {(V_TYPE = 0)},0.83662856
+{(P_SEX = 1),(P_ISEV = 0)} -> {(C_SEV = 1),(V_TYPE = 0)},0.83093333
+{(P_SEX = 1),(P_ISEV = 1)} -> {(C_SEV = 1)},0.98655003
+{(P_SEX = 1),(P_SAFE = 1)} -> {(C_SEV = 1)},0.9847272
+{(P_SEX = 1),(P_SAFE = 1)} -> {(V_TYPE = 0)},0.8805381
+{(P_SEX = 1),(P_SAFE = 1)} -> {(C_SEV = 1),(V_TYPE = 0)},0.86874753
+{(P_SEX = 1),(P_USER = 0)} -> {(C_SEV = 1)},0.9821099
+{(P_SEX = 1),(P_USER = 0)} -> {(V_TYPE = 0)},0.8737037
+{(P_SEX = 1),(P_USER = 0)} -> {(P_PSN = 0)},1.0
+{(P_SEX = 1),(P_USER = 0)} -> {(P_SAFE = 1)},0.7514347
+{(P_SEX = 1),(P_USER = 0)} -> {(C_SEV = 1),(V_TYPE = 0)},0.8604005
+{(P_SEX = 1),(P_USER = 0)} -> {(C_SEV = 1),(P_PSN = 0)},0.9821099
+{(P_SEX = 1),(C_VEHS = 2)} -> {(C_SEV = 1)},0.98420435
+{(P_SEX = 1),(C_VEHS = 2)} -> {(V_TYPE = 0)},0.8063278
+{(P_SEX = 1),(C_VEHS = 2)} -> {(P_PSN = 0)},0.7731366
+{(P_SEX = 1),(C_VEHS = 2)} -> {(C_SEV = 1),(V_TYPE = 0)},0.7961568
+{(P_SEX = 1),(C_VEHS = 2)} -> {(C_SEV = 1),(P_PSN = 0)},0.7616157
+{(P_SEX = 1),(V_YEAR in [1980, 2000))} -> {(C_SEV = 1)},0.97945946
+{(P_SEX = 1),(V_YEAR in [2000, 2020))} -> {(C_SEV = 1)},0.98107004
+{(P_SEX = 1),(V_YEAR in [2000, 2020))} -> {(V_TYPE = 0)},0.83746487
+{(P_SEX = 1),(V_YEAR in [2000, 2020))} -> {(P_PSN = 0)},0.7717179
+{(P_SEX = 1),(V_YEAR in [2000, 2020))} -> {(C_SEV = 1),(V_TYPE = 0)},0.82434416
+{(P_SEX = 1),(V_YEAR in [2000, 2020))} -> {(C_SEV = 1),(P_PSN = 0)},0.7579325
+{(P_SEX = 1),(V_DRAGE in [25, 45))} -> {(C_SEV = 1)},0.9815658
+{(P_SEX = 1),(L_COND = 0)} -> {(C_SEV = 1)},0.9832652
+{(P_SEX = 1),(L_COND = 0)} -> {(V_TYPE = 0)},0.7747986
+{(P_SEX = 1),(L_COND = 0)} -> {(P_PSN = 0)},0.7580278
+{(P_SEX = 1),(L_COND = 0)} -> {(C_SEV = 1),(V_TYPE = 0)},0.7643912
+{(P_PSN = 0),(P_ISEV = 0)} -> {(C_SEV = 1)},0.991274
+{(P_PSN = 0),(P_ISEV = 0)} -> {(C_RALN = 0)},0.75043005
+{(P_PSN = 0),(P_ISEV = 0)} -> {(V_TYPE = 0)},0.85637164
+{(P_PSN = 0),(P_ISEV = 0)} -> {(P_USER = 0)},0.9713082
+{(P_PSN = 0),(P_ISEV = 0)} -> {(L_COND = 0)},0.7868392
+{(P_PSN = 0),(P_ISEV = 0)} -> {(C_SEV = 1),(V_TYPE = 0)},0.8511354
+{(P_PSN = 0),(P_ISEV = 0)} -> {(C_SEV = 1),(P_USER = 0)},0.96293765
+{(P_PSN = 0),(P_ISEV = 0)} -> {(C_SEV = 1),(L_COND = 0)},0.78124744
+{(P_PSN = 0),(P_ISEV = 0)} -> {(P_USER = 0),(L_COND = 0)},0.76508594
+{(P_PSN = 0),(P_ISEV = 1)} -> {(C_SEV = 1)},0.9921074
+{(P_PSN = 0),(P_ISEV = 1)} -> {(V_TYPE = 0)},0.84137446
+{(P_PSN = 0),(P_ISEV = 1)} -> {(P_SAFE = 1)},0.8090293
+{(P_PSN = 0),(P_ISEV = 1)} -> {(P_USER = 0)},0.89738053
+{(P_PSN = 0),(P_ISEV = 1)} -> {(L_COND = 0)},0.75554293
+{(P_PSN = 0),(P_ISEV = 1)} -> {(C_SEV = 1),(V_TYPE = 0)},0.83523214
+{(P_PSN = 0),(P_ISEV = 1)} -> {(C_SEV = 1),(P_SAFE = 1)},0.8028777
+{(P_PSN = 0),(P_ISEV = 1)} -> {(C_SEV = 1),(P_USER = 0)},0.8897196
+{(P_PSN = 0),(P_ISEV = 1)} -> {(C_SEV = 1),(L_COND = 0)},0.75014865
+{(P_PSN = 0),(P_ISEV = 1)} -> {(P_SAFE = 1),(P_USER = 0)},0.8018746
+{(P_PSN = 0),(P_SAFE = 1)} -> {(C_SEV = 1)},0.9882216
+{(P_PSN = 0),(P_SAFE = 1)} -> {(V_TYPE = 0)},0.90824807
+{(P_PSN = 0),(P_SAFE = 1)} -> {(P_USER = 0)},0.99107337
+{(P_PSN = 0),(P_SAFE = 1)} -> {(L_COND = 0)},0.7740981
+{(P_PSN = 0),(P_SAFE = 1)} -> {(C_SEV = 1),(V_TYPE = 0)},0.8989335
+{(P_PSN = 0),(P_SAFE = 1)} -> {(C_SEV = 1),(P_USER = 0)},0.9793846
+{(P_PSN = 0),(P_SAFE = 1)} -> {(C_SEV = 1),(L_COND = 0)},0.7660924
+{(P_PSN = 0),(P_USER = 0)} -> {(C_SEV = 1)},0.9860377
+{(P_PSN = 0),(P_USER = 0)} -> {(V_TYPE = 0)},0.9090934
+{(P_PSN = 0),(P_USER = 0)} -> {(P_SAFE = 1)},0.76139045
+{(P_PSN = 0),(P_USER = 0)} -> {(L_COND = 0)},0.7652245
+{(P_PSN = 0),(P_USER = 0)} -> {(C_SEV = 1),(V_TYPE = 0)},0.8981055
+{(P_PSN = 0),(P_USER = 0)} -> {(C_SEV = 1),(P_SAFE = 1)},0.75241053
+{(P_PSN = 0),(P_USER = 0)} -> {(C_SEV = 1),(L_COND = 0)},0.7563493
+{(P_PSN = 0),(C_VEHS = 2)} -> {(C_SEV = 1)},0.9885422
+{(P_PSN = 0),(C_VEHS = 2)} -> {(V_TYPE = 0)},0.8422184
+{(P_PSN = 0),(C_VEHS = 2)} -> {(P_USER = 0)},0.9231168
+{(P_PSN = 0),(C_VEHS = 2)} -> {(L_COND = 0)},0.79500586
+{(P_PSN = 0),(C_VEHS = 2)} -> {(C_SEV = 1),(V_TYPE = 0)},0.8344098
+{(P_PSN = 0),(C_VEHS = 2)} -> {(C_SEV = 1),(P_USER = 0)},0.9128623
+{(P_PSN = 0),(C_VEHS = 2)} -> {(C_SEV = 1),(L_COND = 0)},0.78701496
+{(P_PSN = 0),(C_VEHS = 2)} -> {(C_SEV = 1),(V_TYPE = 0),(P_USER = 0)},0.8344098
+{(P_PSN = 0),(V_YEAR in [1980, 2000))} -> {(C_SEV = 1)},0.9845586
+{(P_PSN = 0),(V_YEAR in [1980, 2000))} -> {(V_TYPE = 0)},0.8778314
+{(P_PSN = 0),(V_YEAR in [1980, 2000))} -> {(P_USER = 0)},0.9723159
+{(P_PSN = 0),(V_YEAR in [1980, 2000))} -> {(C_SEV = 1),(V_TYPE = 0)},0.8660113
+{(P_PSN = 0),(V_YEAR in [1980, 2000))} -> {(C_SEV = 1),(P_USER = 0)},0.9576745
+{(P_PSN = 0),(V_YEAR in [1980, 2000))} -> {(V_TYPE = 0),(P_USER = 0)},0.8778314
+{(P_PSN = 0),(V_YEAR in [1980, 2000))} -> {(C_SEV = 1),(V_TYPE = 0),(P_USER = 0)},0.8660113
+{(P_PSN = 0),(V_YEAR in [2000, 2020))} -> {(C_SEV = 1)},0.9863064
+{(P_PSN = 0),(V_YEAR in [2000, 2020))} -> {(V_TYPE = 0)},0.88018185
+{(P_PSN = 0),(V_YEAR in [2000, 2020))} -> {(P_USER = 0)},0.9566898
+{(P_PSN = 0),(V_YEAR in [2000, 2020))} -> {(C_SEV = 1),(V_TYPE = 0)},0.87027663
+{(P_PSN = 0),(V_YEAR in [2000, 2020))} -> {(C_SEV = 1),(P_USER = 0)},0.9440939
+{(P_PSN = 0),(V_YEAR in [2000, 2020))} -> {(V_TYPE = 0),(P_USER = 0)},0.88018185
+{(P_PSN = 0),(V_YEAR in [2000, 2020))} -> {(C_SEV = 1),(V_TYPE = 0),(P_USER = 0)},0.87027663
+{(P_PSN = 0),(V_DRAGE in [25, 45))} -> {(C_SEV = 1)},0.9863977
+{(P_PSN = 0),(V_DRAGE in [25, 45))} -> {(V_TYPE = 0)},0.85025704
+{(P_PSN = 0),(V_DRAGE in [25, 45))} -> {(P_USER = 0)},0.94637096
+{(P_PSN = 0),(V_DRAGE in [25, 45))} -> {(C_SEV = 1),(V_TYPE = 0)},0.84097743
+{(P_PSN = 0),(V_DRAGE in [25, 45))} -> {(C_SEV = 1),(P_USER = 0)},0.93396986
+{(P_PSN = 0),(V_DRAGE in [25, 45))} -> {(V_TYPE = 0),(P_USER = 0)},0.85025704
+{(P_PSN = 0),(V_DRAGE in [25, 45))} -> {(C_SEV = 1),(V_TYPE = 0),(P_USER = 0)},0.84097743
+{(P_PSN = 0),(L_COND = 0)} -> {(C_SEV = 1)},0.98795795
+{(P_PSN = 0),(L_COND = 0)} -> {(V_TYPE = 0)},0.8411719
+{(P_PSN = 0),(L_COND = 0)} -> {(P_USER = 0)},0.9277573
+{(P_PSN = 0),(L_COND = 0)} -> {(C_SEV = 1),(V_TYPE = 0)},0.8329095
+{(P_PSN = 0),(L_COND = 0)} -> {(C_SEV = 1),(P_USER = 0)},0.916997
+{(P_ISEV = 0),(P_SAFE = 1)} -> {(C_SEV = 1)},0.9924732
+{(P_ISEV = 0),(P_SAFE = 1)} -> {(V_TYPE = 0)},0.8938167
+{(P_ISEV = 0),(P_SAFE = 1)} -> {(L_COND = 0)},0.78478867
+{(P_ISEV = 0),(P_SAFE = 1)} -> {(C_SEV = 1),(V_TYPE = 0)},0.8886887
+{(P_ISEV = 0),(P_USER = 0)} -> {(C_SEV = 1)},0.9913822
+{(P_ISEV = 0),(P_USER = 0)} -> {(C_RALN = 0)},0.7506377
+{(P_ISEV = 0),(P_USER = 0)} -> {(V_TYPE = 0)},0.8816683
+{(P_ISEV = 0),(P_USER = 0)} -> {(P_PSN = 0)},1.0
+{(P_ISEV = 0),(P_USER = 0)} -> {(L_COND = 0)},0.78768605
+{(P_ISEV = 0),(P_USER = 0)} -> {(C_SEV = 1),(V_TYPE = 0)},0.8762773
+{(P_ISEV = 0),(P_USER = 0)} -> {(C_SEV = 1),(P_PSN = 0)},0.9913822
+{(P_ISEV = 0),(P_USER = 0)} -> {(C_RALN = 0),(P_PSN = 0)},0.7506377
+{(P_ISEV = 0),(P_USER = 0)} -> {(P_PSN = 0),(L_COND = 0)},0.78768605
+{(P_ISEV = 0),(C_VEHS = 2)} -> {(C_SEV = 1)},0.99416
+{(P_ISEV = 0),(C_VEHS = 2)} -> {(V_TYPE = 0)},0.8668039
+{(P_ISEV = 0),(C_VEHS = 2)} -> {(P_SAFE = 1)},0.7687079
+{(P_ISEV = 0),(C_VEHS = 2)} -> {(L_COND = 0)},0.7896432
+{(P_ISEV = 0),(C_VEHS = 2)} -> {(C_SEV = 1),(V_TYPE = 0)},0.8637962
+{(P_ISEV = 0),(V_YEAR in [2000, 2020))} -> {(C_SEV = 1)},0.99112266
+{(P_ISEV = 0),(L_COND = 0)} -> {(C_SEV = 1)},0.9928542
+{(P_ISEV = 0),(L_COND = 0)} -> {(V_TYPE = 0)},0.86246485
+{(P_ISEV = 0),(L_COND = 0)} -> {(P_SAFE = 1)},0.77435184
+{(P_ISEV = 0),(L_COND = 0)} -> {(C_SEV = 1),(V_TYPE = 0)},0.85828024
+{(P_ISEV = 1),(P_SAFE = 1)} -> {(C_SEV = 1)},0.99025434
+{(P_ISEV = 1),(P_SAFE = 1)} -> {(V_TYPE = 0)},0.93373764
+{(P_ISEV = 1),(P_SAFE = 1)} -> {(C_SEV = 1),(V_TYPE = 0)},0.92548954
+{(P_ISEV = 1),(P_USER = 0)} -> {(C_SEV = 1)},0.991463
+{(P_ISEV = 1),(P_USER = 0)} -> {(V_TYPE = 0)},0.93758935
+{(P_ISEV = 1),(P_USER = 0)} -> {(P_PSN = 0)},1.0
+{(P_ISEV = 1),(P_USER = 0)} -> {(P_SAFE = 1)},0.8935725
+{(P_ISEV = 1),(P_USER = 0)} -> {(C_SEV = 1),(V_TYPE = 0)},0.9307447
+{(P_ISEV = 1),(P_USER = 0)} -> {(C_SEV = 1),(P_PSN = 0)},0.991463
+{(P_ISEV = 1),(P_USER = 0)} -> {(C_SEV = 1),(P_SAFE = 1)},0.886762
+{(P_ISEV = 1),(P_USER = 0)} -> {(P_PSN = 0),(P_SAFE = 1)},0.8935725
+{(P_ISEV = 1),(C_VEHS = 2)} -> {(C_SEV = 1)},0.99011856
+{(P_ISEV = 1),(C_VEHS = 2)} -> {(V_TYPE = 0)},0.8448124
+{(P_ISEV = 1),(C_VEHS = 2)} -> {(P_SAFE = 1)},0.8075543
+{(P_ISEV = 1),(C_VEHS = 2)} -> {(L_COND = 0)},0.78245944
+{(P_ISEV = 1),(C_VEHS = 2)} -> {(C_SEV = 1),(V_TYPE = 0)},0.83706206
+{(P_ISEV = 1),(C_VEHS = 2)} -> {(C_SEV = 1),(P_SAFE = 1)},0.8001756
+{(P_ISEV = 1),(C_VEHS = 2)} -> {(C_SEV = 1),(L_COND = 0)},0.77556103
+{(P_ISEV = 1),(V_YEAR in [2000, 2020))} -> {(C_SEV = 1)},0.9891962
+{(P_ISEV = 1),(V_YEAR in [2000, 2020))} -> {(V_TYPE = 0)},0.88599193
+{(P_ISEV = 1),(V_YEAR in [2000, 2020))} -> {(P_SAFE = 1)},0.8438547
+{(P_ISEV = 1),(V_YEAR in [2000, 2020))} -> {(C_SEV = 1),(V_TYPE = 0)},0.87724954
+{(P_ISEV = 1),(V_YEAR in [2000, 2020))} -> {(C_SEV = 1),(P_SAFE = 1)},0.8359088
+{(P_ISEV = 1),(L_COND = 0)} -> {(C_SEV = 1)},0.9906621
+{(P_ISEV = 1),(L_COND = 0)} -> {(V_TYPE = 0)},0.7874551
+{(P_ISEV = 1),(L_COND = 0)} -> {(P_SAFE = 1)},0.76191306
+{(P_ISEV = 1),(L_COND = 0)} -> {(C_SEV = 1),(V_TYPE = 0)},0.78018844
+{(P_ISEV = 1),(L_COND = 0)} -> {(C_SEV = 1),(P_SAFE = 1)},0.75506586
+{(P_SAFE = 1),(P_USER = 0)} -> {(C_SEV = 1)},0.98820597
+{(P_SAFE = 1),(P_USER = 0)} -> {(V_TYPE = 0)},0.9164287
+{(P_SAFE = 1),(P_USER = 0)} -> {(P_PSN = 0)},1.0
+{(P_SAFE = 1),(P_USER = 0)} -> {(L_COND = 0)},0.7743416
+{(P_SAFE = 1),(P_USER = 0)} -> {(C_SEV = 1),(V_TYPE = 0)},0.9070302
+{(P_SAFE = 1),(P_USER = 0)} -> {(C_SEV = 1),(P_PSN = 0)},0.98820597
+{(P_SAFE = 1),(P_USER = 1)} -> {(C_SEV = 1)},0.985542
+{(P_SAFE = 1),(P_USER = 1)} -> {(V_TYPE = 0)},0.94480044
+{(P_SAFE = 1),(P_USER = 1)} -> {(C_SEV = 1),(V_TYPE = 0)},0.9317587
+{(P_SAFE = 1),(C_HOUR in [12, 16))} -> {(L_COND = 0)},0.9999946
+{(P_SAFE = 1),(C_VEHS = 2)} -> {(V_TYPE = 0)},0.92243826
+{(P_SAFE = 1),(C_VEHS = 2)} -> {(C_SEV = 1),(V_TYPE = 0)},0.91368645
+{(P_SAFE = 1),(V_YEAR in [1980, 2000))} -> {(L_COND = 0)},0.75272596
+{(P_SAFE = 1),(V_DRAGE in [25, 45))} -> {(L_COND = 0)},0.7677523
+{(P_SAFE = 1),(V_DRAGE in [25, 45))} -> {(C_SEV = 1),(L_COND = 0)},0.7603835
+{(P_SAFE = 1),(L_COND = 0)} -> {(C_SEV = 1)},0.9888338
+{(P_SAFE = 1),(L_COND = 0)} -> {(V_TYPE = 0)},0.9142812
+{(P_SAFE = 1),(L_COND = 0)} -> {(C_SEV = 1),(V_TYPE = 0)},0.90516084
+{(P_USER = 0),(C_VEHS = 2)} -> {(C_SEV = 1)},0.9888914
+{(P_USER = 0),(C_VEHS = 2)} -> {(V_TYPE = 0)},0.9123638
+{(P_USER = 0),(C_VEHS = 2)} -> {(P_PSN = 0)},1.0
+{(P_USER = 0),(C_VEHS = 2)} -> {(P_SAFE = 1)},0.76871705
+{(P_USER = 0),(C_VEHS = 2)} -> {(L_COND = 0)},0.79249877
+{(P_USER = 0),(C_VEHS = 2)} -> {(C_SEV = 1),(V_TYPE = 0)},0.90390486
+{(P_USER = 0),(C_VEHS = 2)} -> {(C_SEV = 1),(P_PSN = 0)},0.9888914
+{(P_USER = 0),(C_VEHS = 2)} -> {(C_SEV = 1),(L_COND = 0)},0.7847994
+{(P_USER = 0),(C_VEHS = 2)} -> {(P_PSN = 0),(L_COND = 0)},0.79249877
+{(P_USER = 0),(C_VEHS = 2)} -> {(C_SEV = 1),(V_TYPE = 0),(P_PSN = 0)},0.90390486
+{(P_USER = 0),(C_VEHS = 2)} -> {(C_SEV = 1),(P_PSN = 0),(L_COND = 0)},0.7847994
+{(P_USER = 0),(V_YEAR in [1980, 2000))} -> {(C_SEV = 1)},0.98494166
+{(P_USER = 0),(V_YEAR in [1980, 2000))} -> {(V_TYPE = 0)},0.9028253
+{(P_USER = 0),(V_YEAR in [1980, 2000))} -> {(P_PSN = 0)},1.0
+{(P_USER = 0),(V_YEAR in [1980, 2000))} -> {(C_SEV = 1),(V_TYPE = 0)},0.8906687
+{(P_USER = 0),(V_YEAR in [1980, 2000))} -> {(C_SEV = 1),(P_PSN = 0)},0.98494166
+{(P_USER = 0),(V_YEAR in [1980, 2000))} -> {(V_TYPE = 0),(P_PSN = 0)},0.9028253
+{(P_USER = 0),(V_YEAR in [1980, 2000))} -> {(C_SEV = 1),(V_TYPE = 0),(P_PSN = 0)},0.8906687
+{(P_USER = 0),(V_YEAR in [2000, 2020))} -> {(C_SEV = 1)},0.9868339
+{(P_USER = 0),(V_YEAR in [2000, 2020))} -> {(V_TYPE = 0)},0.9200285
+{(P_USER = 0),(V_YEAR in [2000, 2020))} -> {(P_PSN = 0)},1.0
+{(P_USER = 0),(V_YEAR in [2000, 2020))} -> {(P_SAFE = 1)},0.7911164
+{(P_USER = 0),(V_YEAR in [2000, 2020))} -> {(C_SEV = 1),(V_TYPE = 0)},0.9096748
+{(P_USER = 0),(V_YEAR in [2000, 2020))} -> {(C_SEV = 1),(P_PSN = 0)},0.9868339
+{(P_USER = 0),(V_YEAR in [2000, 2020))} -> {(V_TYPE = 0),(P_PSN = 0)},0.9200285
+{(P_USER = 0),(V_YEAR in [2000, 2020))} -> {(C_SEV = 1),(V_TYPE = 0),(P_PSN = 0)},0.9096748
+{(P_USER = 0),(V_DRAGE in [25, 45))} -> {(C_SEV = 1)},0.9868961
+{(P_USER = 0),(V_DRAGE in [25, 45))} -> {(V_TYPE = 0)},0.89843947
+{(P_USER = 0),(V_DRAGE in [25, 45))} -> {(P_PSN = 0)},1.0
+{(P_USER = 0),(V_DRAGE in [25, 45))} -> {(C_SEV = 1),(V_TYPE = 0)},0.88863397
+{(P_USER = 0),(V_DRAGE in [25, 45))} -> {(C_SEV = 1),(P_PSN = 0)},0.9868961
+{(P_USER = 0),(V_DRAGE in [25, 45))} -> {(V_TYPE = 0),(P_PSN = 0)},0.89843947
+{(P_USER = 0),(V_DRAGE in [25, 45))} -> {(C_SEV = 1),(V_TYPE = 0),(P_PSN = 0)},0.88863397
+{(P_USER = 0),(L_COND = 0)} -> {(C_SEV = 1)},0.98840183
+{(P_USER = 0),(L_COND = 0)} -> {(V_TYPE = 0)},0.90667236
+{(P_USER = 0),(L_COND = 0)} -> {(P_PSN = 0)},1.0
+{(P_USER = 0),(L_COND = 0)} -> {(P_SAFE = 1)},0.7704618
+{(P_USER = 0),(L_COND = 0)} -> {(C_SEV = 1),(V_TYPE = 0)},0.8977666
+{(P_USER = 0),(L_COND = 0)} -> {(C_SEV = 1),(P_PSN = 0)},0.98840183
+{(C_HOUR in [12, 16)),(L_COND = 0)} -> {(C_SEV = 1)},0.98691744
+{(C_HOUR in [12, 16)),(L_COND = 0)} -> {(V_TYPE = 0)},0.8244799
+{(C_HOUR in [12, 16)),(L_COND = 0)} -> {(C_SEV = 1),(V_TYPE = 0)},0.81559753
+{(C_HOUR in [16, 20)),(L_COND = 0)} -> {(C_SEV = 1)},0.9870661
+{(C_VEHS = 2),(V_YEAR in [1980, 2000))} -> {(C_SEV = 1)},0.9864459
+{(C_VEHS = 2),(V_YEAR in [1980, 2000))} -> {(V_TYPE = 0)},0.89000964
+{(C_VEHS = 2),(V_YEAR in [1980, 2000))} -> {(C_SEV = 1),(V_TYPE = 0)},0.8795414
+{(C_VEHS = 2),(V_YEAR in [2000, 2020))} -> {(C_SEV = 1)},0.9880284
+{(C_VEHS = 2),(V_YEAR in [2000, 2020))} -> {(V_TYPE = 0)},0.8927495
+{(C_VEHS = 2),(V_YEAR in [2000, 2020))} -> {(C_SEV = 1),(V_TYPE = 0)},0.8840668
+{(C_VEHS = 2),(V_DRAGE in [25, 45))} -> {(C_SEV = 1)},0.98856306
+{(C_VEHS = 2),(V_DRAGE in [25, 45))} -> {(V_TYPE = 0)},0.86856633
+{(C_VEHS = 2),(V_DRAGE in [25, 45))} -> {(C_SEV = 1),(V_TYPE = 0)},0.86054605
+{(C_VEHS = 2),(L_COND = 0)} -> {(C_SEV = 1)},0.98875177
+{(C_VEHS = 2),(L_COND = 0)} -> {(V_TYPE = 0)},0.84619147
+{(C_VEHS = 2),(L_COND = 0)} -> {(C_SEV = 1),(V_TYPE = 0)},0.8383876
+{(V_YEAR in [1980, 2000)),(L_COND = 0)} -> {(C_SEV = 1)},0.9858333
+{(V_YEAR in [1980, 2000)),(L_COND = 0)} -> {(V_TYPE = 0)},0.877381
+{(V_YEAR in [1980, 2000)),(L_COND = 0)} -> {(P_SAFE = 1)},0.77790594
+{(V_YEAR in [1980, 2000)),(L_COND = 0)} -> {(C_SEV = 1),(V_TYPE = 0)},0.86652154
+{(V_YEAR in [1980, 2000)),(L_COND = 0)} -> {(C_SEV = 1),(P_SAFE = 1)},0.7691762
+{(V_YEAR in [2000, 2020)),(V_DRAGE in [25, 45))} -> {(C_SEV = 1)},0.9862312
+{(V_YEAR in [2000, 2020)),(L_COND = 0)} -> {(C_SEV = 1)},0.98713696
+{(V_DRAGE in [25, 45)),(L_COND = 0)} -> {(C_SEV = 1)},0.98814726
+{(V_DRAGE in [25, 45)),(L_COND = 0)} -> {(V_TYPE = 0)},0.86122537
+{(V_DRAGE in [25, 45)),(L_COND = 0)} -> {(P_SAFE = 1)},0.7883879
+{(V_DRAGE in [25, 45)),(L_COND = 0)} -> {(C_SEV = 1),(V_TYPE = 0)},0.8528517
+{(V_DRAGE in [25, 45)),(L_COND = 0)} -> {(C_SEV = 1),(P_SAFE = 1)},0.780821
+{(C_SEV = 1),(C_WTHR = 0),(C_TRAF = 17)} -> {(C_RSUR = 0)},0.83959746
+{(C_SEV = 1),(C_WTHR = 0),(V_TYPE = 0)} -> {(P_SAFE = 1)},0.79175717
+{(C_SEV = 1),(C_WTHR = 0),(P_SEX = 0)} -> {(C_RSUR = 0)},0.84455276
+{(C_SEV = 1),(C_WTHR = 0),(P_SEX = 0)} -> {(V_TYPE = 0)},0.88813454
+{(C_SEV = 1),(C_WTHR = 0),(P_SEX = 1)} -> {(C_RSUR = 0)},0.8512424
+{(C_SEV = 1),(C_WTHR = 0),(P_SEX = 1)} -> {(V_TYPE = 0)},0.78742415
+{(C_SEV = 1),(C_WTHR = 0),(P_PSN = 0)} -> {(V_TYPE = 0)},0.8481311
+{(C_SEV = 1),(C_WTHR = 0),(P_PSN = 0)} -> {(P_USER = 0)},0.92394483
+{(C_SEV = 1),(C_WTHR = 0),(P_ISEV = 0)} -> {(C_RSUR = 0)},0.8576102
+{(C_SEV = 1),(C_WTHR = 0),(P_ISEV = 0)} -> {(V_TYPE = 0)},0.8765685
+{(C_SEV = 1),(C_WTHR = 0),(P_ISEV = 0)} -> {(P_SAFE = 1)},0.76575065
+{(C_SEV = 1),(C_WTHR = 0),(P_ISEV = 1)} -> {(C_RSUR = 0)},0.8412329
+{(C_SEV = 1),(C_WTHR = 0),(P_ISEV = 1)} -> {(V_TYPE = 0)},0.78485256
+{(C_SEV = 1),(C_WTHR = 0),(P_SAFE = 1)} -> {(V_TYPE = 0)},0.92468023
+{(C_SEV = 1),(C_WTHR = 0),(P_USER = 0)} -> {(V_TYPE = 0)},0.9179457
+{(C_SEV = 1),(C_WTHR = 0),(P_USER = 0)} -> {(P_PSN = 0)},1.0
+{(C_SEV = 1),(C_RSUR = 0),(C_RALN = 0)} -> {(V_TYPE = 0)},0.82193166
+{(C_SEV = 1),(C_RSUR = 0),(C_RALN = 0)} -> {(L_COND = 0)},0.7990807
+{(C_SEV = 1),(C_RSUR = 0),(C_TRAF = 17)} -> {(C_WTHR = 0)},0.8909116
+{(C_SEV = 1),(C_RSUR = 0),(C_TRAF = 17)} -> {(V_TYPE = 0)},0.8065622
+{(C_SEV = 1),(C_RSUR = 0),(C_TRAF = 17)} -> {(L_COND = 0)},0.77747786
+{(C_SEV = 1),(C_RSUR = 0),(V_TYPE = 0)} -> {(C_RALN = 0)},0.75614834
+{(C_SEV = 1),(C_RSUR = 0),(V_TYPE = 0)} -> {(P_SAFE = 1)},0.7900747
+{(C_SEV = 1),(C_RSUR = 0),(V_TYPE = 0)} -> {(L_COND = 0)},0.78664696
+{(C_SEV = 1),(C_RSUR = 0),(P_SEX = 0)} -> {(C_WTHR = 0)},0.9010805
+{(C_SEV = 1),(C_RSUR = 0),(P_SEX = 0)} -> {(C_RALN = 0)},0.75960785
+{(C_SEV = 1),(C_RSUR = 0),(P_SEX = 0)} -> {(V_TYPE = 0)},0.88226646
+{(C_SEV = 1),(C_RSUR = 0),(P_SEX = 0)} -> {(P_SAFE = 1)},0.79269767
+{(C_SEV = 1),(C_RSUR = 0),(P_SEX = 0)} -> {(L_COND = 0)},0.81836265
+{(C_SEV = 1),(C_RSUR = 0),(P_SEX = 1)} -> {(C_WTHR = 0)},0.8998439
+{(C_SEV = 1),(C_RSUR = 0),(P_SEX = 1)} -> {(V_TYPE = 0)},0.7763867
+{(C_SEV = 1),(C_RSUR = 0),(P_SEX = 1)} -> {(L_COND = 0)},0.7741583
+{(C_SEV = 1),(C_RSUR = 0),(P_PSN = 0)} -> {(C_RALN = 0)},0.7556375
+{(C_SEV = 1),(C_RSUR = 0),(P_PSN = 0)} -> {(V_TYPE = 0)},0.83754975
+{(C_SEV = 1),(C_RSUR = 0),(P_PSN = 0)} -> {(L_COND = 0)},0.80404365
+{(C_SEV = 1),(C_RSUR = 0),(P_ISEV = 0)} -> {(C_WTHR = 0)},0.91838354
+{(C_SEV = 1),(C_RSUR = 0),(P_ISEV = 0)} -> {(C_RALN = 0)},0.7703104
+{(C_SEV = 1),(C_RSUR = 0),(P_ISEV = 0)} -> {(V_TYPE = 0)},0.8721663
+{(C_SEV = 1),(C_RSUR = 0),(P_ISEV = 0)} -> {(P_SAFE = 1)},0.7725867
+{(C_SEV = 1),(C_RSUR = 0),(P_ISEV = 0)} -> {(L_COND = 0)},0.81256557
+{(C_SEV = 1),(C_RSUR = 0),(P_ISEV = 1)} -> {(C_WTHR = 0)},0.89278555
+{(C_SEV = 1),(C_RSUR = 0),(P_ISEV = 1)} -> {(V_TYPE = 0)},0.77181906
+{(C_SEV = 1),(C_RSUR = 0),(P_ISEV = 1)} -> {(L_COND = 0)},0.7753968
+{(C_SEV = 1),(C_RSUR = 0),(P_SAFE = 1)} -> {(V_TYPE = 0)},0.9205348
+{(C_SEV = 1),(C_RSUR = 0),(P_SAFE = 1)} -> {(L_COND = 0)},0.7984833
+{(C_SEV = 1),(C_RSUR = 0),(P_USER = 0)} -> {(C_RALN = 0)},0.75695306
+{(C_SEV = 1),(C_RSUR = 0),(P_USER = 0)} -> {(V_TYPE = 0)},0.9139448
+{(C_SEV = 1),(C_RSUR = 0),(P_USER = 0)} -> {(P_SAFE = 1)},0.7617713
+{(C_SEV = 1),(C_RSUR = 0),(P_USER = 0)} -> {(L_COND = 0)},0.8005843
+{(C_SEV = 1),(C_RSUR = 0),(C_VEHS = 2)} -> {(C_WTHR = 0)},0.90335965
+{(C_SEV = 1),(C_RSUR = 0),(C_VEHS = 2)} -> {(C_RALN = 0)},0.769805
+{(C_SEV = 1),(C_RSUR = 0),(C_VEHS = 2)} -> {(V_TYPE = 0)},0.8429801
+{(C_SEV = 1),(C_RSUR = 0),(C_VEHS = 2)} -> {(L_COND = 0)},0.81713504
+{(C_SEV = 1),(C_RSUR = 0),(V_YEAR in [1980, 2000))} -> {(C_WTHR = 0)},0.89502704
+{(C_SEV = 1),(C_RSUR = 0),(V_YEAR in [1980, 2000))} -> {(V_TYPE = 0)},0.88282335
+{(C_SEV = 1),(C_RSUR = 0),(V_YEAR in [2000, 2020))} -> {(C_WTHR = 0)},0.90487444
+{(C_SEV = 1),(C_RSUR = 0),(V_YEAR in [2000, 2020))} -> {(C_RALN = 0)},0.76786906
+{(C_SEV = 1),(C_RSUR = 0),(V_YEAR in [2000, 2020))} -> {(V_TYPE = 0)},0.8826111
+{(C_SEV = 1),(C_RSUR = 0),(V_DRAGE in [25, 45))} -> {(C_WTHR = 0)},0.9031169
+{(C_SEV = 1),(C_RSUR = 0),(V_DRAGE in [25, 45))} -> {(V_TYPE = 0)},0.86129403
+{(C_SEV = 1),(C_RSUR = 0),(L_COND = 0)} -> {(C_RALN = 0)},0.7585134
+{(C_SEV = 1),(C_RSUR = 0),(L_COND = 0)} -> {(V_TYPE = 0)},0.8116731
+{(C_SEV = 1),(C_RALN = 0),(C_TRAF = 17)} -> {(V_TYPE = 0)},0.8248527
+{(C_SEV = 1),(C_RALN = 0),(V_TYPE = 0)} -> {(P_SAFE = 1)},0.78428113
+{(C_SEV = 1),(C_RALN = 0),(P_SEX = 0)} -> {(V_TYPE = 0)},0.8863762
+{(C_SEV = 1),(C_RALN = 0),(P_SEX = 1)} -> {(V_TYPE = 0)},0.79477495
+{(C_SEV = 1),(C_RALN = 0),(P_SEX = 1)} -> {(P_PSN = 0)},0.75366
+{(C_SEV = 1),(C_RALN = 0),(P_PSN = 0)} -> {(V_TYPE = 0)},0.8550656
+{(C_SEV = 1),(C_RALN = 0),(P_PSN = 0)} -> {(P_USER = 0)},0.93232685
+{(C_SEV = 1),(C_RALN = 0),(P_ISEV = 0)} -> {(V_TYPE = 0)},0.87351876
+{(C_SEV = 1),(C_RALN = 0),(P_ISEV = 1)} -> {(V_TYPE = 0)},0.79385537
+{(C_SEV = 1),(C_RALN = 0),(P_ISEV = 1)} -> {(P_SAFE = 1)},0.75433457
+{(C_SEV = 1),(C_RALN = 0),(P_SAFE = 1)} -> {(V_TYPE = 0)},0.9233615
+{(C_SEV = 1),(C_RALN = 0),(P_USER = 0)} -> {(V_TYPE = 0)},0.9171307
+{(C_SEV = 1),(C_RALN = 0),(P_USER = 0)} -> {(P_PSN = 0)},1.0
+{(C_SEV = 1),(C_RALN = 0),(C_HOUR in [12, 16))} -> {(L_COND = 0)},0.9999946
+{(C_SEV = 1),(C_RALN = 0),(V_DRAGE in [25, 45))} -> {(L_COND = 0)},0.76955175
+{(C_SEV = 1),(C_TRAF = 17),(P_ISEV = 1)} -> {(P_SAFE = 1)},0.7550925
+{(C_SEV = 1),(V_TYPE = 0),(P_SEX = 0)} -> {(P_SAFE = 1)},0.8629054
+{(C_SEV = 1),(V_TYPE = 0),(P_SEX = 0)} -> {(L_COND = 0)},0.78442425
+{(C_SEV = 1),(V_TYPE = 0),(P_SEX = 1)} -> {(P_PSN = 0)},0.76402986
+{(C_SEV = 1),(V_TYPE = 0),(P_SEX = 1)} -> {(P_SAFE = 1)},0.7813796
+{(C_SEV = 1),(V_TYPE = 0),(P_SEX = 1)} -> {(P_USER = 0)},0.76402986
+{(C_SEV = 1),(V_TYPE = 0),(P_PSN = 0)} -> {(P_SAFE = 1)},0.76895654
+{(C_SEV = 1),(V_TYPE = 0),(P_PSN = 0)} -> {(P_USER = 0)},1.0
+{(C_SEV = 1),(V_TYPE = 0),(P_PSN = 0)} -> {(L_COND = 0)},0.76493573
+{(C_SEV = 1),(V_TYPE = 0),(P_ISEV = 0)} -> {(P_SAFE = 1)},0.7916692
+{(C_SEV = 1),(V_TYPE = 0),(P_ISEV = 0)} -> {(L_COND = 0)},0.7748856
+{(C_SEV = 1),(V_TYPE = 0),(P_ISEV = 1)} -> {(P_SAFE = 1)},0.88912445
+{(C_SEV = 1),(V_TYPE = 0),(P_SAFE = 1)} -> {(L_COND = 0)},0.76271474
+{(C_SEV = 1),(V_TYPE = 0),(P_USER = 0)} -> {(P_PSN = 0)},1.0
+{(C_SEV = 1),(V_TYPE = 0),(P_USER = 0)} -> {(P_SAFE = 1)},0.76895654
+{(C_SEV = 1),(V_TYPE = 0),(P_USER = 0)} -> {(L_COND = 0)},0.76493573
+{(C_SEV = 1),(V_TYPE = 0),(P_USER = 1)} -> {(P_SAFE = 1)},0.89166486
+{(C_SEV = 1),(V_TYPE = 0),(C_HOUR in [12, 16))} -> {(L_COND = 0)},0.9999892
+{(C_SEV = 1),(V_TYPE = 0),(C_VEHS = 2)} -> {(P_SAFE = 1)},0.7998844
+{(C_SEV = 1),(V_TYPE = 0),(C_VEHS = 2)} -> {(L_COND = 0)},0.78055346
+{(C_SEV = 1),(V_TYPE = 0),(V_DRAGE in [25, 45))} -> {(L_COND = 0)},0.7600043
+{(C_SEV = 1),(V_TYPE = 0),(L_COND = 0)} -> {(P_SAFE = 1)},0.7997344
+{(C_SEV = 1),(P_SEX = 0),(P_PSN = 0)} -> {(V_TYPE = 0)},0.93940014
+{(C_SEV = 1),(P_SEX = 0),(P_ISEV = 1)} -> {(V_TYPE = 0)},0.8608946
+{(C_SEV = 1),(P_SEX = 0),(P_SAFE = 1)} -> {(V_TYPE = 0)},0.95732176
+{(C_SEV = 1),(P_SEX = 0),(P_USER = 0)} -> {(V_TYPE = 0)},0.9680674
+{(C_SEV = 1),(P_SEX = 0),(C_VEHS = 2)} -> {(V_TYPE = 0)},0.9263512
+{(C_SEV = 1),(P_SEX = 0),(V_YEAR in [2000, 2020))} -> {(V_TYPE = 0)},0.9443621
+{(C_SEV = 1),(P_SEX = 0),(L_COND = 0)} -> {(V_TYPE = 0)},0.88646173
+{(C_SEV = 1),(P_SEX = 1),(P_PSN = 0)} -> {(V_TYPE = 0)},0.8055867
+{(C_SEV = 1),(P_SEX = 1),(P_PSN = 0)} -> {(P_USER = 0)},0.9195423
+{(C_SEV = 1),(P_SEX = 1),(P_PSN = 0)} -> {(L_COND = 0)},0.7500042
+{(C_SEV = 1),(P_SEX = 1),(P_ISEV = 0)} -> {(V_TYPE = 0)},0.83941734
+{(C_SEV = 1),(P_SEX = 1),(P_SAFE = 1)} -> {(V_TYPE = 0)},0.8822215
+{(C_SEV = 1),(P_SEX = 1),(P_SAFE = 1)} -> {(P_PSN = 0)},0.7502258
+{(C_SEV = 1),(P_SEX = 1),(P_USER = 0)} -> {(V_TYPE = 0)},0.87607354
+{(C_SEV = 1),(P_SEX = 1),(P_USER = 0)} -> {(P_PSN = 0)},1.0
+{(C_SEV = 1),(P_SEX = 1),(C_VEHS = 2)} -> {(V_TYPE = 0)},0.80893445
+{(C_SEV = 1),(P_SEX = 1),(C_VEHS = 2)} -> {(P_PSN = 0)},0.773839
+{(C_SEV = 1),(P_SEX = 1),(V_YEAR in [2000, 2020))} -> {(V_TYPE = 0)},0.84025
+{(C_SEV = 1),(P_SEX = 1),(V_YEAR in [2000, 2020))} -> {(P_PSN = 0)},0.77255696
+{(C_SEV = 1),(P_SEX = 1),(L_COND = 0)} -> {(V_TYPE = 0)},0.7774008
+{(C_SEV = 1),(P_SEX = 1),(L_COND = 0)} -> {(P_PSN = 0)},0.7589539
+{(C_SEV = 1),(P_PSN = 0),(P_ISEV = 0)} -> {(C_RALN = 0)},0.7512086
+{(C_SEV = 1),(P_PSN = 0),(P_ISEV = 0)} -> {(V_TYPE = 0)},0.8586278
+{(C_SEV = 1),(P_PSN = 0),(P_ISEV = 0)} -> {(P_USER = 0)},0.9714142
+{(C_SEV = 1),(P_PSN = 0),(P_ISEV = 0)} -> {(L_COND = 0)},0.7881246
+{(C_SEV = 1),(P_PSN = 0),(P_ISEV = 1)} -> {(V_TYPE = 0)},0.84187675
+{(C_SEV = 1),(P_PSN = 0),(P_ISEV = 1)} -> {(P_SAFE = 1)},0.80926496
+{(C_SEV = 1),(P_PSN = 0),(P_ISEV = 1)} -> {(P_USER = 0)},0.8967977
+{(C_SEV = 1),(P_PSN = 0),(P_ISEV = 1)} -> {(L_COND = 0)},0.7561164
+{(C_SEV = 1),(P_PSN = 0),(P_SAFE = 1)} -> {(V_TYPE = 0)},0.9096477
+{(C_SEV = 1),(P_PSN = 0),(P_SAFE = 1)} -> {(P_USER = 0)},0.99105775
+{(C_SEV = 1),(P_PSN = 0),(P_SAFE = 1)} -> {(L_COND = 0)},0.7752233
+{(C_SEV = 1),(P_PSN = 0),(P_USER = 0)} -> {(V_TYPE = 0)},0.9108227
+{(C_SEV = 1),(P_PSN = 0),(P_USER = 0)} -> {(P_SAFE = 1)},0.7630647
+{(C_SEV = 1),(P_PSN = 0),(P_USER = 0)} -> {(L_COND = 0)},0.76705927
+{(C_SEV = 1),(P_PSN = 0),(C_VEHS = 2)} -> {(V_TYPE = 0)},0.84408104
+{(C_SEV = 1),(P_PSN = 0),(C_VEHS = 2)} -> {(P_USER = 0)},0.92344296
+{(C_SEV = 1),(P_PSN = 0),(C_VEHS = 2)} -> {(L_COND = 0)},0.7961369
+{(C_SEV = 1),(P_PSN = 0),(C_VEHS = 2)} -> {(V_TYPE = 0),(P_USER = 0)},0.84408104
+{(C_SEV = 1),(P_PSN = 0),(V_YEAR in [1980, 2000))} -> {(V_TYPE = 0)},0.8795935
+{(C_SEV = 1),(P_PSN = 0),(V_YEAR in [1980, 2000))} -> {(P_USER = 0)},0.9726942
+{(C_SEV = 1),(P_PSN = 0),(V_YEAR in [1980, 2000))} -> {(V_TYPE = 0),(P_USER = 0)},0.8795935
+{(C_SEV = 1),(P_PSN = 0),(V_YEAR in [2000, 2020))} -> {(V_TYPE = 0)},0.8823593
+{(C_SEV = 1),(P_PSN = 0),(V_YEAR in [2000, 2020))} -> {(P_USER = 0)},0.9572014
+{(C_SEV = 1),(P_PSN = 0),(V_YEAR in [2000, 2020))} -> {(V_TYPE = 0),(P_USER = 0)},0.8823593
+{(C_SEV = 1),(P_PSN = 0),(V_DRAGE in [25, 45))} -> {(V_TYPE = 0)},0.8525744
+{(C_SEV = 1),(P_PSN = 0),(V_DRAGE in [25, 45))} -> {(P_USER = 0)},0.94684917
+{(C_SEV = 1),(P_PSN = 0),(V_DRAGE in [25, 45))} -> {(V_TYPE = 0),(P_USER = 0)},0.8525744
+{(C_SEV = 1),(P_PSN = 0),(L_COND = 0)} -> {(V_TYPE = 0)},0.8430617
+{(C_SEV = 1),(P_PSN = 0),(L_COND = 0)} -> {(P_USER = 0)},0.92817414
+{(C_SEV = 1),(P_ISEV = 0),(P_SAFE = 1)} -> {(V_TYPE = 0)},0.8954284
+{(C_SEV = 1),(P_ISEV = 0),(P_USER = 0)} -> {(V_TYPE = 0)},0.88389456
+{(C_SEV = 1),(P_ISEV = 0),(P_USER = 0)} -> {(P_PSN = 0)},1.0
+{(C_SEV = 1),(P_ISEV = 0),(C_VEHS = 2)} -> {(V_TYPE = 0)},0.86887044
+{(C_SEV = 1),(P_ISEV = 0),(L_COND = 0)} -> {(V_TYPE = 0)},0.8644575
+{(C_SEV = 1),(P_ISEV = 1),(P_SAFE = 1)} -> {(V_TYPE = 0)},0.9345978
+{(C_SEV = 1),(P_ISEV = 1),(P_USER = 0)} -> {(V_TYPE = 0)},0.93875885
+{(C_SEV = 1),(P_ISEV = 1),(P_USER = 0)} -> {(P_PSN = 0)},1.0
+{(C_SEV = 1),(P_ISEV = 1),(P_USER = 0)} -> {(P_SAFE = 1)},0.8943975
+{(C_SEV = 1),(P_ISEV = 1),(C_VEHS = 2)} -> {(V_TYPE = 0)},0.845416
+{(C_SEV = 1),(P_ISEV = 1),(C_VEHS = 2)} -> {(P_SAFE = 1)},0.8081614
+{(C_SEV = 1),(P_ISEV = 1),(C_VEHS = 2)} -> {(L_COND = 0)},0.7833012
+{(C_SEV = 1),(P_ISEV = 1),(V_YEAR in [2000, 2020))} -> {(V_TYPE = 0)},0.8868307
+{(C_SEV = 1),(P_ISEV = 1),(V_YEAR in [2000, 2020))} -> {(P_SAFE = 1)},0.8450384
+{(C_SEV = 1),(P_ISEV = 1),(L_COND = 0)} -> {(V_TYPE = 0)},0.78754246
+{(C_SEV = 1),(P_ISEV = 1),(L_COND = 0)} -> {(P_SAFE = 1)},0.76218307
+{(C_SEV = 1),(P_SAFE = 1),(P_USER = 0)} -> {(V_TYPE = 0)},0.91785544
+{(C_SEV = 1),(P_SAFE = 1),(P_USER = 0)} -> {(P_PSN = 0)},1.0
+{(C_SEV = 1),(P_SAFE = 1),(P_USER = 1)} -> {(V_TYPE = 0)},0.94542766
+{(C_SEV = 1),(P_SAFE = 1),(L_COND = 0)} -> {(V_TYPE = 0)},0.9153822
+{(C_SEV = 1),(P_USER = 0),(C_VEHS = 2)} -> {(V_TYPE = 0)},0.9140587
+{(C_SEV = 1),(P_USER = 0),(C_VEHS = 2)} -> {(P_PSN = 0)},1.0
+{(C_SEV = 1),(P_USER = 0),(C_VEHS = 2)} -> {(L_COND = 0)},0.7936153
+{(C_SEV = 1),(P_USER = 0),(C_VEHS = 2)} -> {(V_TYPE = 0),(P_PSN = 0)},0.9140587
+{(C_SEV = 1),(P_USER = 0),(C_VEHS = 2)} -> {(P_PSN = 0),(L_COND = 0)},0.7936153
+{(C_SEV = 1),(P_USER = 0),(V_YEAR in [1980, 2000))} -> {(V_TYPE = 0)},0.9042857
+{(C_SEV = 1),(P_USER = 0),(V_YEAR in [1980, 2000))} -> {(P_PSN = 0)},1.0
+{(C_SEV = 1),(P_USER = 0),(V_YEAR in [1980, 2000))} -> {(V_TYPE = 0),(P_PSN = 0)},0.9042857
+{(C_SEV = 1),(P_USER = 0),(V_YEAR in [2000, 2020))} -> {(V_TYPE = 0)},0.9218115
+{(C_SEV = 1),(P_USER = 0),(V_YEAR in [2000, 2020))} -> {(P_PSN = 0)},1.0
+{(C_SEV = 1),(P_USER = 0),(V_YEAR in [2000, 2020))} -> {(V_TYPE = 0),(P_PSN = 0)},0.9218115
+{(C_SEV = 1),(P_USER = 0),(V_DRAGE in [25, 45))} -> {(V_TYPE = 0)},0.9004332
+{(C_SEV = 1),(P_USER = 0),(V_DRAGE in [25, 45))} -> {(P_PSN = 0)},1.0
+{(C_SEV = 1),(P_USER = 0),(V_DRAGE in [25, 45))} -> {(V_TYPE = 0),(P_PSN = 0)},0.9004332
+{(C_SEV = 1),(P_USER = 0),(L_COND = 0)} -> {(V_TYPE = 0)},0.90830123
+{(C_SEV = 1),(P_USER = 0),(L_COND = 0)} -> {(P_PSN = 0)},1.0
+{(C_SEV = 1),(C_HOUR in [12, 16)),(L_COND = 0)} -> {(V_TYPE = 0)},0.8264091
+{(C_SEV = 1),(C_VEHS = 2),(V_YEAR in [1980, 2000))} -> {(V_TYPE = 0)},0.89162654
+{(C_SEV = 1),(C_VEHS = 2),(V_YEAR in [2000, 2020))} -> {(V_TYPE = 0)},0.8947788
+{(C_SEV = 1),(C_VEHS = 2),(V_DRAGE in [25, 45))} -> {(V_TYPE = 0)},0.8705019
+{(C_SEV = 1),(C_VEHS = 2),(L_COND = 0)} -> {(V_TYPE = 0)},0.84792525
+{(C_SEV = 1),(V_YEAR in [1980, 2000)),(L_COND = 0)} -> {(V_TYPE = 0)},0.8789737
+{(C_SEV = 1),(V_YEAR in [1980, 2000)),(L_COND = 0)} -> {(P_SAFE = 1)},0.78022945
+{(C_SEV = 1),(V_DRAGE in [25, 45)),(L_COND = 0)} -> {(V_TYPE = 0)},0.8630816
+{(C_SEV = 1),(V_DRAGE in [25, 45)),(L_COND = 0)} -> {(P_SAFE = 1)},0.7901869
+{(C_RCFG = 1),(P_USER = 0),(C_VEHS = 2)} -> {(C_SEV = 1)},0.9931169
+{(C_RCFG = 1),(P_USER = 0),(C_VEHS = 2)} -> {(P_PSN = 0)},1.0
+{(C_RCFG = 1),(P_USER = 0),(C_VEHS = 2)} -> {(C_SEV = 1),(P_PSN = 0)},0.9931169
+{(C_WTHR = 0),(C_RSUR = 0),(C_RALN = 0)} -> {(V_TYPE = 0)},0.8224461
+{(C_WTHR = 0),(C_RSUR = 0),(C_RALN = 0)} -> {(C_SEV = 1),(V_TYPE = 0)},0.8133471
+{(C_WTHR = 0),(C_RSUR = 0),(C_TRAF = 17)} -> {(C_SEV = 1)},0.9772406
+{(C_WTHR = 0),(C_RSUR = 0),(V_TYPE = 0)} -> {(C_RALN = 0)},0.7598332
+{(C_WTHR = 0),(C_RSUR = 0),(V_TYPE = 0)} -> {(C_SEV = 1),(C_RALN = 0)},0.75142694
+{(C_WTHR = 0),(C_RSUR = 0),(P_SEX = 0)} -> {(C_SEV = 1)},0.98816544
+{(C_WTHR = 0),(C_RSUR = 0),(P_SEX = 1)} -> {(C_SEV = 1)},0.98042935
+{(C_WTHR = 0),(C_RSUR = 0),(P_ISEV = 0)} -> {(C_SEV = 1)},0.99177235
+{(C_WTHR = 0),(C_RSUR = 0),(P_ISEV = 1)} -> {(C_SEV = 1)},0.98978585
+{(C_WTHR = 0),(C_RSUR = 0),(C_VEHS = 2)} -> {(C_SEV = 1)},0.98813754
+{(C_WTHR = 0),(C_RSUR = 0),(V_YEAR in [1980, 2000))} -> {(C_SEV = 1)},0.9832385
+{(C_WTHR = 0),(C_RSUR = 0),(V_YEAR in [2000, 2020))} -> {(C_SEV = 1)},0.9852281
+{(C_WTHR = 0),(C_RSUR = 0),(V_DRAGE in [25, 45))} -> {(C_SEV = 1)},0.9859637
+{(C_WTHR = 0),(C_RALN = 0),(C_TRAF = 17)} -> {(C_RSUR = 0)},0.8614134
+{(C_WTHR = 0),(C_RALN = 0),(C_TRAF = 17)} -> {(C_SEV = 1),(C_RSUR = 0)},0.84560454
+{(C_WTHR = 0),(C_RALN = 0),(V_TYPE = 0)} -> {(C_RSUR = 0)},0.8581197
+{(C_WTHR = 0),(C_RALN = 0),(V_TYPE = 0)} -> {(C_SEV = 1),(C_RSUR = 0)},0.848626
+{(C_WTHR = 0),(V_TYPE = 0),(P_SEX = 0)} -> {(C_SEV = 1)},0.98956865
+{(C_WTHR = 0),(V_TYPE = 0),(P_SEX = 1)} -> {(C_SEV = 1)},0.983893
+{(C_WTHR = 0),(V_TYPE = 0),(P_PSN = 0)} -> {(C_SEV = 1)},0.9885997
+{(C_WTHR = 0),(V_TYPE = 0),(P_ISEV = 0)} -> {(C_SEV = 1)},0.9940127
+{(C_WTHR = 0),(V_TYPE = 0),(P_ISEV = 1)} -> {(C_SEV = 1)},0.9896933
+{(C_WTHR = 0),(V_TYPE = 0),(P_ISEV = 1)} -> {(P_SAFE = 1)},0.88492817
+{(C_WTHR = 0),(V_TYPE = 0),(P_ISEV = 1)} -> {(C_SEV = 1),(P_SAFE = 1)},0.8775508
+{(C_WTHR = 0),(V_TYPE = 0),(P_SAFE = 1)} -> {(C_SEV = 1)},0.98942685
+{(C_WTHR = 0),(V_TYPE = 0),(P_USER = 0)} -> {(C_SEV = 1)},0.9885997
+{(C_WTHR = 0),(P_SEX = 1),(P_PSN = 0)} -> {(C_SEV = 1)},0.9825134
+{(C_WTHR = 0),(P_PSN = 0),(P_ISEV = 0)} -> {(C_SEV = 1)},0.99191755
+{(C_WTHR = 0),(P_PSN = 0),(P_ISEV = 0)} -> {(P_USER = 0)},0.9700377
+{(C_WTHR = 0),(P_PSN = 0),(P_ISEV = 1)} -> {(C_SEV = 1)},0.99261385
+{(C_WTHR = 0),(P_PSN = 0),(P_ISEV = 1)} -> {(P_USER = 0)},0.88050985
+{(C_WTHR = 0),(P_PSN = 0),(P_SAFE = 1)} -> {(C_SEV = 1)},0.98920053
+{(C_WTHR = 0),(P_PSN = 0),(P_SAFE = 1)} -> {(P_USER = 0)},0.99125886
+{(C_WTHR = 0),(P_PSN = 0),(P_USER = 0)} -> {(C_SEV = 1)},0.9869327
+{(C_WTHR = 0),(P_PSN = 0),(P_USER = 0)} -> {(P_SAFE = 1)},0.76302016
+{(C_WTHR = 0),(P_PSN = 0),(C_VEHS = 2)} -> {(C_SEV = 1)},0.9893615
+{(C_WTHR = 0),(P_PSN = 0),(C_VEHS = 2)} -> {(P_USER = 0)},0.91454244
+{(C_WTHR = 0),(P_PSN = 0),(C_VEHS = 2)} -> {(C_SEV = 1),(P_USER = 0)},0.9052391
+{(C_WTHR = 0),(P_ISEV = 0),(P_SAFE = 1)} -> {(C_SEV = 1)},0.9930452
+{(C_WTHR = 0),(P_ISEV = 0),(P_USER = 0)} -> {(P_PSN = 0)},1.0
+{(C_WTHR = 0),(P_ISEV = 1),(P_SAFE = 1)} -> {(C_SEV = 1)},0.9908854
+{(C_WTHR = 0),(P_ISEV = 1),(P_SAFE = 1)} -> {(V_TYPE = 0)},0.9404887
+{(C_WTHR = 0),(P_ISEV = 1),(P_SAFE = 1)} -> {(C_SEV = 1),(V_TYPE = 0)},0.9326481
+{(C_WTHR = 0),(P_ISEV = 1),(P_USER = 0)} -> {(C_SEV = 1)},0.99190605
+{(C_WTHR = 0),(P_ISEV = 1),(P_USER = 0)} -> {(P_PSN = 0)},1.0
+{(C_WTHR = 0),(P_ISEV = 1),(C_VEHS = 2)} -> {(C_SEV = 1)},0.991061
+{(C_WTHR = 0),(P_SAFE = 1),(P_USER = 0)} -> {(P_PSN = 0)},1.0
+{(C_WTHR = 0),(P_USER = 0),(C_VEHS = 2)} -> {(C_SEV = 1)},0.98982733
+{(C_WTHR = 0),(P_USER = 0),(C_VEHS = 2)} -> {(P_PSN = 0)},1.0
+{(C_WTHR = 0),(P_USER = 0),(C_VEHS = 2)} -> {(C_SEV = 1),(P_PSN = 0)},0.98982733
+{(C_WTHR = 0),(V_DRAGE in [25, 45)),(L_COND = 0)} -> {(C_SEV = 1)},0.98906046
+{(C_RSUR = 0),(C_RALN = 0),(C_TRAF = 17)} -> {(C_SEV = 1)},0.9809996
+{(C_RSUR = 0),(C_RALN = 0),(C_TRAF = 17)} -> {(C_WTHR = 0)},0.89820236
+{(C_RSUR = 0),(C_RALN = 0),(C_TRAF = 17)} -> {(C_SEV = 1),(C_WTHR = 0)},0.88171834
+{(C_RSUR = 0),(C_RALN = 0),(V_TYPE = 0)} -> {(C_SEV = 1)},0.98859847
+{(C_RSUR = 0),(C_RALN = 0),(V_TYPE = 0)} -> {(C_WTHR = 0)},0.9080706
+{(C_RSUR = 0),(C_RALN = 0),(V_TYPE = 0)} -> {(C_SEV = 1),(C_WTHR = 0)},0.8980243
+{(C_RSUR = 0),(C_RALN = 0),(P_SEX = 0)} -> {(C_SEV = 1)},0.9896759
+{(C_RSUR = 0),(C_RALN = 0),(P_SEX = 1)} -> {(C_SEV = 1)},0.98333055
+{(C_RSUR = 0),(C_RALN = 0),(P_PSN = 0)} -> {(C_SEV = 1)},0.98814964
+{(C_RSUR = 0),(C_RALN = 0),(P_ISEV = 0)} -> {(C_SEV = 1)},0.9924468
+{(C_RSUR = 0),(C_RALN = 0),(P_ISEV = 1)} -> {(C_SEV = 1)},0.9913133
+{(C_RSUR = 0),(C_RALN = 0),(P_SAFE = 1)} -> {(C_SEV = 1)},0.98954606
+{(C_RSUR = 0),(C_RALN = 0),(P_USER = 0)} -> {(C_SEV = 1)},0.98846304
+{(C_RSUR = 0),(C_RALN = 0),(C_VEHS = 2)} -> {(C_SEV = 1)},0.98958516
+{(C_RSUR = 0),(C_RALN = 0),(V_YEAR in [2000, 2020))} -> {(C_SEV = 1)},0.98762316
+{(C_RSUR = 0),(C_RALN = 0),(L_COND = 0)} -> {(C_SEV = 1)},0.9888462
+{(C_RSUR = 0),(C_TRAF = 17),(V_TYPE = 0)} -> {(C_SEV = 1)},0.9796616
+{(C_RSUR = 0),(C_TRAF = 17),(P_PSN = 0)} -> {(C_SEV = 1)},0.97949255
+{(C_RSUR = 0),(C_TRAF = 17),(P_SAFE = 1)} -> {(C_SEV = 1)},0.9824374
+{(C_RSUR = 0),(C_TRAF = 17),(P_USER = 0)} -> {(C_SEV = 1)},0.9800553
+{(C_RSUR = 0),(C_TRAF = 17),(L_COND = 0)} -> {(C_SEV = 1)},0.9811972
+{(C_RSUR = 0),(V_TYPE = 0),(P_SEX = 0)} -> {(C_SEV = 1)},0.989018
+{(C_RSUR = 0),(V_TYPE = 0),(P_SEX = 1)} -> {(C_SEV = 1)},0.98304605
+{(C_RSUR = 0),(V_TYPE = 0),(P_PSN = 0)} -> {(C_SEV = 1)},0.98790467
+{(C_RSUR = 0),(V_TYPE = 0),(P_ISEV = 0)} -> {(C_SEV = 1)},0.99371827
+{(C_RSUR = 0),(V_TYPE = 0),(P_ISEV = 1)} -> {(C_SEV = 1)},0.98911613
+{(C_RSUR = 0),(V_TYPE = 0),(P_SAFE = 1)} -> {(C_SEV = 1)},0.988755
+{(C_RSUR = 0),(V_TYPE = 0),(P_USER = 0)} -> {(C_SEV = 1)},0.98790467
+{(C_RSUR = 0),(V_TYPE = 0),(C_VEHS = 2)} -> {(C_SEV = 1)},0.98999405
+{(C_RSUR = 0),(V_TYPE = 0),(V_YEAR in [1980, 2000))} -> {(C_SEV = 1)},0.9842933
+{(C_RSUR = 0),(V_TYPE = 0),(V_YEAR in [2000, 2020))} -> {(C_SEV = 1)},0.9871819
+{(C_RSUR = 0),(V_TYPE = 0),(V_DRAGE in [25, 45))} -> {(C_SEV = 1)},0.9875463
+{(C_RSUR = 0),(V_TYPE = 0),(L_COND = 0)} -> {(C_SEV = 1)},0.98895735
+{(C_RSUR = 0),(P_SEX = 0),(P_SAFE = 1)} -> {(C_SEV = 1)},0.9903602
+{(C_RSUR = 0),(P_SEX = 0),(L_COND = 0)} -> {(C_SEV = 1)},0.9895222
+{(C_RSUR = 0),(P_SEX = 1),(P_PSN = 0)} -> {(C_SEV = 1)},0.98139524
+{(C_RSUR = 0),(P_SEX = 1),(P_SAFE = 1)} -> {(C_SEV = 1)},0.9850008
+{(C_RSUR = 0),(P_SEX = 1),(L_COND = 0)} -> {(C_SEV = 1)},0.98353773
+{(C_RSUR = 0),(P_PSN = 0),(P_SAFE = 1)} -> {(C_SEV = 1)},0.9884312
+{(C_RSUR = 0),(P_PSN = 0),(L_COND = 0)} -> {(C_SEV = 1)},0.98812354
+{(C_RSUR = 0),(P_ISEV = 0),(P_SAFE = 1)} -> {(C_SEV = 1)},0.99260855
+{(C_RSUR = 0),(P_ISEV = 0),(L_COND = 0)} -> {(C_SEV = 1)},0.9929825
+{(C_RSUR = 0),(P_ISEV = 1),(P_SAFE = 1)} -> {(C_SEV = 1)},0.9901805
+{(C_RSUR = 0),(P_ISEV = 1),(L_COND = 0)} -> {(C_SEV = 1)},0.99095017
+{(C_RSUR = 0),(P_SAFE = 1),(P_USER = 0)} -> {(C_SEV = 1)},0.9884123
+{(C_RSUR = 0),(P_SAFE = 1),(C_VEHS = 2)} -> {(C_SEV = 1)},0.9899504
+{(C_RSUR = 0),(P_SAFE = 1),(L_COND = 0)} -> {(C_SEV = 1)},0.9892715
+{(C_RSUR = 0),(P_USER = 0),(C_VEHS = 2)} -> {(C_SEV = 1)},0.98936105
+{(C_RSUR = 0),(P_USER = 0),(C_VEHS = 2)} -> {(P_PSN = 0)},1.0
+{(C_RSUR = 0),(P_USER = 0),(C_VEHS = 2)} -> {(C_SEV = 1),(P_PSN = 0)},0.98936105
+{(C_RSUR = 0),(P_USER = 0),(L_COND = 0)} -> {(C_SEV = 1)},0.98871356
+{(C_RSUR = 0),(C_VEHS = 2),(L_COND = 0)} -> {(C_SEV = 1)},0.9892592
+{(C_RALN = 0),(C_TRAF = 17),(V_TYPE = 0)} -> {(C_SEV = 1)},0.9832499
+{(C_RALN = 0),(V_TYPE = 0),(P_SEX = 0)} -> {(C_SEV = 1)},0.9907561
+{(C_RALN = 0),(V_TYPE = 0),(P_SEX = 1)} -> {(C_SEV = 1)},0.9862984
+{(C_RALN = 0),(V_TYPE = 0),(P_PSN = 0)} -> {(C_SEV = 1)},0.9899682
+{(C_RALN = 0),(V_TYPE = 0),(P_ISEV = 0)} -> {(C_SEV = 1)},0.9944271
+{(C_RALN = 0),(V_TYPE = 0),(P_ISEV = 1)} -> {(C_SEV = 1)},0.99110985
+{(C_RALN = 0),(V_TYPE = 0),(P_SAFE = 1)} -> {(C_SEV = 1)},0.99045193
+{(C_RALN = 0),(V_TYPE = 0),(P_USER = 0)} -> {(C_SEV = 1)},0.9899682
+{(C_RALN = 0),(P_SEX = 1),(P_PSN = 0)} -> {(C_SEV = 1)},0.98486775
+{(C_RALN = 0),(P_PSN = 0),(P_ISEV = 0)} -> {(C_SEV = 1)},0.9923025
+{(C_RALN = 0),(P_PSN = 0),(P_ISEV = 0)} -> {(P_USER = 0)},0.97157705
+{(C_RALN = 0),(P_PSN = 0),(P_ISEV = 1)} -> {(C_SEV = 1)},0.99328685
+{(C_RALN = 0),(P_PSN = 0),(P_ISEV = 1)} -> {(P_USER = 0)},0.8938914
+{(C_RALN = 0),(P_PSN = 0),(P_SAFE = 1)} -> {(C_SEV = 1)},0.9900398
+{(C_RALN = 0),(P_PSN = 0),(P_SAFE = 1)} -> {(P_USER = 0)},0.99094754
+{(C_RALN = 0),(P_PSN = 0),(P_USER = 0)} -> {(C_SEV = 1)},0.98844653
+{(C_RALN = 0),(P_PSN = 0),(P_USER = 0)} -> {(P_SAFE = 1)},0.7521643
+{(C_RALN = 0),(P_PSN = 0),(C_VEHS = 2)} -> {(C_SEV = 1)},0.99043834
+{(C_RALN = 0),(P_PSN = 0),(C_VEHS = 2)} -> {(P_USER = 0)},0.9197264
+{(C_RALN = 0),(P_PSN = 0),(C_VEHS = 2)} -> {(C_SEV = 1),(P_USER = 0)},0.9112167
+{(C_RALN = 0),(P_ISEV = 0),(P_USER = 0)} -> {(P_PSN = 0)},1.0
+{(C_RALN = 0),(P_ISEV = 1),(P_SAFE = 1)} -> {(C_SEV = 1)},0.9918767
+{(C_RALN = 0),(P_ISEV = 1),(P_USER = 0)} -> {(C_SEV = 1)},0.99271
+{(C_RALN = 0),(P_ISEV = 1),(P_USER = 0)} -> {(P_PSN = 0)},1.0
+{(C_RALN = 0),(P_ISEV = 1),(C_VEHS = 2)} -> {(C_SEV = 1)},0.99188936
+{(C_RALN = 0),(P_SAFE = 1),(P_USER = 0)} -> {(P_PSN = 0)},1.0
+{(C_RALN = 0),(P_USER = 0),(C_VEHS = 2)} -> {(C_SEV = 1)},0.9907476
+{(C_RALN = 0),(P_USER = 0),(C_VEHS = 2)} -> {(P_PSN = 0)},1.0
+{(C_RALN = 0),(P_USER = 0),(C_VEHS = 2)} -> {(C_SEV = 1),(P_PSN = 0)},0.9907476
+{(C_RALN = 0),(C_HOUR in [12, 16)),(L_COND = 0)} -> {(C_SEV = 1)},0.9896173
+{(C_RALN = 0),(V_DRAGE in [25, 45)),(L_COND = 0)} -> {(C_SEV = 1)},0.9904399
+{(C_TRAF = 17),(P_ISEV = 1),(P_SAFE = 1)} -> {(C_SEV = 1)},0.986494
+{(V_TYPE = 0),(P_SEX = 0),(P_PSN = 0)} -> {(C_SEV = 1)},0.9919045
+{(V_TYPE = 0),(P_SEX = 0),(P_ISEV = 1)} -> {(C_SEV = 1)},0.9920574
+{(V_TYPE = 0),(P_SEX = 0),(P_SAFE = 1)} -> {(C_SEV = 1)},0.9905945
+{(V_TYPE = 0),(P_SEX = 0),(P_USER = 0)} -> {(C_SEV = 1)},0.9919045
+{(V_TYPE = 0),(P_SEX = 0),(C_VEHS = 2)} -> {(C_SEV = 1)},0.9912478
+{(V_TYPE = 0),(P_SEX = 0),(V_YEAR in [2000, 2020))} -> {(C_SEV = 1)},0.9898087
+{(V_TYPE = 0),(P_SEX = 0),(L_COND = 0)} -> {(C_SEV = 1)},0.9904677
+{(V_TYPE = 0),(P_SEX = 1),(P_PSN = 0)} -> {(C_SEV = 1)},0.98477376
+{(V_TYPE = 0),(P_SEX = 1),(P_ISEV = 0)} -> {(C_SEV = 1)},0.9931926
+{(V_TYPE = 0),(P_SEX = 1),(P_SAFE = 1)} -> {(C_SEV = 1)},0.9866098
+{(V_TYPE = 0),(P_SEX = 1),(P_USER = 0)} -> {(C_SEV = 1)},0.98477376
+{(V_TYPE = 0),(P_SEX = 1),(C_VEHS = 2)} -> {(C_SEV = 1)},0.98738605
+{(V_TYPE = 0),(P_SEX = 1),(V_YEAR in [2000, 2020))} -> {(C_SEV = 1)},0.9843328
+{(V_TYPE = 0),(P_SEX = 1),(L_COND = 0)} -> {(C_SEV = 1)},0.9865676
+{(V_TYPE = 0),(P_PSN = 0),(P_ISEV = 0)} -> {(C_SEV = 1)},0.9938855
+{(V_TYPE = 0),(P_PSN = 0),(P_ISEV = 1)} -> {(C_SEV = 1)},0.9926997
+{(V_TYPE = 0),(P_PSN = 0),(P_SAFE = 1)} -> {(C_SEV = 1)},0.9897445
+{(V_TYPE = 0),(P_PSN = 0),(P_USER = 0)} -> {(C_SEV = 1)},0.9879134
+{(V_TYPE = 0),(P_PSN = 0),(C_VEHS = 2)} -> {(C_SEV = 1)},0.9907285
+{(V_TYPE = 0),(P_PSN = 0),(C_VEHS = 2)} -> {(C_SEV = 1),(P_USER = 0)},0.9907285
+{(V_TYPE = 0),(P_PSN = 0),(V_YEAR in [1980, 2000))} -> {(C_SEV = 1)},0.98653495
+{(V_TYPE = 0),(P_PSN = 0),(V_YEAR in [1980, 2000))} -> {(P_USER = 0)},1.0
+{(V_TYPE = 0),(P_PSN = 0),(V_YEAR in [1980, 2000))} -> {(C_SEV = 1),(P_USER = 0)},0.98653495
+{(V_TYPE = 0),(P_PSN = 0),(V_YEAR in [2000, 2020))} -> {(C_SEV = 1)},0.9887464
+{(V_TYPE = 0),(P_PSN = 0),(V_YEAR in [2000, 2020))} -> {(P_USER = 0)},1.0
+{(V_TYPE = 0),(P_PSN = 0),(V_YEAR in [2000, 2020))} -> {(C_SEV = 1),(P_USER = 0)},0.9887464
+{(V_TYPE = 0),(P_PSN = 0),(V_DRAGE in [25, 45))} -> {(C_SEV = 1)},0.9890861
+{(V_TYPE = 0),(P_PSN = 0),(V_DRAGE in [25, 45))} -> {(P_USER = 0)},1.0
+{(V_TYPE = 0),(P_PSN = 0),(V_DRAGE in [25, 45))} -> {(C_SEV = 1),(P_USER = 0)},0.9890861
+{(V_TYPE = 0),(P_PSN = 0),(L_COND = 0)} -> {(C_SEV = 1)},0.9901775
+{(V_TYPE = 0),(P_ISEV = 0),(P_SAFE = 1)} -> {(C_SEV = 1)},0.99426275
+{(V_TYPE = 0),(P_ISEV = 0),(P_USER = 0)} -> {(C_SEV = 1)},0.9938855
+{(V_TYPE = 0),(P_ISEV = 0),(C_VEHS = 2)} -> {(C_SEV = 1)},0.9965302
+{(V_TYPE = 0),(P_ISEV = 0),(L_COND = 0)} -> {(C_SEV = 1)},0.9951481
+{(V_TYPE = 0),(P_ISEV = 1),(P_SAFE = 1)} -> {(C_SEV = 1)},0.9911666
+{(V_TYPE = 0),(P_ISEV = 1),(P_USER = 0)} -> {(C_SEV = 1)},0.9926997
+{(V_TYPE = 0),(P_ISEV = 1),(C_VEHS = 2)} -> {(C_SEV = 1)},0.990826
+{(V_TYPE = 0),(P_ISEV = 1),(V_YEAR in [2000, 2020))} -> {(C_SEV = 1)},0.99013263
+{(V_TYPE = 0),(P_ISEV = 1),(L_COND = 0)} -> {(C_SEV = 1)},0.99077195
+{(V_TYPE = 0),(P_SAFE = 1),(P_USER = 0)} -> {(C_SEV = 1)},0.9897445
+{(V_TYPE = 0),(P_SAFE = 1),(P_USER = 1)} -> {(C_SEV = 1)},0.9861962
+{(V_TYPE = 0),(P_SAFE = 1),(C_VEHS = 2)} -> {(C_SEV = 1)},0.9905123
+{(V_TYPE = 0),(P_SAFE = 1),(L_COND = 0)} -> {(C_SEV = 1)},0.99002457
+{(V_TYPE = 0),(P_USER = 0),(C_VEHS = 2)} -> {(C_SEV = 1)},0.9907285
+{(V_TYPE = 0),(P_USER = 0),(C_VEHS = 2)} -> {(C_SEV = 1),(P_PSN = 0)},0.9907285
+{(V_TYPE = 0),(P_USER = 0),(V_YEAR in [1980, 2000))} -> {(C_SEV = 1)},0.98653495
+{(V_TYPE = 0),(P_USER = 0),(V_YEAR in [1980, 2000))} -> {(P_PSN = 0)},1.0
+{(V_TYPE = 0),(P_USER = 0),(V_YEAR in [1980, 2000))} -> {(C_SEV = 1),(P_PSN = 0)},0.98653495
+{(V_TYPE = 0),(P_USER = 0),(V_YEAR in [2000, 2020))} -> {(C_SEV = 1)},0.9887464
+{(V_TYPE = 0),(P_USER = 0),(V_YEAR in [2000, 2020))} -> {(P_PSN = 0)},1.0
+{(V_TYPE = 0),(P_USER = 0),(V_YEAR in [2000, 2020))} -> {(C_SEV = 1),(P_PSN = 0)},0.9887464
+{(V_TYPE = 0),(P_USER = 0),(V_DRAGE in [25, 45))} -> {(C_SEV = 1)},0.9890861
+{(V_TYPE = 0),(P_USER = 0),(V_DRAGE in [25, 45))} -> {(P_PSN = 0)},1.0
+{(V_TYPE = 0),(P_USER = 0),(V_DRAGE in [25, 45))} -> {(C_SEV = 1),(P_PSN = 0)},0.9890861
+{(V_TYPE = 0),(P_USER = 0),(L_COND = 0)} -> {(C_SEV = 1)},0.9901775
+{(V_TYPE = 0),(C_HOUR in [12, 16)),(L_COND = 0)} -> {(C_SEV = 1)},0.98922676
+{(V_TYPE = 0),(C_VEHS = 2),(V_YEAR in [1980, 2000))} -> {(C_SEV = 1)},0.98823804
+{(V_TYPE = 0),(C_VEHS = 2),(V_YEAR in [2000, 2020))} -> {(C_SEV = 1)},0.99027425
+{(V_TYPE = 0),(C_VEHS = 2),(V_DRAGE in [25, 45))} -> {(C_SEV = 1)},0.99076605
+{(V_TYPE = 0),(C_VEHS = 2),(L_COND = 0)} -> {(C_SEV = 1)},0.9907777
+{(V_TYPE = 0),(V_YEAR in [1980, 2000)),(L_COND = 0)} -> {(C_SEV = 1)},0.98762286
+{(V_TYPE = 0),(V_DRAGE in [25, 45)),(L_COND = 0)} -> {(C_SEV = 1)},0.99027705
+{(P_SEX = 1),(P_PSN = 0),(P_SAFE = 1)} -> {(C_SEV = 1)},0.98509073
+{(P_SEX = 1),(P_PSN = 0),(P_USER = 0)} -> {(C_SEV = 1)},0.9821099
+{(P_SEX = 1),(P_PSN = 0),(C_VEHS = 2)} -> {(C_SEV = 1)},0.98509854
+{(P_SEX = 1),(P_PSN = 0),(C_VEHS = 2)} -> {(P_USER = 0)},0.90927166
+{(P_SEX = 1),(P_PSN = 0),(C_VEHS = 2)} -> {(C_SEV = 1),(P_USER = 0)},0.89618325
+{(P_SEX = 1),(P_PSN = 0),(V_YEAR in [2000, 2020))} -> {(C_SEV = 1)},0.9821367
+{(P_SEX = 1),(P_PSN = 0),(L_COND = 0)} -> {(C_SEV = 1)},0.98446655
+{(P_SEX = 1),(P_USER = 0),(C_VEHS = 2)} -> {(C_SEV = 1)},0.9856056
+{(P_SEX = 1),(P_USER = 0),(C_VEHS = 2)} -> {(P_PSN = 0)},1.0
+{(P_SEX = 1),(P_USER = 0),(C_VEHS = 2)} -> {(C_SEV = 1),(P_PSN = 0)},0.9856056
+{(P_PSN = 0),(P_ISEV = 0),(P_SAFE = 1)} -> {(C_SEV = 1)},0.99203455
+{(P_PSN = 0),(P_ISEV = 0),(P_SAFE = 1)} -> {(P_USER = 0)},0.9909459
+{(P_PSN = 0),(P_ISEV = 0),(P_USER = 0)} -> {(C_SEV = 1)},0.9913822
+{(P_PSN = 0),(P_ISEV = 0),(P_USER = 0)} -> {(C_RALN = 0)},0.7506377
+{(P_PSN = 0),(P_ISEV = 0),(P_USER = 0)} -> {(L_COND = 0)},0.78768605
+{(P_PSN = 0),(P_ISEV = 0),(L_COND = 0)} -> {(C_SEV = 1)},0.9928934
+{(P_PSN = 0),(P_ISEV = 0),(L_COND = 0)} -> {(P_USER = 0)},0.97235364
+{(P_PSN = 0),(P_ISEV = 1),(P_SAFE = 1)} -> {(C_SEV = 1)},0.99239635
+{(P_PSN = 0),(P_ISEV = 1),(P_SAFE = 1)} -> {(P_USER = 0)},0.9911564
+{(P_PSN = 0),(P_ISEV = 1),(P_USER = 0)} -> {(C_SEV = 1)},0.991463
+{(P_PSN = 0),(P_ISEV = 1),(P_USER = 0)} -> {(P_SAFE = 1)},0.8935725
+{(P_PSN = 0),(P_ISEV = 1),(C_VEHS = 2)} -> {(C_SEV = 1)},0.99237216
+{(P_PSN = 0),(P_ISEV = 1),(L_COND = 0)} -> {(C_SEV = 1)},0.9928604
+{(P_PSN = 0),(P_SAFE = 1),(P_USER = 0)} -> {(C_SEV = 1)},0.98820597
+{(P_PSN = 0),(P_SAFE = 1),(C_VEHS = 2)} -> {(C_SEV = 1)},0.9897762
+{(P_PSN = 0),(P_SAFE = 1),(L_COND = 0)} -> {(C_SEV = 1)},0.989658
+{(P_PSN = 0),(P_USER = 0),(C_VEHS = 2)} -> {(C_SEV = 1)},0.9888914
+{(P_PSN = 0),(P_USER = 0),(C_VEHS = 2)} -> {(L_COND = 0)},0.79249877
+{(P_PSN = 0),(P_USER = 0),(C_VEHS = 2)} -> {(C_SEV = 1),(V_TYPE = 0)},0.90390486
+{(P_PSN = 0),(P_USER = 0),(C_VEHS = 2)} -> {(C_SEV = 1),(L_COND = 0)},0.7847994
+{(P_PSN = 0),(P_USER = 0),(V_YEAR in [1980, 2000))} -> {(C_SEV = 1)},0.98494166
+{(P_PSN = 0),(P_USER = 0),(V_YEAR in [1980, 2000))} -> {(V_TYPE = 0)},0.9028253
+{(P_PSN = 0),(P_USER = 0),(V_YEAR in [1980, 2000))} -> {(C_SEV = 1),(V_TYPE = 0)},0.8906687
+{(P_PSN = 0),(P_USER = 0),(V_YEAR in [2000, 2020))} -> {(C_SEV = 1)},0.9868339
+{(P_PSN = 0),(P_USER = 0),(V_YEAR in [2000, 2020))} -> {(V_TYPE = 0)},0.9200285
+{(P_PSN = 0),(P_USER = 0),(V_YEAR in [2000, 2020))} -> {(C_SEV = 1),(V_TYPE = 0)},0.9096748
+{(P_PSN = 0),(P_USER = 0),(V_DRAGE in [25, 45))} -> {(C_SEV = 1)},0.9868961
+{(P_PSN = 0),(P_USER = 0),(V_DRAGE in [25, 45))} -> {(V_TYPE = 0)},0.89843947
+{(P_PSN = 0),(P_USER = 0),(V_DRAGE in [25, 45))} -> {(C_SEV = 1),(V_TYPE = 0)},0.88863397
+{(P_PSN = 0),(P_USER = 0),(L_COND = 0)} -> {(C_SEV = 1)},0.98840183
+{(P_PSN = 0),(C_VEHS = 2),(L_COND = 0)} -> {(C_SEV = 1)},0.98994863
+{(P_PSN = 0),(C_VEHS = 2),(L_COND = 0)} -> {(P_USER = 0)},0.9202057
+{(P_PSN = 0),(C_VEHS = 2),(L_COND = 0)} -> {(C_SEV = 1),(P_USER = 0)},0.9112656
+{(P_ISEV = 0),(P_SAFE = 1),(P_USER = 0)} -> {(P_PSN = 0)},1.0
+{(P_ISEV = 0),(P_USER = 0),(L_COND = 0)} -> {(P_PSN = 0)},1.0
+{(P_ISEV = 1),(P_SAFE = 1),(P_USER = 0)} -> {(C_SEV = 1)},0.99237835
+{(P_ISEV = 1),(P_SAFE = 1),(P_USER = 0)} -> {(P_PSN = 0)},1.0
+{(P_ISEV = 1),(P_SAFE = 1),(C_VEHS = 2)} -> {(C_SEV = 1)},0.9908629
+{(P_ISEV = 1),(P_SAFE = 1),(V_YEAR in [2000, 2020))} -> {(C_SEV = 1)},0.9905837
+{(P_ISEV = 1),(P_SAFE = 1),(L_COND = 0)} -> {(C_SEV = 1)},0.99101317
+{(P_ISEV = 1),(P_USER = 0),(L_COND = 0)} -> {(C_SEV = 1)},0.9922072
+{(P_ISEV = 1),(C_VEHS = 2),(L_COND = 0)} -> {(C_SEV = 1)},0.9911837
+{(P_SAFE = 1),(V_YEAR in [1980, 2000)),(L_COND = 0)} -> {(C_SEV = 1)},0.9887779
+{(P_SAFE = 1),(V_DRAGE in [25, 45)),(L_COND = 0)} -> {(C_SEV = 1)},0.99040204
+{(P_USER = 0),(C_VEHS = 2),(V_YEAR in [2000, 2020))} -> {(C_SEV = 1)},0.9895098
+{(P_USER = 0),(C_VEHS = 2),(V_YEAR in [2000, 2020))} -> {(P_PSN = 0)},1.0
+{(P_USER = 0),(C_VEHS = 2),(V_YEAR in [2000, 2020))} -> {(C_SEV = 1),(P_PSN = 0)},0.9895098
+{(P_USER = 0),(C_VEHS = 2),(L_COND = 0)} -> {(C_SEV = 1)},0.9902847
+{(P_USER = 0),(C_VEHS = 2),(L_COND = 0)} -> {(P_PSN = 0)},1.0
+{(P_USER = 0),(C_VEHS = 2),(L_COND = 0)} -> {(C_SEV = 1),(P_PSN = 0)},0.9902847
+{(C_SEV = 1),(C_RCFG = 1),(P_USER = 0),(C_VEHS = 2)} -> {(P_PSN = 0)},1.0
+{(C_SEV = 1),(C_WTHR = 0),(V_TYPE = 0),(P_ISEV = 1)} -> {(P_SAFE = 1)},0.88668966
+{(C_SEV = 1),(C_WTHR = 0),(P_PSN = 0),(C_VEHS = 2)} -> {(P_USER = 0)},0.914973
+{(C_SEV = 1),(C_WTHR = 0),(P_ISEV = 1),(P_SAFE = 1)} -> {(V_TYPE = 0)},0.9412271
+{(C_SEV = 1),(C_WTHR = 0),(P_USER = 0),(C_VEHS = 2)} -> {(P_PSN = 0)},1.0
+{(C_SEV = 1),(C_RSUR = 0),(C_RALN = 0),(C_TRAF = 17)} -> {(C_WTHR = 0)},0.89879584
+{(C_SEV = 1),(C_RSUR = 0),(C_RALN = 0),(V_TYPE = 0)} -> {(C_WTHR = 0)},0.9083813
+{(C_SEV = 1),(C_RSUR = 0),(P_USER = 0),(C_VEHS = 2)} -> {(P_PSN = 0)},1.0
+{(C_SEV = 1),(C_RALN = 0),(P_PSN = 0),(C_VEHS = 2)} -> {(P_USER = 0)},0.92001355
+{(C_SEV = 1),(C_RALN = 0),(P_USER = 0),(C_VEHS = 2)} -> {(P_PSN = 0)},1.0
+{(C_SEV = 1),(V_TYPE = 0),(P_PSN = 0),(C_VEHS = 2)} -> {(P_USER = 0)},1.0
+{(C_SEV = 1),(V_TYPE = 0),(P_PSN = 0),(V_YEAR in [1980, 2000))} -> {(P_USER = 0)},1.0
+{(C_SEV = 1),(V_TYPE = 0),(P_PSN = 0),(V_YEAR in [2000, 2020))} -> {(P_USER = 0)},1.0
+{(C_SEV = 1),(V_TYPE = 0),(P_PSN = 0),(V_DRAGE in [25, 45))} -> {(P_USER = 0)},1.0
+{(C_SEV = 1),(V_TYPE = 0),(P_USER = 0),(C_VEHS = 2)} -> {(P_PSN = 0)},1.0
+{(C_SEV = 1),(V_TYPE = 0),(P_USER = 0),(V_YEAR in [1980, 2000))} -> {(P_PSN = 0)},1.0
+{(C_SEV = 1),(V_TYPE = 0),(P_USER = 0),(V_YEAR in [2000, 2020))} -> {(P_PSN = 0)},1.0
+{(C_SEV = 1),(V_TYPE = 0),(P_USER = 0),(V_DRAGE in [25, 45))} -> {(P_PSN = 0)},1.0
+{(C_SEV = 1),(P_SEX = 1),(P_PSN = 0),(C_VEHS = 2)} -> {(P_USER = 0)},0.9097397
+{(C_SEV = 1),(P_SEX = 1),(P_USER = 0),(C_VEHS = 2)} -> {(P_PSN = 0)},1.0
+{(C_SEV = 1),(P_PSN = 0),(P_USER = 0),(C_VEHS = 2)} -> {(V_TYPE = 0)},0.9140587
+{(C_SEV = 1),(P_PSN = 0),(P_USER = 0),(C_VEHS = 2)} -> {(L_COND = 0)},0.7936153
+{(C_SEV = 1),(P_PSN = 0),(P_USER = 0),(V_YEAR in [1980, 2000))} -> {(V_TYPE = 0)},0.9042857
+{(C_SEV = 1),(P_PSN = 0),(P_USER = 0),(V_YEAR in [2000, 2020))} -> {(V_TYPE = 0)},0.9218115
+{(C_SEV = 1),(P_PSN = 0),(P_USER = 0),(V_DRAGE in [25, 45))} -> {(V_TYPE = 0)},0.9004332
+{(C_SEV = 1),(P_PSN = 0),(C_VEHS = 2),(L_COND = 0)} -> {(P_USER = 0)},0.9205181
+{(C_SEV = 1),(P_USER = 0),(C_VEHS = 2),(V_YEAR in [2000, 2020))} -> {(P_PSN = 0)},1.0
+{(C_SEV = 1),(P_USER = 0),(C_VEHS = 2),(L_COND = 0)} -> {(P_PSN = 0)},1.0
+{(C_RCFG = 1),(P_PSN = 0),(P_USER = 0),(C_VEHS = 2)} -> {(C_SEV = 1)},0.9931169
+{(C_WTHR = 0),(C_RSUR = 0),(C_RALN = 0),(C_TRAF = 17)} -> {(C_SEV = 1)},0.98164773
+{(C_WTHR = 0),(C_RSUR = 0),(C_RALN = 0),(V_TYPE = 0)} -> {(C_SEV = 1)},0.98893666
+{(C_WTHR = 0),(V_TYPE = 0),(P_ISEV = 1),(P_SAFE = 1)} -> {(C_SEV = 1)},0.99166334
+{(C_WTHR = 0),(P_PSN = 0),(P_USER = 0),(C_VEHS = 2)} -> {(C_SEV = 1)},0.98982733
+{(C_RSUR = 0),(P_PSN = 0),(P_USER = 0),(C_VEHS = 2)} -> {(C_SEV = 1)},0.98936105
+{(C_RALN = 0),(P_PSN = 0),(P_USER = 0),(C_VEHS = 2)} -> {(C_SEV = 1)},0.9907476
+{(V_TYPE = 0),(P_PSN = 0),(P_USER = 0),(V_YEAR in [1980, 2000))} -> {(C_SEV = 1)},0.98653495
+{(V_TYPE = 0),(P_PSN = 0),(P_USER = 0),(V_YEAR in [2000, 2020))} -> {(C_SEV = 1)},0.9887464
+{(V_TYPE = 0),(P_PSN = 0),(P_USER = 0),(V_DRAGE in [25, 45))} -> {(C_SEV = 1)},0.9890861
+{(P_SEX = 1),(P_PSN = 0),(P_USER = 0),(C_VEHS = 2)} -> {(C_SEV = 1)},0.9856056
+{(P_PSN = 0),(P_USER = 0),(C_VEHS = 2),(V_YEAR in [2000, 2020))} -> {(C_SEV = 1)},0.9895098
+{(P_PSN = 0),(P_USER = 0),(C_VEHS = 2),(L_COND = 0)} -> {(C_SEV = 1)},0.9902847

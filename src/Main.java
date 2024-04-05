@@ -25,45 +25,8 @@ public class Main {
         int mincov = (int)(entrylist.size() * config.min_coverage);
         //int mincov = 2;
         float minacc = config.rule_accuracy;
-
-        /*
-        //uncomment if you'd like to check the support value of some set of predicates
-        ArrayList<Predicate> predlist = new ArrayList<Predicate>();
-        Predicate temp = new Predicate(rules.Predicate.FEATURE.C_SEV, 1);
-        predlist.add(temp);
-        temp = new Predicate(rules.Predicate.FEATURE.C_WTHR, 0);
-        //predlist.add(temp);
-        temp = new Predicate(rules.Predicate.FEATURE.C_RSUR, 0);
-        //predlist.add(temp);
-        temp = new Predicate(rules.Predicate.FEATURE.C_RALN, 0);
-        //predlist.add(temp);
-        temp = new Predicate(rules.Predicate.FEATURE.C_TRAF, 17);
-        //predlist.add(temp);
-        temp = new Predicate(rules.Predicate.FEATURE.V_TYPE, 0);
-        predlist.add(temp);
-        temp = new Predicate(rules.Predicate.FEATURE.P_SEX, 1);
-        //predlist.add(temp);
-        temp = new Predicate(rules.Predicate.FEATURE.P_PSN, 0);
-        predlist.add(temp);
-        temp = new Predicate(rules.Predicate.FEATURE.P_ISEV, 1);
-        //predlist.add(temp);
-        temp = new Predicate(rules.Predicate.FEATURE.P_SAFE, 1);
-        //predlist.add(temp);
-        temp = new Predicate(rules.Predicate.FEATURE.P_USER, 0);
-        predlist.add(temp);
-        temp = new Predicate(rules.Predicate.FEATURE.C_VEHS, 2);
-        //predlist.add(temp);
-        temp = new Predicate(rules.Predicate.FEATURE.V_YEAR, 2000, 2020);
-        //predlist.add(temp);
-        temp = new Predicate(rules.Predicate.FEATURE.L_COND, 0);
-        //predlist.add(temp);
+        boolean verifyflag = false; //set this to true if you want to verify the support values, false if you don't.
         
-        Collections.sort(predlist);
-        Analyzer checker = new Analyzer();
-        int checkval = checker.checkSupport(predlist, entrylist);
-        System.out.println("support == " + checkval);
-        */
-
         IndexedApriori apriorisets = new IndexedApriori();
         long start = System.currentTimeMillis();
         apriorisets.itemlists.add(apriorisets.oneItemList(entrylist, mincov));
@@ -82,15 +45,40 @@ public class Main {
         System.out.println("runtime of apriori algorithm in milliseconds:");
         System.out.println(finish - start);
         
-        
+        if (verifyflag)
+        {
+            boolean allgood = true;
+            Analyzer checker = new Analyzer();
+            int checkval;
+            entrylist = CollisionEntryParser.Parse_CSV(config.database_path, config.suntimes_path);
+            System.out.println("Verifying support values of generated item sets...");
+            for (int i = 0; i < itemsets.size(); i++)
+            {
+                for (int j = 0; j < itemsets.get(i).size(); j++)
+                {
+                    checkval = checker.checkSupport(itemsets.get(i).get(j).items, entrylist);
+                    if (checkval != itemsets.get(i).get(j).support)
+                    {
+                        System.out.println("Incorrect support for item set");
+                        itemsets.get(i).get(j).display();
+                        System.out.println("Calculated support: " + itemsets.get(i).get(j).support + ", Actual support: " + checkval);
+                        allgood = false;
+                    }
+                }
+            }
+            if (allgood)
+            {
+                System.out.println("All calculated supports are correct!");
+            }
+        }
         
         start = System.currentTimeMillis();
         RuleGenerator rulelist = new RuleGenerator(itemsets, minacc);
         finish = System.currentTimeMillis();
-        for (int i = 0; i < rulelist.rulelist.size(); i++)
-        {
-            System.out.println(parsing.RulesIO.encodeRule(rulelist.rulelist.get(i)));
-        }
+        //for (int i = 0; i < rulelist.rulelist.size(); i++) //just check the output file.
+        //{
+        //    System.out.println(parsing.RulesIO.encodeRule(rulelist.rulelist.get(i)));
+        //}
         System.out.println("runtime of rule generation in milliseconds:");
         System.out.println(finish - start);
         parsing.RulesIO.writeRules(rulelist.rulelist, config.rules_out_path);
