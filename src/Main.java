@@ -4,10 +4,11 @@ import apriori.*;
 import rules.*;
 import apriori.*;
 import parsing.CollisionEntry;
+import analysis.*;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
+import java.util.*;
 
 import com.google.gson.Gson;
 
@@ -20,8 +21,48 @@ public class Main {
         config.database_path, config.suntimes_path, config.min_coverage, config.rule_accuracy, config.rules_out_path);
 
         ArrayList<CollisionEntry> entrylist = CollisionEntryParser.Parse_CSV(config.database_path, config.suntimes_path);
+        
         int mincov = (int)(entrylist.size() * config.min_coverage);
+        //int mincov = 2;
         float minacc = config.rule_accuracy;
+
+        /*
+        //uncomment if you'd like to check the support value of some set of predicates
+        ArrayList<Predicate> predlist = new ArrayList<Predicate>();
+        Predicate temp = new Predicate(rules.Predicate.FEATURE.C_SEV, 1);
+        predlist.add(temp);
+        temp = new Predicate(rules.Predicate.FEATURE.C_WTHR, 0);
+        //predlist.add(temp);
+        temp = new Predicate(rules.Predicate.FEATURE.C_RSUR, 0);
+        //predlist.add(temp);
+        temp = new Predicate(rules.Predicate.FEATURE.C_RALN, 0);
+        //predlist.add(temp);
+        temp = new Predicate(rules.Predicate.FEATURE.C_TRAF, 17);
+        //predlist.add(temp);
+        temp = new Predicate(rules.Predicate.FEATURE.V_TYPE, 0);
+        predlist.add(temp);
+        temp = new Predicate(rules.Predicate.FEATURE.P_SEX, 1);
+        //predlist.add(temp);
+        temp = new Predicate(rules.Predicate.FEATURE.P_PSN, 0);
+        predlist.add(temp);
+        temp = new Predicate(rules.Predicate.FEATURE.P_ISEV, 1);
+        //predlist.add(temp);
+        temp = new Predicate(rules.Predicate.FEATURE.P_SAFE, 1);
+        //predlist.add(temp);
+        temp = new Predicate(rules.Predicate.FEATURE.P_USER, 0);
+        predlist.add(temp);
+        temp = new Predicate(rules.Predicate.FEATURE.C_VEHS, 2);
+        //predlist.add(temp);
+        temp = new Predicate(rules.Predicate.FEATURE.V_YEAR, 2000, 2020);
+        //predlist.add(temp);
+        temp = new Predicate(rules.Predicate.FEATURE.L_COND, 0);
+        //predlist.add(temp);
+        
+        Collections.sort(predlist);
+        Analyzer checker = new Analyzer();
+        int checkval = checker.checkSupport(predlist, entrylist);
+        System.out.println("support == " + checkval);
+        */
 
         IndexedApriori apriorisets = new IndexedApriori();
         long start = System.currentTimeMillis();
@@ -40,6 +81,9 @@ public class Main {
         long finish = System.currentTimeMillis();
         System.out.println("runtime of apriori algorithm in milliseconds:");
         System.out.println(finish - start);
+        
+        
+        
         start = System.currentTimeMillis();
         RuleGenerator rulelist = new RuleGenerator(itemsets, minacc);
         finish = System.currentTimeMillis();
