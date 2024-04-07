@@ -19,9 +19,7 @@ import rules.Predicate;
 import rules.Predicate.FEATURE;
 import rules.Predicate.PRED_TYPE;
 
-public class RulesIOTest {
-  HashMap<Integer, Predicate.FEATURE> fMap = RulesIO.getFeatureList(RulesIO.getFeatureListString(Predicate.FEATURE.values()));
-  
+public class RulesIOTest {  
   Predicate p1, p2, p3, c1, c2;
   Rule r1, r2;
   ArrayList<Rule> r;
@@ -29,23 +27,21 @@ public class RulesIOTest {
   
   @Before
   public void setUp() {
-      p1 = new Predicate(FEATURE.C_TRAF, 2); // (7,0,2)
-      p2 = new Predicate(FEATURE.C_MNTH, 2, 3); // (15,1,2,3)
-      p3 = new Predicate(FEATURE.C_WDAY, 5, 6); // (0,1,5,6)
-      c1 = new Predicate(FEATURE.C_HOUR, 16, 18); // (16,1,16,18)
-      c2 = new Predicate(FEATURE.C_WTHR, 4); // (4,0,4)
-      r1 = new Rule(new ArrayList<Predicate>(){ {add(p2); add(p1);} }, new ArrayList<Predicate>(){{add(c1);}}, 0.8f); // {(15,1,2,3),(7,0,2)},(16,1,16,18),0.8
-      r2 = new Rule(new ArrayList<Predicate>(){ {add(p3);} }, new ArrayList<Predicate>(){{add(c2);}}, 0.9f); // {(0,1,5,6)},(4,0,4),0.9
+      p1 = new Predicate(FEATURE.C_TRAF, 2); // (C_TRAF = 2)
+      p2 = new Predicate(FEATURE.C_MNTH, 2, 3); // (C_MNTH in [2,3))
+      p3 = new Predicate(FEATURE.C_WDAY, 5, 6); // (C_WDAY in [5,6))
+      c1 = new Predicate(FEATURE.C_HOUR, 16, 18); // (C_HOUR in [16,18))
+      c2 = new Predicate(FEATURE.C_WTHR, 4); // (C_WTHR = 4)
+      r1 = new Rule(new ArrayList<Predicate>(){ {add(p2); add(p1);} }, new ArrayList<Predicate>(){{add(c1);}}, 0.8f); // {(C_MNTH in [2,3)),(C_TRAF = 2)} -> {(C_HOUR in [16,18))},0.8
+      r2 = new Rule(new ArrayList<Predicate>(){ {add(p3);} }, new ArrayList<Predicate>(){{add(c2);}}, 0.9f); // {(C_WDAY in [5,6))} -> {(C_WTHR = 4)},0.9
 
       r = new ArrayList<>(){{add(r1); add(r2);}};
   
       try {
         BufferedWriter w = new BufferedWriter(new FileWriter("./test/testfile1.txt"));
-        w.write("C_WDAY,C_SEV,C_CONF,C_RCFG,C_WTHR,C_RSUR,C_RALN,C_TRAF,V_TYPE,P_SEX,P_PSN,P_ISEV,P_SAFE,P_USER,C_YEAR,C_MNTH,C_HOUR,C_VEHS,V_ID,V_YEAR,P_ID,P_AGE,C_CASE,V_DRAGE");
+        w.write("{(C_MNTH in [2, 3)),(C_TRAF = 2)} -> {(C_HOUR in [16, 18))},0.8");
         w.newLine();
-        w.write("{(15,1,2,3),(7,0,2)},{(16,1,16,18)},0.8");
-        w.newLine();
-        w.write("{(0,1,5,6)},{(4,0,4)},0.9");
+        w.write("{(C_WDAY in [5, 6))} -> {(C_WTHR = 4)},0.9");
         w.newLine();
         w.close();
       }
@@ -57,40 +53,47 @@ public class RulesIOTest {
 
   @Test
   public void testEncodePredicateValue() {
-    assertEquals("(7,0,2)", RulesIO.encodePredicate(p1));
-    assertEquals("(4,0,4)", RulesIO.encodePredicate(c2));
+    assertEquals("(C_TRAF = 2)", RulesIO.encodePredicate(p1));
+    assertEquals("(C_WTHR = 4)", RulesIO.encodePredicate(c2));
   }
 
   @Test
   public void testEncodePredicateRange() {
-    assertEquals("(15,1,2,3)", RulesIO.encodePredicate(p2));
-    assertEquals("(0,1,5,6)", RulesIO.encodePredicate(p3));
-    assertEquals("(16,1,16,18)", RulesIO.encodePredicate(c1));
+    assertEquals("(C_MNTH in [2, 3))", RulesIO.encodePredicate(p2));
+    assertEquals("(C_WDAY in [5, 6))", RulesIO.encodePredicate(p3));
+    assertEquals("(C_HOUR in [16, 18))", RulesIO.encodePredicate(c1));
   }
 
   @Test
   public void testEncodeRule() {
-    assertEquals("{(15,1,2,3),(7,0,2)},{(16,1,16,18)},0.8", RulesIO.encodeRule(r1));
-    assertEquals("{(0,1,5,6)},{(4,0,4)},0.9", RulesIO.encodeRule(r2));
+    assertEquals("{(C_MNTH in [2, 3)),(C_TRAF = 2)} -> {(C_HOUR in [16, 18))},0.8", RulesIO.encodeRule(r1));
+    assertEquals("{(C_WDAY in [5, 6))} -> {(C_WTHR = 4)},0.9", RulesIO.encodeRule(r2));
   }
 
   @Test
   public void testDecodePredicateValue() {
-    assertEquals(RulesIO.decodePredicate("(7,0,2)", fMap), p1);
-    assertEquals(RulesIO.decodePredicate("(4,0,4)", fMap), c2);
+    assertEquals(RulesIO.decodePredicate("(C_TRAF = 2)"), p1);
+    assertEquals(RulesIO.decodePredicate("C_WTHR = 4)"), c2);
   }
 
   @Test
   public void testDecodePredicateRange() {
-    assertEquals(RulesIO.decodePredicate("(15,1,2,3)", fMap), p2);
-    assertEquals(RulesIO.decodePredicate("(0,1,5,6)", fMap), p3);
-    assertEquals(RulesIO.decodePredicate("(16,1,16,18)", fMap), c1);
+    assertEquals(RulesIO.decodePredicate("(C_MNTH in [2, 3))"), p2);
+    assertEquals(RulesIO.decodePredicate("(C_WDAY in [5, 6))"), p3);
+    assertEquals(RulesIO.decodePredicate("(C_HOUR in [16, 18))"), c1);
   }
 
   @Test
   public void testDecodeRule() {
-    assertEquals(RulesIO.decodeRule("{(15,1,2,3),(7,0,2)},{(16,1,16,18)},0.8", fMap), r1);
-    assertEquals(RulesIO.decodeRule("{(0,1,5,6)},{(4,0,4)},0.9", fMap), r2);
+    assertEquals(RulesIO.decodeRule("{(C_MNTH in [2, 3)),(C_TRAF = 2)} -> {(C_HOUR in [16, 18))},0.8"), r1);
+    assertEquals(RulesIO.decodeRule("{(C_WDAY in [5, 6))} -> {(C_WTHR = 4)},0.9"), r2);
+  }
+
+  @Test
+  public void testWriteRules() {
+    RulesIO.writeRules(r, "./test/testfile2.txt");
+
+    assertTrue(equalFiles("./test/testfile1.txt", "./test/testfile2.txt"));
   }
 
   @Test
@@ -103,12 +106,6 @@ public class RulesIOTest {
     }
   }
 
-  @Test
-  public void testWriteRules() {
-    RulesIO.writeRules(r, "./test/testfile2.txt");
-
-    assertTrue(equalFiles("./test/testfile1.txt", "./test/testfile2.txt"));
-  }
 
 
   private static boolean equalFiles(String expectedFileName, String resultFileName) {
