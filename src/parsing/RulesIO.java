@@ -29,11 +29,8 @@ public class RulesIO {
             int i = 1;
 
             try {
-                line = r.readLine();
-                final HashMap<Integer, Predicate.FEATURE> featureList = getFeatureList(line);
-
                 while((line = r.readLine()) != null) {
-                    rules.add(decodeRule(line, featureList));
+                    rules.add(decodeRule(line));
                 }
             } catch (IOException e) {
                 System.err.println("Error encountered when parsing line " + i);
@@ -57,12 +54,10 @@ public class RulesIO {
             w = new BufferedWriter(new FileWriter(path));
 
             try {
-                w.write(getFeatureListString(Predicate.FEATURE.values()));
                 for(int i = 0; i < rules.size(); i++) {
-                    w.newLine();
                     w.write(encodeRule(rules.get(i)));
+                    w.newLine();
                 }
-                w.newLine();
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
@@ -117,35 +112,37 @@ public class RulesIO {
 
     // from a string and a hashmap of features, constructs a Predicate object (could turn hashmap into an ArrayList?)
     // A valid predicate is of the form (0,1,5,6) or (0,1,5) where the first integer is the key to a Faature in the hashmap. The brackets are escaped, so 0,1,5,6 is also valid
-    public static Predicate decodePredicate(String str, HashMap<Integer, Predicate.FEATURE> featureList) {
-        int n = str.length();
-        String arr[] = str.substring((str.charAt(0) == '(') ? 1 : 0, (str.charAt(n - 1) == ')') ? n - 1 : n).split(",");
-        FEATURE f = featureList.get(Integer.parseInt(arr[0]));
-        if(arr.length == 4) return new Predicate(f, Integer.parseInt(arr[2]), Integer.parseInt(arr[3]));
-        if(arr.length == 3) return new Predicate(f, Integer.parseInt(arr[2]));
-
+    public static Predicate decodePredicate(String str) {
+        Pattern pattern = Pattern.compile("([A-Z_]+) = (\\d+)|([A-Z_]+) in \\[(\\d+), (\\d+)\\)");
+        Matcher matcher = pattern.matcher(str);
+        if(matcher.find()) {
+            if(matcher.group(1) != null) {
+                return new Predicate(FEATURE.valueOf(matcher.group(1)), Integer.parseInt(matcher.group(2)));
+            } else {
+                return new Predicate(FEATURE.valueOf(matcher.group(3)), Integer.parseInt(matcher.group(4)), Integer.parseInt(matcher.group(5)));
+            }
+        }
         return null;
     }
 
     // from a string and a hashmap of features, constructs a Rules object (could turn hashmap into an ArrayList?)
     // a valid rule is of the form {(0,1,5,6)},{(4,0,4)},0.9 for example
-    public static Rule decodeRule(String line, HashMap<Integer, Predicate.FEATURE> featureList) {
-        Pattern pattern = Pattern.compile("\\{([\\(\\),\\d]+)\\},\\{([\\(\\)\\,\\d]+)\\},([\\d\\.]+)");
+    public static Rule decodeRule(String line) {
+        Pattern pattern = Pattern.compile("\\{(.+)\\} -> \\{(.+)\\},([\\.\\d+]+)");
         Matcher matcher = pattern.matcher(line);
 
         if(matcher.find()) {
-            String[] condStr = matcher.group(1).split("\\),");
-            String[] concStr = matcher.group(2).split("\\),");
+            String[] condStr = matcher.group(1).split("\\),\\(");
+            String[] concStr = matcher.group(2).split("\\),\\(");
             ArrayList<Predicate> cond = new ArrayList<>();
-            ArrayList<Predicate> concl = new ArrayList<Predicate>();
-            //Predicate concl = decodePredicate(matcher.group(2), featureList);
+            ArrayList<Predicate> concl = new ArrayList<>();
 
             for(int i = 0; i < condStr.length; i++) {
-                cond.add(decodePredicate(condStr[i], featureList));
+                cond.add(decodePredicate(condStr[i]));
             }
             for (int i = 0; i < concStr.length; i++)
             {
-				concl.add(decodePredicate(concStr[i], featureList));
+				concl.add(decodePredicate(concStr[i]));
 			}
 
             Rule r = new Rule(cond, concl, Float.parseFloat(matcher.group(3)));
@@ -161,15 +158,4 @@ public class RulesIO {
         for(int i = 0; i < featureList.length; i++) featureListString[i] = featureList[i].name();
         return String.join(",", featureListString);
     }
-
-    public static HashMap<Integer, Predicate.FEATURE> getFeatureList(String line) {
-        String featureListString[] = line.split(",");
-        HashMap<Integer, Predicate.FEATURE> featureList = new HashMap<>();
-
-        for(int i = 0; i < featureListString.length; i++) {
-            featureList.put(i,Predicate.FEATURE.valueOf(featureListString[i]));
-        }
-        return featureList;
-    }
-
 }
