@@ -4,10 +4,11 @@ import apriori.*;
 import rules.*;
 import apriori.*;
 import parsing.CollisionEntry;
+import analysis.*;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
+import java.util.*;
 
 import com.google.gson.Gson;
 
@@ -20,9 +21,12 @@ public class Main {
         config.database_path, config.suntimes_path, config.min_coverage, config.rule_accuracy, config.rules_out_path);
 
         ArrayList<CollisionEntry> entrylist = CollisionEntryParser.Parse_CSV(config.database_path, config.suntimes_path);
+        
         int mincov = (int)(entrylist.size() * config.min_coverage);
+        //int mincov = 2;
         float minacc = config.rule_accuracy;
-
+        boolean verifyflag = false; //set this to true if you want to verify the support values, false if you don't.
+        
         IndexedApriori apriorisets = new IndexedApriori();
         long start = System.currentTimeMillis();
         apriorisets.itemlists.add(apriorisets.oneItemList(entrylist, mincov));
@@ -40,13 +44,41 @@ public class Main {
         long finish = System.currentTimeMillis();
         System.out.println("runtime of apriori algorithm in milliseconds:");
         System.out.println(finish - start);
+        
+        if (verifyflag)
+        {
+            boolean allgood = true;
+            Analyzer checker = new Analyzer();
+            int checkval;
+            entrylist = CollisionEntryParser.Parse_CSV(config.database_path, config.suntimes_path);
+            System.out.println("Verifying support values of generated item sets...");
+            for (int i = 0; i < itemsets.size(); i++)
+            {
+                for (int j = 0; j < itemsets.get(i).size(); j++)
+                {
+                    checkval = checker.checkSupport(itemsets.get(i).get(j).items, entrylist);
+                    if (checkval != itemsets.get(i).get(j).support)
+                    {
+                        System.out.println("Incorrect support for item set");
+                        itemsets.get(i).get(j).display();
+                        System.out.println("Calculated support: " + itemsets.get(i).get(j).support + ", Actual support: " + checkval);
+                        allgood = false;
+                    }
+                }
+            }
+            if (allgood)
+            {
+                System.out.println("All calculated supports are correct!");
+            }
+        }
+        
         start = System.currentTimeMillis();
         RuleGenerator rulelist = new RuleGenerator(itemsets, minacc);
         finish = System.currentTimeMillis();
-        for (int i = 0; i < rulelist.rulelist.size(); i++)
-        {
-            System.out.println(parsing.RulesIO.encodeRule(rulelist.rulelist.get(i)));
-        }
+        //for (int i = 0; i < rulelist.rulelist.size(); i++) //just check the output file.
+        //{
+        //    System.out.println(parsing.RulesIO.encodeRule(rulelist.rulelist.get(i)));
+        //}
         System.out.println("runtime of rule generation in milliseconds:");
         System.out.println(finish - start);
         parsing.RulesIO.writeRules(rulelist.rulelist, config.rules_out_path);

@@ -213,11 +213,13 @@ public class IndexedApriori
 		ItemSet nextone = findOneItem(item.items.get(0));
 		if (nextone == null) return indices;
 		indices = new ArrayList<Integer>(nextone.indices); //this should copy the list without referring to it.
+		ArrayList<Integer> temp;
 		for (int i = 1; i < item.items.size(); i++)
 		{
 			nextone = findOneItem(item.items.get(i));
 			//indices = indexIntersection(indices, nextone.indices);
-			indices = linearIntersection(indices, nextone.indices); //the system was failing to make any k-item lists with this, and i genuinely have no idea why ;_;
+			temp = new ArrayList<Integer>(indices);
+			indices = linearIntersection(temp, nextone.indices); //the system was failing to make any k-item lists with this, and i genuinely have no idea why ;_;
 			if (indices.size() < mincov) {return indices;}
 		}
 		return indices;

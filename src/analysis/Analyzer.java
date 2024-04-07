@@ -36,6 +36,19 @@ public class Analyzer
 		return returner;
 	}
 	
+	public int checkSupport(ArrayList<Predicate> predlist, ArrayList<CollisionEntry> entrylist)
+	{
+		int checkval = 0;
+		for (int i = 0; i < entrylist.size(); i++)
+		{
+			if (checker.checkPredicateList(entrylist.get(i), predlist))
+			{
+				checkval++;
+			}
+		}
+		return checkval;
+	}
+	
 	public float[] performAnalysis(ArrayList<Rule> rulelist, ArrayList<CollisionEntry> entrylist)
 	{
 		RuleRatio[] ratiolist = initRatios(rulelist.size()); //There will be a RuleRatio object corresponding to each rule passed in.
