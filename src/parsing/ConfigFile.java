@@ -5,5 +5,6 @@ public class ConfigFile {
     public float rule_accuracy;
     public String database_path;
     public String suntimes_path;
+    public String excluded_rules_path;
     public String rules_out_path;
 }

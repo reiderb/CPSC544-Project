@@ -50,4 +50,24 @@ public class Rule
 			
 			return this.freq == r.freq;
 	}
+    public boolean sameRule(Rule other) {
+        return other.cond.containsAll(cond) && other.conc.containsAll(conc);
+    }
+    public static ArrayList<Rule> filter(ArrayList<Rule> rules,
+                                         ArrayList<Rule> excluded) {
+        // This is O(nm) now, could sort to make it faster
+        ArrayList<Rule> goodRules = new ArrayList<>();
+        for (Rule rule : rules) {
+            boolean isGood = true;
+            for (Rule badRule : excluded) {
+                if (rule.sameRule(badRule)) {
+                    isGood = false;
+                    break;
+                }
+            }
+            if (isGood)
+                goodRules.add(rule);
+        }
+        return goodRules;
+    }
 }

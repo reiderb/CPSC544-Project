@@ -3,5 +3,6 @@
   "rule_accuracy": 0.75,
   "database_path": "data/collision-databse_1999-2019.csv",
   "suntimes_path": "config/suntimes.txt",
+  "excluded_rules_path": "config/excluded_rules.txt",
   "rules_out_path": "out/rules.txt"
 }
