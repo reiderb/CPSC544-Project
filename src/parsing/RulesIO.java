@@ -100,8 +100,8 @@ public class RulesIO {
             case VALUE_RANGE:
                 retval += " in [" + p.min + ", " + p.max + ")";
                 break;
-            case OTHER:
-                break;
+            case MULTIPLE_VALUES:
+                break; // TODO
             default:
                 break;
         }

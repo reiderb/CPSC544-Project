@@ -1,4 +1,5 @@
 package rules;
+import java.util.*;
 
 public class Predicate implements Comparable<Predicate>
 {
@@ -6,7 +7,7 @@ public class Predicate implements Comparable<Predicate>
     {
         FEATURE_VALUE,
         VALUE_RANGE,
-        OTHER //this will be used for knowledge not represented in the collision entries
+        MULTIPLE_VALUES,
     }
     
     public enum FEATURE
@@ -43,6 +44,7 @@ public class Predicate implements Comparable<Predicate>
     public int value; //this could be either an index, or just the actual value (eg for C_YEAR)
     public int min;
     public int max; //for range predicates, we'll use min and max
+    public ArrayList<Integer> values;
     
     public Predicate(FEATURE newfeat, int newval)
     {
@@ -61,6 +63,13 @@ public class Predicate implements Comparable<Predicate>
         feature = newfeat;
         min = newmin;
         max = newmax;
+    }
+
+    public Predicate(FEATURE newfeat, ArrayList<Integer> values) {
+        predtype = PRED_TYPE.MULTIPLE_VALUES;
+        feature = newfeat;
+        this.values = values;
+        Collections.sort(this.values);
     }
     
     @Override
@@ -98,12 +107,14 @@ public class Predicate implements Comparable<Predicate>
 			if (this.max > pred.max) {return 1;}
 			return 0;
 		}
+                if (this.predtype == PRED_TYPE.MULTIPLE_VALUES)
+                    return Arrays.compare(this.values.toArray(new Integer[0]),
+                                          pred.values.toArray(new Integer[0]));
 		return 0;
 	}
 	
 	public String display()
 	{
-		if (predtype == PRED_TYPE.OTHER) {return "";} //never used, but..
 		String message = feature.toString();
 		if (predtype == PRED_TYPE.FEATURE_VALUE)
 		{
@@ -113,6 +124,13 @@ public class Predicate implements Comparable<Predicate>
 		{
 			message = message + " in [" + Integer.toString(min) + ", " + Integer.toString(max) + ")";
 		}
+                if (predtype == PRED_TYPE.MULTIPLE_VALUES) {
+                    message = message + " in {";
+                    for (Integer v : values)
+                        message = message + v + ",";
+                    message = message.substring(0, message.length()-1);
+                    message = message + "}";
+                }
 		return message;
 	}
 
