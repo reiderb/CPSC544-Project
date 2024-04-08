@@ -3,7 +3,7 @@ import parsing.ConfigFile;
 import apriori.*;
 import rules.*;
 import apriori.*;
-import parsing.CollisionEntry;
+import parsing.*;
 import analysis.*;
 
 import java.nio.file.Files;
@@ -17,9 +17,9 @@ public class Main {
 
         Gson jsonParser = new Gson();
         ConfigFile config = jsonParser.fromJson(Files.readString(Path.of(args[0])), ConfigFile.class);
-        System.out.printf("Running with configuration:\n\tDatabase path: %s\n\tSuntimes path: %s\n\tMinimum coverage: %f\n\tMinimum rule accuracy: %f\n\tWriting rules to: %s\n",
-        config.database_path, config.suntimes_path, config.min_coverage, config.rule_accuracy, config.rules_out_path);
-
+        System.out.printf("Running with configuration:\n\tDatabase path: %s\n\tSuntimes path: %s\n\tMinimum coverage: %f\n\tMinimum rule accuracy: %f\n\tReading excluded rules from: %s\n\tWriting rules to: %s\n",
+                          config.database_path, config.suntimes_path, config.min_coverage, config.rule_accuracy, config.excluded_rules_path, config.rules_out_path);
+        ArrayList<Rule> excludedRules = RulesIO.readRules(config.excluded_rules_path);
         ArrayList<CollisionEntry> entrylist = CollisionEntryParser.Parse_CSV(config.database_path, config.suntimes_path);
         
         int mincov = (int)(entrylist.size() * config.min_coverage);
@@ -74,13 +74,12 @@ public class Main {
         
         start = System.currentTimeMillis();
         RuleGenerator rulelist = new RuleGenerator(itemsets, minacc);
+        ArrayList<Rule> goodRules = Rule.filter(rulelist.rulelist, excludedRules);
         finish = System.currentTimeMillis();
-        //for (int i = 0; i < rulelist.rulelist.size(); i++) //just check the output file.
-        //{
-        //    System.out.println(parsing.RulesIO.encodeRule(rulelist.rulelist.get(i)));
-        //}
-        System.out.println("runtime of rule generation in milliseconds:");
-        System.out.println(finish - start);
-        parsing.RulesIO.writeRules(rulelist.rulelist, config.rules_out_path);
+        for (Rule rule : goodRules)
+            System.out.println(parsing.RulesIO.encodeRule(rule));
+        System.out.println("Excluded " + (rulelist.rulelist.size() - goodRules.size()) + " rules");
+        System.out.println("runtime of rule generation in milliseconds: " + (finish - start));
+        parsing.RulesIO.writeRules(goodRules, config.rules_out_path);
     }
 }
