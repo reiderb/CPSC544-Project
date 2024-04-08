@@ -77,7 +77,7 @@ public class RuleChecker
 			case VALUE_RANGE:
 				flag = checkFeatureRange(entry, pred);
 				break;
-			case OTHER:
+			case MULTIPLE_VALUES:
 				flag = true; //change this once we implement the external knowledge
 				break;
 		}

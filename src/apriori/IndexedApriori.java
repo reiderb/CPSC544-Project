@@ -399,7 +399,7 @@ public class IndexedApriori
 		
 		for (CollisionEntry.C_SEV i: CollisionEntry.C_SEV.values())
 		{
-			if(!(i.equals(CollisionEntry.C_SEV.NOT_PROVIDED) || i.equals(CollisionEntry.C_SEV.UNKNOWN) || i.equals(CollisionEntry.C_SEV.NON_FATAL_INJURY))) {
+			if(!(i.equals(CollisionEntry.C_SEV.NOT_PROVIDED) || i.equals(CollisionEntry.C_SEV.UNKNOWN))) {
 				pred = new Predicate(Predicate.FEATURE.C_SEV, i.ordinal());
 				item = new ItemSet(pred);
 				candidates.add(item);
@@ -645,20 +645,6 @@ public class IndexedApriori
 
 			item = new ItemSet(new Predicate(Predicate.FEATURE.V_DRAGE, 65, 99));
 			candidates.add(item);
-
-			/*
-			 * {(V_TYPE = 8)} -> {(P_USER = 4)},1.0
-			 * {(V_TYPE = 10)} -> {(P_USER = 3)},1.0
-			 * {(P_PSN = 30)} -> {(P_USER = 2)},1.0
-			 * {(P_PSN = 30)} -> {(V_ID = 99)},1.0
-			 * {(P_PSN = 30)} -> {(P_USER = 2),(V_ID = 99)},1.0
-			 * {(P_ISEV = 2)} -> {(C_SEV = 0)},1.0
-			 * {(P_USER = 0)} -> {(P_PSN = 0)},1.0
-			 * {(P_USER = 2)} -> {(V_ID = 99)},1.0
-			 * {(P_USER = 3)} -> {(V_TYPE = 10)},1.0
-			 * {(P_USER = 4)} -> {(V_TYPE = 8)},1.0
-			 * {(V_ID = 99)} -> {(P_USER = 2)},1.0
-			 */
 
 		//finally done..
 		return candidates;
