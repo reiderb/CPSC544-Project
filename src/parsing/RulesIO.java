@@ -39,6 +39,7 @@ public class RulesIO {
                 r.close();
             }
         } catch (FileNotFoundException e) {
+			System.out.println("No rules found at " + path + ". Continuing with empty list of rules.");
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
@@ -100,8 +101,8 @@ public class RulesIO {
             case VALUE_RANGE:
                 retval += " in [" + p.min + ", " + p.max + ")";
                 break;
-            case OTHER:
-                break;
+            case MULTIPLE_VALUES:
+                break; // TODO
             default:
                 break;
         }

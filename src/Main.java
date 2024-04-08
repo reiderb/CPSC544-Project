@@ -21,9 +21,13 @@ public class Main {
                           config.database_path, config.suntimes_path, config.min_coverage, config.rule_accuracy, config.excluded_rules_path, config.rules_out_path);
         ArrayList<Rule> excludedRules = RulesIO.readRules(config.excluded_rules_path);
         ArrayList<CollisionEntry> entrylist = CollisionEntryParser.Parse_CSV(config.database_path, config.suntimes_path);
+        if (entrylist.size() == 0)
+        {
+            System.out.println("No entries parsed. Terminating.");
+            return;
+        }
         
         int mincov = (int)(entrylist.size() * config.min_coverage);
-        //int mincov = 2;
         float minacc = config.rule_accuracy;
         boolean verifyflag = false; //set this to true if you want to verify the support values, false if you don't.
         
@@ -84,22 +88,23 @@ public class Main {
             }
         });
 
-        goodRules.sort(new Comparator<Rule>() {
-            @Override
-            public int compare(Rule o1, Rule o2) {
-                int i = o1.cond.size();
-                int j = o2.cond.size();
-                int c = 0;
-                if(i != j) return i > j ? +1 : i < j ? -1 : 0;
+        //Sort the rules in following order length of condition -> compare each predicate in condition -> frequency
+        // goodRules.sort(new Comparator<Rule>() {
+        //     @Override
+        //     public int compare(Rule o1, Rule o2) {
+        //         int i = o1.cond.size();
+        //         int j = o2.cond.size();
+        //         int c = 0;
+        //         if(i != j) return i > j ? +1 : i < j ? -1 : 0;
 
-                for(i = 0; i < j; i++) {
-                    c = o1.cond.get(i).compareTo(o2.cond.get(i));
-                    if(c != 0) return c;
-                }
+        //         for(i = 0; i < j; i++) {
+        //             c = o1.cond.get(i).compareTo(o2.cond.get(i));
+        //             if(c != 0) return c;
+        //         }
 
-                return Float.valueOf(o2.freq).compareTo(Float.valueOf(o2.freq));
-            }
-        });
+        //         return Float.valueOf(o2.freq).compareTo(Float.valueOf(o2.freq));
+        //     }
+        // });
 
         for (Rule rule : goodRules)
             System.out.println(parsing.RulesIO.encodeRule(rule));
