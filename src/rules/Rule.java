@@ -6,12 +6,14 @@ public class Rule
 	public ArrayList<Predicate> cond;
 	public ArrayList<Predicate> conc;
 	public float freq;
+        public float lift;
 	
 	public Rule()
 	{
 		cond = new ArrayList<Predicate>();
 		conc = new ArrayList<Predicate>();
 		freq = 0;
+                lift = 0;
 	}
 	
 	public Rule(ArrayList<Predicate> newcond, ArrayList<Predicate> newconc, float newfreq)
@@ -50,10 +52,16 @@ public class Rule
 			
 			return this.freq == r.freq;
 	}
+
+    public float getLift() {
+        return this.lift;
+    }
+
     public boolean sameRule(Rule other) {
         return other.cond.containsAll(cond) && other.conc.containsAll(conc);
     }
-    public static ArrayList<Rule> filter(ArrayList<Rule> rules,
+
+        public static ArrayList<Rule> filter(ArrayList<Rule> rules,
                                          ArrayList<Rule> excluded) {
         // This is O(nm) now, could sort to make it faster
         ArrayList<Rule> goodRules = new ArrayList<>();
@@ -70,4 +78,5 @@ public class Rule
         }
         return goodRules;
     }
+
 }

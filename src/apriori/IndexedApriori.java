@@ -363,12 +363,12 @@ public class IndexedApriori
 		
 		int min;
 		
-		for (int i = 1999; i <= 2019; i++) //predicates for rules
-		{
-			pred = new Predicate(Predicate.FEATURE.C_YEAR, i);
-			item = new ItemSet(pred);
-			candidates.add(item);
-		}
+		// for (int i = 1999; i <= 2019; i++) //predicates for rules
+		// {
+		// 	pred = new Predicate(Predicate.FEATURE.C_YEAR, i);
+		// 	item = new ItemSet(pred);
+		// 	candidates.add(item);
+		// }
 		//System.out.println("made year candidates");
 		for (int i = 1; i <= 12; i++) //predicates for months
 		{

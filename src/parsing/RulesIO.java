@@ -86,6 +86,7 @@ public class RulesIO {
             sb.append(',').append(encodePredicate(rule.conc.get(i)));
         }
         sb.append("}").append(",").append(rule.freq);
+        sb.append("}").append(",").append(rule.lift);
 
         return sb.toString();
     }

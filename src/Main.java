@@ -21,18 +21,23 @@ public class Main {
                           config.database_path, config.suntimes_path, config.min_coverage, config.rule_accuracy, config.excluded_rules_path, config.rules_out_path);
         ArrayList<Rule> excludedRules = RulesIO.readRules(config.excluded_rules_path);
         ArrayList<CollisionEntry> entrylist = CollisionEntryParser.Parse_CSV(config.database_path, config.suntimes_path);
-        
+        int n_examples = entrylist.size();
         int mincov = (int)(entrylist.size() * config.min_coverage);
         //int mincov = 2;
         float minacc = config.rule_accuracy;
         boolean verifyflag = false; //set this to true if you want to verify the support values, false if you don't.
-        
-        IndexedApriori apriorisets = new IndexedApriori();
+
+        ArrayList<Predicate> predicates = new ArrayList<>();
+        for (ItemSet i : new IndexedApriori().oneItemCandidates())
+            predicates.add(i.items.get(0));
+        System.out.println("Generated " + predicates.size() + " predicates");
+        NewApriori apriori = new NewApriori(predicates);
+        apriori.readDatabase(entrylist);
+        entrylist.clear();
         long start = System.currentTimeMillis();
-        apriorisets.itemlists.add(apriorisets.oneItemList(entrylist, mincov));
-        entrylist.clear(); //after the one item sets are generated, we no longer need the entrylist, so we clear it to save memory.
-        apriorisets.generateItemSets(mincov);
-        ArrayList<ArrayList<ItemSet>> itemsets = apriorisets.itemlists;
+        apriori.run(mincov);
+        
+        ArrayList<ArrayList<ItemSet>> itemsets = apriori.getItemSets();
         for (int i = 0; i < itemsets.size(); i++)
         {
             System.out.println(Integer.toString(i + 1) + " ITEM SETS");
@@ -73,8 +78,9 @@ public class Main {
         }
         
         start = System.currentTimeMillis();
-        RuleGenerator rulelist = new RuleGenerator(itemsets, minacc);
+        RuleGenerator rulelist = new RuleGenerator(itemsets, minacc, n_examples);
         ArrayList<Rule> goodRules = Rule.filter(rulelist.rulelist, excludedRules);
+        Co
         finish = System.currentTimeMillis();
         for (Rule rule : goodRules)
             System.out.println(parsing.RulesIO.encodeRule(rule));
