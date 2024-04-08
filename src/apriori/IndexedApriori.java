@@ -399,7 +399,7 @@ public class IndexedApriori
 		
 		for (CollisionEntry.C_SEV i: CollisionEntry.C_SEV.values())
 		{
-			if(!(i.equals(CollisionEntry.C_SEV.NOT_PROVIDED) || i.equals(CollisionEntry.C_SEV.UNKNOWN))) {
+			if(!(i.equals(CollisionEntry.C_SEV.NOT_PROVIDED) || i.equals(CollisionEntry.C_SEV.UNKNOWN) || i.equals(CollisionEntry.C_SEV.NON_FATAL_INJURY))) {
 				pred = new Predicate(Predicate.FEATURE.C_SEV, i.ordinal());
 				item = new ItemSet(pred);
 				candidates.add(item);
@@ -491,9 +491,10 @@ public class IndexedApriori
 		
 		//V_ID (vehicle ID)
 		//i have a feeling this will be completely meaningless except for 99 which indicates a pedestrian
-		pred = new Predicate (Predicate.FEATURE.V_ID, 99);
-		item = new ItemSet(pred);
-		candidates.add(item);
+		// pedestrian is covered by other feature values
+		// pred = new Predicate (Predicate.FEATURE.V_ID, 99);
+		// item = new ItemSet(pred);
+		// candidates.add(item);
 		//uncomment this if you're a FREAK!!!
 		/*
 		for (int i = 1; i <= 98; i++)
@@ -582,7 +583,7 @@ public class IndexedApriori
 		for (CollisionEntry.P_PSN i: CollisionEntry.P_PSN.values())
 		{
 			if(!(i.equals(CollisionEntry.P_PSN.NOT_PROVIDED) || i.equals(CollisionEntry.P_PSN.NOT_APPLICABLE) || i.equals(CollisionEntry.P_PSN.UNKNOWN) || i.equals(CollisionEntry.P_PSN.UNKNOWN_BUT_DEFINITELY_OCCUPANT) ||
-						i.equals(CollisionEntry.P_PSN.OTHER) || i.equals(CollisionEntry.P_PSN.PEDESTRIAN))) { // Excluding pedestrian because value is covered by V_ID=99
+						i.equals(CollisionEntry.P_PSN.OTHER))) { 
 				pred = new Predicate(Predicate.FEATURE.P_PSN, i.ordinal());
 				item = new ItemSet(pred);
 				candidates.add(item);
