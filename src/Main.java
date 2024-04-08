@@ -21,9 +21,13 @@ public class Main {
                           config.database_path, config.suntimes_path, config.min_coverage, config.rule_accuracy, config.excluded_rules_path, config.rules_out_path);
         ArrayList<Rule> excludedRules = RulesIO.readRules(config.excluded_rules_path);
         ArrayList<CollisionEntry> entrylist = CollisionEntryParser.Parse_CSV(config.database_path, config.suntimes_path);
+        if (entrylist.size() == 0)
+        {
+            System.out.println("No entries parsed. Terminating.");
+            return;
+        }
         
         int mincov = (int)(entrylist.size() * config.min_coverage);
-        //int mincov = 2;
         float minacc = config.rule_accuracy;
         boolean verifyflag = false; //set this to true if you want to verify the support values, false if you don't.
         

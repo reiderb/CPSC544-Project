@@ -39,6 +39,7 @@ public class RulesIO {
                 r.close();
             }
         } catch (FileNotFoundException e) {
+			System.out.println("No rules found at " + path + ". Continuing with empty list of rules.");
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
