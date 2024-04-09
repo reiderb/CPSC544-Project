@@ -1,6 +1,7 @@
 {
   "min_coverage": 0.4,
   "rule_accuracy": 0.95,
+  "exclude_external": false,
   "database_path": "data/collision-databse_1999-2019.csv",
   "suntimes_path": "config/suntimes.txt",
   "excluded_rules_path": "config/excluded_rules.txt",
