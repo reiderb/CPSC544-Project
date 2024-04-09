@@ -561,21 +561,31 @@ public class IndexedApriori
 		// 	candidates.add(item);
 		// 	min = min + agerange;
 		// }
+		if(exclude) {
+			for(int i = 0; i < 100; i++) {
+				pred = new Predicate(Predicate.FEATURE.P_AGE, i);
+				item = new ItemSet(pred);
+				candidates.add(item);
+			}
+		}
 		
-		item = new ItemSet(new Predicate(Predicate.FEATURE.P_AGE, 0, 15));
-		candidates.add(item);
+		else {
+			item = new ItemSet(new Predicate(Predicate.FEATURE.P_AGE, 0, 15));
+			candidates.add(item);
 
-		item = new ItemSet(new Predicate(Predicate.FEATURE.P_AGE, 15, 25));
-		candidates.add(item);
+			item = new ItemSet(new Predicate(Predicate.FEATURE.P_AGE, 15, 25));
+			candidates.add(item);
 
-		item = new ItemSet(new Predicate(Predicate.FEATURE.P_AGE, 25, 45));
-		candidates.add(item);
+			item = new ItemSet(new Predicate(Predicate.FEATURE.P_AGE, 25, 45));
+			candidates.add(item);
 
-		item = new ItemSet(new Predicate(Predicate.FEATURE.P_AGE, 45, 65));
-		candidates.add(item);
+			item = new ItemSet(new Predicate(Predicate.FEATURE.P_AGE, 45, 65));
+			candidates.add(item);
 
-		item = new ItemSet(new Predicate(Predicate.FEATURE.P_AGE, 65, 99));
-		candidates.add(item);
+			item = new ItemSet(new Predicate(Predicate.FEATURE.P_AGE, 65, 99));
+			candidates.add(item);
+		}
+		
 
 
 		//if the age and gender of a person are relevant to an accident, it seems that 
