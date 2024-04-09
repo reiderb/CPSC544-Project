@@ -391,14 +391,24 @@ public class IndexedApriori
 		}
 		//System.out.println("made weekday candidates");
 		
-		int hourrange = 4; //change this to modify range of hours (eg, if it's set to 4, it'll split the day into 4 hour intervals)
-		min = 0;
-		while (min < 24) //predicates for hour of day
-		{
-			pred = new Predicate(Predicate.FEATURE.C_HOUR, min, (min + hourrange));
-			item = new ItemSet(pred);
-			candidates.add(item);
-			min = min + hourrange;
+		
+		//Do not split hours if external knowledge is excluded
+		if(exclude) {
+			for(int i = 0; i < 24; i++) {
+				pred = new Predicate(Predicate.FEATURE.C_HOUR, i);
+				item = new ItemSet(pred);
+				candidates.add(item);
+			}
+		}else {	
+			int hourrange = 4; //change this to modify range of hours (eg, if it's set to 4, it'll split the day into 4 hour intervals)
+			min = 0;
+			while (min < 24) //predicates for hour of day
+			{
+				pred = new Predicate(Predicate.FEATURE.C_HOUR, min, (min + hourrange));
+				item = new ItemSet(pred);
+				candidates.add(item);
+				min = min + hourrange;
+			}
 		}
 		
 		for (CollisionEntry.C_SEV i: CollisionEntry.C_SEV.values())
@@ -414,23 +424,33 @@ public class IndexedApriori
 		//this seems to me like a case where for lower numbers we'd want specific values
 		//and for higher numbers we'd want a range. but this can be changed, of course.
 		
-		int vehiclesrange = 10;
-		for (int i = -4; i < 5; i++) //initializing i to -4 will include error values
-		{
-			pred = new Predicate(Predicate.FEATURE.C_VEHS, i);
+
+		//Do not split collision count if external knowledge is excluded
+		if(exclude) {
+			for(int i = -4; i < 100; i++) {
+				pred = new Predicate(Predicate.FEATURE.C_VEHS, i);
+				item = new ItemSet(pred);
+				candidates.add(item);
+			}
+		}else {
+			int vehiclesrange = 10;
+			for (int i = -4; i < 5; i++) //initializing i to -4 will include error values
+			{
+				pred = new Predicate(Predicate.FEATURE.C_VEHS, i);
+				item = new ItemSet(pred);
+				candidates.add(item);
+			}
+			pred = new Predicate(Predicate.FEATURE.C_VEHS, 5, 10);
 			item = new ItemSet(pred);
 			candidates.add(item);
-		}
-		pred = new Predicate(Predicate.FEATURE.C_VEHS, 5, 10);
-		item = new ItemSet(pred);
-		candidates.add(item);
-		min = 10;
-		while (min < 100)
-		{
-			pred = new Predicate(Predicate.FEATURE.C_VEHS, min, (min + vehiclesrange));
-			item = new ItemSet(pred);
-			candidates.add(item);
-			min += vehiclesrange;
+			min = 10;
+			while (min < 100)
+			{
+				pred = new Predicate(Predicate.FEATURE.C_VEHS, min, (min + vehiclesrange));
+				item = new ItemSet(pred);
+				candidates.add(item);
+				min += vehiclesrange;
+			}
 		}
 		
 		//C_CONF next (gives information about accident)
@@ -520,14 +540,26 @@ public class IndexedApriori
 		}
 		
 		//V_YEAR (model year of vehicle)
-		int vyearrange = 20;
-		min = 1900; //who knows, you do see people driving model a's every now and then..
-		while(min < 2020)
-		{
-			pred = new Predicate(Predicate.FEATURE.V_YEAR, min, (min + vyearrange));
-			item = new ItemSet(pred);
-			candidates.add(item);
-			min = min + vyearrange;
+
+		//Do not split into range if external knowledge is excluded 
+		
+		if(exclude) {
+			for(int i = 1900; i < 2020; i++) {
+				pred = new Predicate(Predicate.FEATURE.V_YEAR, i);
+				item = new ItemSet(pred);
+				candidates.add(item);
+			}
+		}else {
+			//should we really split by 20 to begin with?
+			int vyearrange = 20;
+			min = 1900; //who knows, you do see people driving model a's every now and then..
+			while(min < 2020)
+			{
+				pred = new Predicate(Predicate.FEATURE.V_YEAR, min, (min + vyearrange));
+				item = new ItemSet(pred);
+				candidates.add(item);
+				min = min + vyearrange;
+			}
 		}
 		
 		//P_ID (person ID)
@@ -561,6 +593,8 @@ public class IndexedApriori
 		// 	candidates.add(item);
 		// 	min = min + agerange;
 		// }
+		
+		//Do not split age if external knowledge is excluded
 		if(exclude) {
 			for(int i = 0; i < 100; i++) {
 				pred = new Predicate(Predicate.FEATURE.P_AGE, i);
@@ -634,6 +668,7 @@ public class IndexedApriori
 				candidates.add(item);
 			}
 		}
+		//do not add light conditions if external knowledge is excluded
 		if(!exclude) {
 			for (CollisionEntry.L_COND i: CollisionEntry.L_COND.values())
 			{
@@ -649,7 +684,7 @@ public class IndexedApriori
 		//V_DRAGE (age of driver) divide range into (child, yound adult, middle-age, old)
 
 			
-		//Do	
+		//Do not split age if external knowledge is excluded
 		if(exclude) {
 			for(int i = 0; i < 100; i++) {
 				pred = new Predicate(Predicate.FEATURE.V_DRAGE, i);
