@@ -583,7 +583,7 @@ public class IndexedApriori
 		for (CollisionEntry.P_PSN i: CollisionEntry.P_PSN.values())
 		{
 			if(!(i.equals(CollisionEntry.P_PSN.NOT_PROVIDED) || i.equals(CollisionEntry.P_PSN.NOT_APPLICABLE) || i.equals(CollisionEntry.P_PSN.UNKNOWN) || i.equals(CollisionEntry.P_PSN.UNKNOWN_BUT_DEFINITELY_OCCUPANT) ||
-						i.equals(CollisionEntry.P_PSN.OTHER))) { 
+						i.equals(CollisionEntry.P_PSN.OTHER) || i.equals(CollisionEntry.P_PSN.DRIVER))) { 
 				pred = new Predicate(Predicate.FEATURE.P_PSN, i.ordinal());
 				item = new ItemSet(pred);
 				candidates.add(item);

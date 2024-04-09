@@ -1,5 +1,5 @@
 {
-  "min_coverage": 0.3,
+  "min_coverage": 0.4,
   "rule_accuracy": 0.95,
   "database_path": "data/collision-databse_1999-2019.csv",
   "suntimes_path": "config/suntimes.txt",
