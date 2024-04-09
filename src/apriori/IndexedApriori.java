@@ -668,6 +668,7 @@ public class IndexedApriori
 				candidates.add(item);
 			}
 		}
+		
 		//do not add light conditions if external knowledge is excluded
 		if(!exclude) {
 			for (CollisionEntry.L_COND i: CollisionEntry.L_COND.values())
@@ -678,6 +679,21 @@ public class IndexedApriori
 					candidates.add(item);
 				}
 			}
+		}
+		
+		//vehicle age incremented by 5 (should be sufficient)
+		//do not include if external knowledge is excluded
+		if(!exclude) {
+			int increment = 5;
+			min = 0; 
+			while(min < 100)
+			{
+				pred = new Predicate(Predicate.FEATURE.V_AGE, min, (min + increment));
+				item = new ItemSet(pred);
+				candidates.add(item);
+				min = min + increment;
+			}
+			
 		}
 		
 
