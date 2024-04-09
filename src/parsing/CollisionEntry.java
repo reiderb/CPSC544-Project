@@ -267,6 +267,7 @@ public class CollisionEntry {
     public int CASE_NUMBER; //C_CASE, a column not documented on the data sheet.
     public byte DRIVER_AGE; // Age of the Driver
     public L_COND LIGHT;
+    public byte VEHICLE_AGE;
 
     //auto generated constructor, thats why the argument names look so bad.
     public CollisionEntry(short yEAR, byte mONTH, CollisionEntry.C_WDAY wEEK_DAY, byte hOUR,
@@ -276,7 +277,7 @@ public class CollisionEntry {
             CollisionEntry.V_TYPE vEHICLE_TYPE, short vEHICLE_MODEL_YEAR, byte pERSON_ID,
             CollisionEntry.P_SEX pERSON_SEX, byte pERSON_AGE, CollisionEntry.P_PSN pERSON_POSITION,
             CollisionEntry.P_ISEV pERSON_INJURY_SEVERITY, CollisionEntry.P_SAFE sAFETY_DEVICES,
-            CollisionEntry.P_USER uSER, int cASE_NUMBER, CollisionEntry.L_COND lIGHT) {
+            CollisionEntry.P_USER uSER, int cASE_NUMBER, CollisionEntry.L_COND lIGHT, byte vEHICLE_AGE) {
         YEAR = yEAR;
         MONTH = mONTH;
         WEEK_DAY = wEEK_DAY;
@@ -301,6 +302,7 @@ public class CollisionEntry {
         USER = uSER;
         CASE_NUMBER = cASE_NUMBER;
         LIGHT = lIGHT;
+        VEHICLE_AGE = vEHICLE_AGE;
     }
     
     public boolean contains(Object[] o) {

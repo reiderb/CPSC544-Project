@@ -17,9 +17,12 @@ public class Main {
 
         Gson jsonParser = new Gson();
         ConfigFile config = jsonParser.fromJson(Files.readString(Path.of(args[0])), ConfigFile.class);
+        boolean exclude = config.exclude_external;
         System.out.printf("Running with configuration:\n\tDatabase path: %s\n\tSuntimes path: %s\n\tMinimum coverage: %f\n\tMinimum rule accuracy: %f\n\tReading excluded rules from: %s\n\tWriting rules to: %s\n",
                           config.database_path, config.suntimes_path, config.min_coverage, config.rule_accuracy, config.excluded_rules_path, config.rules_out_path);
+        if(exclude) System.out.println("\tExcluding external knowledge");
         ArrayList<Rule> excludedRules = RulesIO.readRules(config.excluded_rules_path);
+        
         ArrayList<CollisionEntry> entrylist = CollisionEntryParser.Parse_CSV(config.database_path, config.suntimes_path);
         if (entrylist.size() == 0)
         {
@@ -31,11 +34,11 @@ public class Main {
         float minacc = config.rule_accuracy;
         boolean verifyflag = false; //set this to true if you want to verify the support values, false if you don't.
         
-        IndexedApriori apriorisets = new IndexedApriori();
+        IndexedApriori apriorisets = new IndexedApriori(exclude, mincov);
         long start = System.currentTimeMillis();
-        apriorisets.itemlists.add(apriorisets.oneItemList(entrylist, mincov));
+        apriorisets.itemlists.add(apriorisets.oneItemList(entrylist));
         entrylist.clear(); //after the one item sets are generated, we no longer need the entrylist, so we clear it to save memory.
-        apriorisets.generateItemSets(mincov);
+        apriorisets.generateItemSets();
         ArrayList<ArrayList<ItemSet>> itemsets = apriorisets.itemlists;
         for (int i = 0; i < itemsets.size(); i++)
         {

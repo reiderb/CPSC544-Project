@@ -815,6 +815,10 @@ public class CollisionEntryParser {
                 int case_number = Integer.parseInt(splitEntry[22]);
                 
                 L_COND light = checkLight(month, hour, suntable);
+                
+                byte v_age = -1;
+                if(model_year > 0) v_age = (byte) (year - model_year);
+                
 
                 // System.out.println(year);
                 // System.out.println(month);
@@ -839,6 +843,7 @@ public class CollisionEntryParser {
                 // System.out.println(p_safety_device);
                 // System.out.println(p_user);
                 // System.out.println(case_number);
+                // System.out.println(v_age);
                 
                 // Creating a map which stores the age of the driver for every Case Number + Vehicle Sequence Num combo
                 if(p_position == P_PSN.DRIVER) {
@@ -851,7 +856,7 @@ public class CollisionEntryParser {
                     }
                 }
                 
-                CollisionEntry tempEntry = new CollisionEntry(year, month, weekday, hour, severity, v_count, v_config, road_config, weather, road_surface, raln, traffic_control, v_seq_num, v_type, model_year, person_id, sex, age, p_position, p_injury_sev, p_safety_device, p_user, case_number, light);
+                CollisionEntry tempEntry = new CollisionEntry(year, month, weekday, hour, severity, v_count, v_config, road_config, weather, road_surface, raln, traffic_control, v_seq_num, v_type, model_year, person_id, sex, age, p_position, p_injury_sev, p_safety_device, p_user, case_number, light, v_age);
                 returnList.add(tempEntry);
             }
         } catch (FileNotFoundException e) {
