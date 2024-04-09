@@ -177,7 +177,7 @@ public class RuleChecker
 				flag = (value == entry.DRIVER_AGE);
 				break;
 			case V_AGE:
-				flag = (pred.value == entry.VEHICLE_AGE);
+				flag = (value == entry.VEHICLE_AGE);
 				break;
 		}
 		return flag;
