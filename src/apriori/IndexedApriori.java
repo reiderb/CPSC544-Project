@@ -484,24 +484,57 @@ public class IndexedApriori
 		}
 		
 		//C_RSUR (road surface conditions)
-		for (CollisionEntry.C_RSUR i: CollisionEntry.C_RSUR.values())
-		{
-			if(!(i.equals(CollisionEntry.C_RSUR.NOT_PROVIDED) || i.equals(CollisionEntry.C_RSUR.OTHER) || i.equals(CollisionEntry.C_RSUR.UNKNOWN))) {
-				pred = new Predicate(Predicate.FEATURE.C_RSUR, i.ordinal());
-				item = new ItemSet(pred);
-				candidates.add(item);
-			}
-		}
+                for (CollisionEntry.C_RSUR i: CollisionEntry.C_RSUR.values())
+                    {
+                        if(!(i.equals(CollisionEntry.C_RSUR.NOT_PROVIDED) || i.equals(CollisionEntry.C_RSUR.OTHER) || i.equals(CollisionEntry.C_RSUR.UNKNOWN))) {
+                            pred = new Predicate(Predicate.FEATURE.C_RSUR, i.ordinal());
+                            item = new ItemSet(pred);
+                            candidates.add(item);
+                        }
+                    }
+                if (!exclude) {
+                    pred = new Predicate(Predicate.FEATURE.C_RSUR, 1, 8);
+                    item = new ItemSet(pred);
+                    candidates.add(item);
+                }
+                    
 		
-		//C_RALN (whether the road is straight or curved, etc)
-		for (CollisionEntry.C_RALN i: CollisionEntry.C_RALN.values())
-		{
-			if(!(i.equals(CollisionEntry.C_RALN.NOT_PROVIDED) || i.equals(CollisionEntry.C_RALN.OTHER) || i.equals(CollisionEntry.C_RALN.UNKNOWN))) {
-				pred = new Predicate(Predicate.FEATURE.C_RALN, i.ordinal());
-				item = new ItemSet(pred);
-				candidates.add(item);
-			}
-		}
+                //C_RALN (whether the road is straight or curved, etc)
+                for (CollisionEntry.C_RALN i: CollisionEntry.C_RALN.values())
+                    {
+                        if(!(i.equals(CollisionEntry.C_RALN.NOT_PROVIDED) || i.equals(CollisionEntry.C_RALN.OTHER) || i.equals(CollisionEntry.C_RALN.UNKNOWN))) {
+                            pred = new Predicate(Predicate.FEATURE.C_RALN, i.ordinal());
+                            item = new ItemSet(pred);
+                            candidates.add(item);
+                        }
+                    }
+                if (!exclude) {
+                    pred = new Predicate(Predicate.FEATURE.C_RALN,
+                                         new ArrayList<>(Arrays.asList(CollisionEntry.C_RALN.STRAIGHT_LEVEL.ordinal(),
+                                                                       CollisionEntry.C_RALN.STRAIGHT_GRADIENT.ordinal())));
+                    item = new ItemSet(pred);
+                    candidates.add(item);
+                    pred = new Predicate(Predicate.FEATURE.C_RALN,
+                                         new ArrayList<>(Arrays.asList(CollisionEntry.C_RALN.CURVED_LEVEL.ordinal(),
+                                                                       CollisionEntry.C_RALN.CURVED_GRADIENT.ordinal())));
+                    item = new ItemSet(pred);
+                    candidates.add(item);
+                    pred = new Predicate(Predicate.FEATURE.C_RALN,
+                                         new ArrayList<>(Arrays.asList(CollisionEntry.C_RALN.TOP_OF_HILL_OR_GRADIENT.ordinal(),
+                                                                       CollisionEntry.C_RALN.BOTTOM_OF_HILL_OR_GRADIENT.ordinal())));
+                    item = new ItemSet(pred);
+                    candidates.add(item);
+                    pred = new Predicate(Predicate.FEATURE.C_RALN,
+                                         new ArrayList<>(Arrays.asList(CollisionEntry.C_RALN.STRAIGHT_LEVEL.ordinal(),
+                                                                       CollisionEntry.C_RALN.CURVED_LEVEL.ordinal())));
+                    item = new ItemSet(pred);
+                    candidates.add(item);
+                    pred = new Predicate(Predicate.FEATURE.C_RALN,
+                                         new ArrayList<>(Arrays.asList(CollisionEntry.C_RALN.CURVED_GRADIENT.ordinal(),
+                                                                       CollisionEntry.C_RALN.STRAIGHT_GRADIENT.ordinal())));
+                    item = new ItemSet(pred);
+                    candidates.add(item);
+                }
 		
 		//C_TRAF (traffic signals)
 		for (CollisionEntry.C_TRAF i: CollisionEntry.C_TRAF.values())
