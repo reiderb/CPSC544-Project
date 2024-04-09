@@ -379,9 +379,11 @@ public class IndexedApriori
 		//System.out.println("made month candidates");
 		for (CollisionEntry.C_WDAY i: CollisionEntry.C_WDAY.values()) //predicates for days of week
 		{
-			pred = new Predicate(Predicate.FEATURE.C_WDAY, i.ordinal());
-			item = new ItemSet(pred);
-			candidates.add(item);
+			if(!(i.equals(CollisionEntry.C_WDAY.NOT_PROVIDED) || i.equals(CollisionEntry.C_WDAY.UNKNOWN))) {
+				pred = new Predicate(Predicate.FEATURE.C_WDAY, i.ordinal());
+				item = new ItemSet(pred);
+				candidates.add(item);
+			}
 		}
 		//System.out.println("made weekday candidates");
 		
@@ -397,9 +399,11 @@ public class IndexedApriori
 		
 		for (CollisionEntry.C_SEV i: CollisionEntry.C_SEV.values())
 		{
-			pred = new Predicate(Predicate.FEATURE.C_SEV, i.ordinal());
-			item = new ItemSet(pred);
-			candidates.add(item);
+			if(!(i.equals(CollisionEntry.C_SEV.NOT_PROVIDED) || i.equals(CollisionEntry.C_SEV.UNKNOWN))) {
+				pred = new Predicate(Predicate.FEATURE.C_SEV, i.ordinal());
+				item = new ItemSet(pred);
+				candidates.add(item);
+			}
 		}
 		
 		//next up, C_VEHS, the number of vehicles in a collision
@@ -428,56 +432,69 @@ public class IndexedApriori
 		//C_CONF next (gives information about accident)
 		for (CollisionEntry.C_CONF i: CollisionEntry.C_CONF.values())
 		{
-			pred = new Predicate(Predicate.FEATURE.C_CONF, i.ordinal());
-			item = new ItemSet(pred);
-			candidates.add(item);
+			if(!(i.equals(CollisionEntry.C_CONF.NOT_PROVIDED) || i.equals(CollisionEntry.C_CONF.OTHER) || i.equals(CollisionEntry.C_CONF.UNKNOWN))) {
+				pred = new Predicate(Predicate.FEATURE.C_CONF, i.ordinal());
+				item = new ItemSet(pred);
+				candidates.add(item);
+			}
 		}
 		
 		//C_RCFG (where the accident happened)
 		for (CollisionEntry.C_RCFG i: CollisionEntry.C_RCFG.values())
 		{
-			pred = new Predicate(Predicate.FEATURE.C_RCFG, i.ordinal());
-			item = new ItemSet(pred);
-			candidates.add(item);
+			if(!(i.equals(CollisionEntry.C_RCFG.NOT_PROVIDED) || i.equals(CollisionEntry.C_RCFG.OTHER) || i.equals(CollisionEntry.C_RCFG.UNKNOWN))) {
+				pred = new Predicate(Predicate.FEATURE.C_RCFG, i.ordinal());
+				item = new ItemSet(pred);
+				candidates.add(item);
+			}
 		}
 		
 		//C_WTHR (weather conditions)
 		for (CollisionEntry.C_WTHR i: CollisionEntry.C_WTHR.values())
 		{
-			pred = new Predicate(Predicate.FEATURE.C_WTHR, i.ordinal());
-			item = new ItemSet(pred);
-			candidates.add(item);
+			if(!(i.equals(CollisionEntry.C_WTHR.NOT_PROVIDED) || i.equals(CollisionEntry.C_WTHR.OTHER) || i.equals(CollisionEntry.C_WTHR.UNKNOWN))) {
+				pred = new Predicate(Predicate.FEATURE.C_WTHR, i.ordinal());
+				item = new ItemSet(pred);
+				candidates.add(item);
+			}
 		}
 		
 		//C_RSUR (road surface conditions)
 		for (CollisionEntry.C_RSUR i: CollisionEntry.C_RSUR.values())
 		{
-			pred = new Predicate(Predicate.FEATURE.C_RSUR, i.ordinal());
-			item = new ItemSet(pred);
-			candidates.add(item);
+			if(!(i.equals(CollisionEntry.C_RSUR.NOT_PROVIDED) || i.equals(CollisionEntry.C_RSUR.OTHER) || i.equals(CollisionEntry.C_RSUR.UNKNOWN))) {
+				pred = new Predicate(Predicate.FEATURE.C_RSUR, i.ordinal());
+				item = new ItemSet(pred);
+				candidates.add(item);
+			}
 		}
 		
 		//C_RALN (whether the road is straight or curved, etc)
 		for (CollisionEntry.C_RALN i: CollisionEntry.C_RALN.values())
 		{
-			pred = new Predicate(Predicate.FEATURE.C_RALN, i.ordinal());
-			item = new ItemSet(pred);
-			candidates.add(item);
+			if(!(i.equals(CollisionEntry.C_RALN.NOT_PROVIDED) || i.equals(CollisionEntry.C_RALN.OTHER) || i.equals(CollisionEntry.C_RALN.UNKNOWN))) {
+				pred = new Predicate(Predicate.FEATURE.C_RALN, i.ordinal());
+				item = new ItemSet(pred);
+				candidates.add(item);
+			}
 		}
 		
 		//C_TRAF (traffic signals)
 		for (CollisionEntry.C_TRAF i: CollisionEntry.C_TRAF.values())
 		{
-			pred = new Predicate(Predicate.FEATURE.C_TRAF, i.ordinal());
-			item = new ItemSet(pred);
-			candidates.add(item);
+			if(!(i.equals(CollisionEntry.C_TRAF.NOT_PROVIDED) || i.equals(CollisionEntry.C_TRAF.OTHER) || i.equals(CollisionEntry.C_TRAF.UNKNOWN) || i.equals(CollisionEntry.C_TRAF.NOT_SPECIFIED))) {
+				pred = new Predicate(Predicate.FEATURE.C_TRAF, i.ordinal());
+				item = new ItemSet(pred);
+				candidates.add(item);
+			}
 		}
 		
 		//V_ID (vehicle ID)
 		//i have a feeling this will be completely meaningless except for 99 which indicates a pedestrian
-		pred = new Predicate (Predicate.FEATURE.V_ID, 99);
-		item = new ItemSet(pred);
-		candidates.add(item);
+		// pedestrian is covered by other feature values
+		// pred = new Predicate (Predicate.FEATURE.V_ID, 99);
+		// item = new ItemSet(pred);
+		// candidates.add(item);
 		//uncomment this if you're a FREAK!!!
 		/*
 		for (int i = 1; i <= 98; i++)
@@ -491,9 +508,11 @@ public class IndexedApriori
 		//V_TYPE (trucks, buses, cars, etc)
 		for (CollisionEntry.V_TYPE i: CollisionEntry.V_TYPE.values())
 		{
-			pred = new Predicate(Predicate.FEATURE.V_TYPE, i.ordinal());
-			item = new ItemSet(pred);
-			candidates.add(item);
+			if(!(i.equals(CollisionEntry.V_TYPE.NOT_PROVIDED) || i.equals(CollisionEntry.V_TYPE.OTHER) || i.equals(CollisionEntry.V_TYPE.UNKNOWN) || i.equals(CollisionEntry.V_TYPE.NOT_APPLICABLE))) {
+				pred = new Predicate(Predicate.FEATURE.V_TYPE, i.ordinal());
+				item = new ItemSet(pred);
+				candidates.add(item);
+			}
 		}
 		
 		//V_YEAR (model year of vehicle)
@@ -521,22 +540,40 @@ public class IndexedApriori
 		//P_SEX (the gender of a given person)
 		for (CollisionEntry.P_SEX i: CollisionEntry.P_SEX.values())
 		{
-			pred = new Predicate(Predicate.FEATURE.P_SEX, i.ordinal());
-			item = new ItemSet(pred);
-			candidates.add(item);
+			if(!(i.equals(CollisionEntry.P_SEX.NOT_PROVIDED) || i.equals(CollisionEntry.P_SEX.NOT_APPLICABLE) || i.equals(CollisionEntry.P_SEX.UNKNOWN))) {
+				pred = new Predicate(Predicate.FEATURE.P_SEX, i.ordinal());
+				item = new ItemSet(pred);
+				candidates.add(item);
+			}
 		}
 		
 		//P_AGE (age of a person)
-		int agerange = 10;
-		min = 0;
-		while (min < 100)
-		{
-			pred = new Predicate(Predicate.FEATURE.P_AGE, min, (min + agerange));
-			item = new ItemSet(pred);
-			candidates.add(item);
-			min = min + agerange;
-		}
+		// int agerange = 10;
+		// min = 0;
+		// while (min < 100)
+		// {
+		// 	pred = new Predicate(Predicate.FEATURE.P_AGE, min, (min + agerange));
+		// 	item = new ItemSet(pred);
+		// 	candidates.add(item);
+		// 	min = min + agerange;
+		// }
 		
+		item = new ItemSet(new Predicate(Predicate.FEATURE.P_AGE, 0, 15));
+		candidates.add(item);
+
+		item = new ItemSet(new Predicate(Predicate.FEATURE.P_AGE, 15, 25));
+		candidates.add(item);
+
+		item = new ItemSet(new Predicate(Predicate.FEATURE.P_AGE, 25, 45));
+		candidates.add(item);
+
+		item = new ItemSet(new Predicate(Predicate.FEATURE.P_AGE, 45, 65));
+		candidates.add(item);
+
+		item = new ItemSet(new Predicate(Predicate.FEATURE.P_AGE, 65, 99));
+		candidates.add(item);
+
+
 		//if the age and gender of a person are relevant to an accident, it seems that 
 		//it would mainly only be when that person is driving, so perhaps we could filter
 		//the above feature values based on whether they're driving or not
@@ -545,40 +582,52 @@ public class IndexedApriori
 		//question: for imported right hand drives, does 11 still represent the driver? probably not important..
 		for (CollisionEntry.P_PSN i: CollisionEntry.P_PSN.values())
 		{
-			pred = new Predicate(Predicate.FEATURE.P_PSN, i.ordinal());
-			item = new ItemSet(pred);
-			candidates.add(item);
+			if(!(i.equals(CollisionEntry.P_PSN.NOT_PROVIDED) || i.equals(CollisionEntry.P_PSN.NOT_APPLICABLE) || i.equals(CollisionEntry.P_PSN.UNKNOWN) || i.equals(CollisionEntry.P_PSN.UNKNOWN_BUT_DEFINITELY_OCCUPANT) ||
+						i.equals(CollisionEntry.P_PSN.OTHER))) { 
+				pred = new Predicate(Predicate.FEATURE.P_PSN, i.ordinal());
+				item = new ItemSet(pred);
+				candidates.add(item);
+			}
 		}
 		
 		//P_ISEV (injury severity)
 		for (CollisionEntry.P_ISEV i: CollisionEntry.P_ISEV.values())
 		{
-			pred = new Predicate(Predicate.FEATURE.P_ISEV, i.ordinal());
-			item = new ItemSet(pred);
-			candidates.add(item);
+			if(!(i.equals(CollisionEntry.P_ISEV.NOT_PROVIDED) || i.equals(CollisionEntry.P_ISEV.NOT_APPLICABLE) || i.equals(CollisionEntry.P_ISEV.UNKNOWN))) {
+				pred = new Predicate(Predicate.FEATURE.P_ISEV, i.ordinal());
+				item = new ItemSet(pred);
+				candidates.add(item);
+			}
 		}
 		
 		//P_SAFE (safety devices used)
 		for (CollisionEntry.P_SAFE i: CollisionEntry.P_SAFE.values())
 		{
-			pred = new Predicate(Predicate.FEATURE.P_SAFE, i.ordinal());
-			item = new ItemSet(pred);
-			candidates.add(item);
+			if(!(i.equals(CollisionEntry.P_SAFE.NOT_PROVIDED) || i.equals(CollisionEntry.P_SAFE.NOT_APPLICABLE) || i.equals(CollisionEntry.P_SAFE.UNKNOWN) || i.equals(CollisionEntry.P_SAFE.OTHER))) {
+				pred = new Predicate(Predicate.FEATURE.P_SAFE, i.ordinal());
+				item = new ItemSet(pred);
+				candidates.add(item);
+			}
 		}
 		
 		//P_USER (whether the person's a driver, passenger, cyclist, whatever)
 		for (CollisionEntry.P_USER i: CollisionEntry.P_USER.values())
 		{
-			pred = new Predicate(Predicate.FEATURE.P_USER, i.ordinal());
-			item = new ItemSet(pred);
-			candidates.add(item);
+			if(!(i.equals(CollisionEntry.P_USER.UNKNOWN) || i.equals(CollisionEntry.P_USER.PEDESTRIAN) || i.equals(CollisionEntry.P_USER.BICYCLIST) || i.equals(CollisionEntry.P_USER.MOTORCYCLIST))) { 
+				// Excluding pedestrian because value is covered by V_ID=99, excluding BICYCLIST and MOTORCYCLIST because it is covered by V_TYPE index 8 and 10
+				pred = new Predicate(Predicate.FEATURE.P_USER, i.ordinal());
+				item = new ItemSet(pred);
+				candidates.add(item);
+			}
 		}
 		
 		for (CollisionEntry.L_COND i: CollisionEntry.L_COND.values())
 		{
-			pred = new Predicate(Predicate.FEATURE.L_COND, i.ordinal());
-			item = new ItemSet(pred);
-			candidates.add(item);
+			if(!(i.equals(CollisionEntry.L_COND.UNKNOWN))) {
+				pred = new Predicate(Predicate.FEATURE.L_COND, i.ordinal());
+				item = new ItemSet(pred);
+				candidates.add(item);
+			}
 		}
 
 		//V_DRAGE (age of driver) divide range into (child, yound adult, middle-age, old)

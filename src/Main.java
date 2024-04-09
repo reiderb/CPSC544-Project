@@ -80,6 +80,32 @@ public class Main {
         RuleGenerator rulelist = new RuleGenerator(itemsets, minacc);
         ArrayList<Rule> goodRules = Rule.filter(rulelist.rulelist, excludedRules);
         finish = System.currentTimeMillis();
+
+        goodRules.sort(new Comparator<Rule>() {
+            @Override
+            public int compare(Rule o1, Rule o2) {
+                return Float.valueOf(o1.freq).compareTo(Float.valueOf(o2.freq));
+            }
+        });
+
+        //Sort the rules in following order length of condition -> compare each predicate in condition -> frequency
+        // goodRules.sort(new Comparator<Rule>() {
+        //     @Override
+        //     public int compare(Rule o1, Rule o2) {
+        //         int i = o1.cond.size();
+        //         int j = o2.cond.size();
+        //         int c = 0;
+        //         if(i != j) return i > j ? +1 : i < j ? -1 : 0;
+
+        //         for(i = 0; i < j; i++) {
+        //             c = o1.cond.get(i).compareTo(o2.cond.get(i));
+        //             if(c != 0) return c;
+        //         }
+
+        //         return Float.valueOf(o2.freq).compareTo(Float.valueOf(o2.freq));
+        //     }
+        // });
+
         for (Rule rule : goodRules)
             System.out.println(parsing.RulesIO.encodeRule(rule));
         System.out.println("Excluded " + (rulelist.rulelist.size() - goodRules.size()) + " rules");
