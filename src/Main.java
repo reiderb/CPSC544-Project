@@ -20,6 +20,7 @@ public class Main {
         System.out.printf("Running with configuration:\n\tDatabase path: %s\n\tSuntimes path: %s\n\tMinimum coverage: %f\n\tMinimum rule accuracy: %f\n\tReading excluded rules from: %s\n\tWriting rules to: %s\n",
                           config.database_path, config.suntimes_path, config.min_coverage, config.rule_accuracy, config.excluded_rules_path, config.rules_out_path);
         ArrayList<Rule> excludedRules = RulesIO.readRules(config.excluded_rules_path);
+        boolean exclude = config.exclude_external;
         ArrayList<CollisionEntry> entrylist = CollisionEntryParser.Parse_CSV(config.database_path, config.suntimes_path);
         if (entrylist.size() == 0)
         {
@@ -31,11 +32,11 @@ public class Main {
         float minacc = config.rule_accuracy;
         boolean verifyflag = false; //set this to true if you want to verify the support values, false if you don't.
         
-        IndexedApriori apriorisets = new IndexedApriori();
+        IndexedApriori apriorisets = new IndexedApriori(exclude, mincov);
         long start = System.currentTimeMillis();
-        apriorisets.itemlists.add(apriorisets.oneItemList(entrylist, mincov));
+        apriorisets.itemlists.add(apriorisets.oneItemList(entrylist));
         entrylist.clear(); //after the one item sets are generated, we no longer need the entrylist, so we clear it to save memory.
-        apriorisets.generateItemSets(mincov);
+        apriorisets.generateItemSets();
         ArrayList<ArrayList<ItemSet>> itemsets = apriorisets.itemlists;
         for (int i = 0; i < itemsets.size(); i++)
         {

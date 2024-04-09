@@ -8,21 +8,25 @@ public class IndexedApriori
 {
 	public ArrayList<ArrayList<ItemSet>> itemlists; //this is an arraylist of arraylists, so it should work like,
 	//the 0th entry is the list of 1 item sets, the 1st entry is the list of 2 item sets, etc.
+	public boolean exclude;
+	public int mincov;
 	
-	public IndexedApriori()
+	public IndexedApriori(boolean exclude_in, int mincov_in)
 	{
 		itemlists = new ArrayList<ArrayList<ItemSet>>();
+		exclude = exclude_in;
+		mincov = mincov_in;
 	}
 	
 	public IndexedApriori(ArrayList<CollisionEntry> entrylist, int mincov)
 	{
 		itemlists = new ArrayList<ArrayList<ItemSet>>();
-		itemlists.add(oneItemList(entrylist, mincov));
+		itemlists.add(oneItemList(entrylist));
 		if (itemlists.get(0).size() > 0)
-		{generateItemSets(mincov);}
+		{generateItemSets();}
 	}
 	
-	public ArrayList<ItemSet> oneItemList(ArrayList<CollisionEntry> entrylist, int mincov)
+	public ArrayList<ItemSet> oneItemList(ArrayList<CollisionEntry> entrylist)
 	{
 		//mincov is the minimum number of entries a predicate has to be in
 		RuleChecker checker = new RuleChecker();
@@ -52,17 +56,17 @@ public class IndexedApriori
 		return onelist;
 	}
 	
-	public void generateItemSets(int mincov)
+	public void generateItemSets()
 	{
 		//we assume the one item set has already been generated at this point
 		int k = 1;
-		ArrayList<ItemSet> newlist = kItemList(k, mincov);
+		ArrayList<ItemSet> newlist = kItemList(k);
 		while (newlist.size() > 0)
 		{
 			System.out.println(Integer.toString(k + 1) + " Item lists generated");
 			itemlists.add(newlist);
 			k = k + 1;
-			newlist = kItemList(k, mincov);
+			newlist = kItemList(k);
 			//clearIndices(k - 1);
 		}
 	}
@@ -83,7 +87,7 @@ public class IndexedApriori
 		}
 	}
 	
-	public ArrayList<ItemSet> kItemList(int k, int mincov)
+	public ArrayList<ItemSet> kItemList(int k)
 	{
 		//here, k is the index of the item set we want to generate in "itemlist".
 		//we assume that all sets less than k have already been generated.
@@ -114,7 +118,7 @@ public class IndexedApriori
 					if (!doesItemSetExist(item, newlist)) //check that we haven't already made an item set with these predicates
 					{
 						//System.out.println("new item set found, checking for intersection of indices");
-						indices = reconstructIndices(item, mincov);
+						indices = reconstructIndices(item);
 						//System.out.println("Found intersection of indices");
 						if (indices.size() >= mincov)
 						{
@@ -206,7 +210,7 @@ public class IndexedApriori
 		return true;
 	}
 	
-	public ArrayList<Integer> reconstructIndices(ItemSet item, int mincov)
+	public ArrayList<Integer> reconstructIndices(ItemSet item)
 	{
 		ArrayList<Integer> indices = new ArrayList<Integer>();
 		if (item.items.size() == 0) {return indices;}
