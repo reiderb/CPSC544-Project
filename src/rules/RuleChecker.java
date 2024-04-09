@@ -78,7 +78,7 @@ public class RuleChecker
 				flag = checkFeatureRange(entry, pred);
 				break;
 			case MULTIPLE_VALUES:
-				flag = true; //change this once we implement the external knowledge
+                                flag = checkFeatureMultipleValues(entry, pred);
 				break;
 		}
 		return flag;
@@ -86,87 +86,98 @@ public class RuleChecker
 	
 	public boolean checkFeatureValue(CollisionEntry entry, Predicate pred)
 	{
+            return checkFeature(entry, pred.feature, pred.value);
+	}
+
+        public boolean checkFeatureMultipleValues(CollisionEntry entry, Predicate pred) {
+            for (int v : pred.values)
+                if (checkFeature(entry, pred.feature, v))
+                    return true;
+            return false;
+        }
+
+        private boolean checkFeature(CollisionEntry entry, Predicate.FEATURE feature, int value) {
 		boolean flag = false;
-		switch (pred.feature)
+		switch (feature)
 		{
 			case C_WDAY:
-				flag = (c_wday[pred.value] == entry.WEEK_DAY);
+				flag = (c_wday[value] == entry.WEEK_DAY);
 				break;
 			case C_SEV:
-				flag = (c_sev[pred.value] == entry.SEVERITY);
+				flag = (c_sev[value] == entry.SEVERITY);
 				break;
 			case C_CONF:
-				flag = (c_conf[pred.value] == entry.VEHICLE_CONFIGURATION);
+				flag = (c_conf[value] == entry.VEHICLE_CONFIGURATION);
 				break;
 			case C_RCFG:
-				flag = (c_rcfg[pred.value] == entry.ROAD_CONFIGURATION);
+				flag = (c_rcfg[value] == entry.ROAD_CONFIGURATION);
 				break;
 			case C_WTHR:
-				flag = (c_wthr[pred.value] == entry.WEATHER);
+				flag = (c_wthr[value] == entry.WEATHER);
 				break;
 			case C_RSUR:
-				flag = (c_rsur[pred.value] == entry.ROAD_SURFACE);
+				flag = (c_rsur[value] == entry.ROAD_SURFACE);
 				break;
 			case C_RALN:
-				flag = (c_raln[pred.value] == entry.RALN);
+				flag = (c_raln[value] == entry.RALN);
 				break;
 			case C_TRAF:
-				flag = (c_traf[pred.value] == entry.TRAFFIC_CONTROL);
+				flag = (c_traf[value] == entry.TRAFFIC_CONTROL);
 				break;
 			case  V_TYPE:
-				flag = (v_type[pred.value] == entry.VEHICLE_TYPE);
+				flag = (v_type[value] == entry.VEHICLE_TYPE);
 				break;
 			case P_SEX:
-				flag = (p_sex[pred.value] == entry.PERSON_SEX);
+				flag = (p_sex[value] == entry.PERSON_SEX);
 				break;
 			case P_PSN:
-				flag = (p_psn[pred.value] == entry.PERSON_POSITION);
+				flag = (p_psn[value] == entry.PERSON_POSITION);
 				break;
 			case P_ISEV:
-				flag = (p_isev[pred.value] == entry.PERSON_INJURY_SEVERITY);
+				flag = (p_isev[value] == entry.PERSON_INJURY_SEVERITY);
 				break;
 			case P_SAFE:
-				flag = (p_safe[pred.value] == entry.SAFETY_DEVICES);
+				flag = (p_safe[value] == entry.SAFETY_DEVICES);
 				break;
 			case P_USER:
-				flag = (p_user[pred.value] == entry.USER);
+				flag = (p_user[value] == entry.USER);
 				break;
 			case C_YEAR:
-				flag = (pred.value == entry.YEAR);
+				flag = (value == entry.YEAR);
 				break;
 			case C_MNTH:
-				flag = (pred.value == entry.MONTH);
+				flag = (value == entry.MONTH);
 				break;
 			case C_HOUR:
-				flag = (pred.value == entry.HOUR);
+				flag = (value == entry.HOUR);
 				break;
 			case C_VEHS:
-				flag = (pred.value == entry.VEHICLE_COUNT);
+				flag = (value == entry.VEHICLE_COUNT);
 				break;
 			case V_ID:
-				flag = (pred.value == entry.VEHICLE_SEQUENCE_NUM);
+				flag = (value == entry.VEHICLE_SEQUENCE_NUM);
 				break;
 			case V_YEAR:
-				flag = (pred.value == entry.VEHICLE_MODEL_YEAR);
+				flag = (value == entry.VEHICLE_MODEL_YEAR);
 				break;
 			case P_ID:
-				flag = (pred.value == entry.PERSON_ID);
+				flag = (value == entry.PERSON_ID);
 				break;
 			case P_AGE:
-				flag = (pred.value == entry.PERSON_AGE);
+				flag = (value == entry.PERSON_AGE);
 				break;
 			case C_CASE:
-				flag = (pred.value == entry.CASE_NUMBER);
+				flag = (value == entry.CASE_NUMBER);
 				break;
 			case L_COND:
-				flag = (l_cond[pred.value] == entry.LIGHT);
+				flag = (l_cond[value] == entry.LIGHT);
 				break;
 			case V_DRAGE:
-				flag = (pred.value == entry.DRIVER_AGE);
+				flag = (value == entry.DRIVER_AGE);
 				break;
 		}
 		return flag;
-	}
+        }
 	
 	public boolean checkFeatureRange(CollisionEntry entry, Predicate pred)
 	{
