@@ -17,10 +17,12 @@ public class Main {
 
         Gson jsonParser = new Gson();
         ConfigFile config = jsonParser.fromJson(Files.readString(Path.of(args[0])), ConfigFile.class);
+        boolean exclude = config.exclude_external;
         System.out.printf("Running with configuration:\n\tDatabase path: %s\n\tSuntimes path: %s\n\tMinimum coverage: %f\n\tMinimum rule accuracy: %f\n\tReading excluded rules from: %s\n\tWriting rules to: %s\n",
                           config.database_path, config.suntimes_path, config.min_coverage, config.rule_accuracy, config.excluded_rules_path, config.rules_out_path);
+        if(exclude) System.out.println("\tExcluding external knowledge");
         ArrayList<Rule> excludedRules = RulesIO.readRules(config.excluded_rules_path);
-        boolean exclude = config.exclude_external;
+        
         ArrayList<CollisionEntry> entrylist = CollisionEntryParser.Parse_CSV(config.database_path, config.suntimes_path);
         if (entrylist.size() == 0)
         {

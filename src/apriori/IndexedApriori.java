@@ -634,17 +634,31 @@ public class IndexedApriori
 				candidates.add(item);
 			}
 		}
+		if(!exclude) {
+			for (CollisionEntry.L_COND i: CollisionEntry.L_COND.values())
+			{
+				if(!(i.equals(CollisionEntry.L_COND.UNKNOWN))) {
+					pred = new Predicate(Predicate.FEATURE.L_COND, i.ordinal());
+					item = new ItemSet(pred);
+					candidates.add(item);
+				}
+			}
+		}
 		
-		for (CollisionEntry.L_COND i: CollisionEntry.L_COND.values())
-		{
-			if(!(i.equals(CollisionEntry.L_COND.UNKNOWN))) {
-				pred = new Predicate(Predicate.FEATURE.L_COND, i.ordinal());
+
+		//V_DRAGE (age of driver) divide range into (child, yound adult, middle-age, old)
+
+			
+		//Do	
+		if(exclude) {
+			for(int i = 0; i < 100; i++) {
+				pred = new Predicate(Predicate.FEATURE.V_DRAGE, i);
 				item = new ItemSet(pred);
 				candidates.add(item);
 			}
 		}
-
-		//V_DRAGE (age of driver) divide range into (child, yound adult, middle-age, old)
+		
+		else {
 			item = new ItemSet(new Predicate(Predicate.FEATURE.V_DRAGE, 0, 15));
 			candidates.add(item);
 
@@ -659,6 +673,7 @@ public class IndexedApriori
 
 			item = new ItemSet(new Predicate(Predicate.FEATURE.V_DRAGE, 65, 99));
 			candidates.add(item);
+		}
 
 		//finally done..
 		return candidates;
